@@ -6,7 +6,7 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/06 17:56:57 by touteiro          #+#    #+#              #
-#    Updated: 2022/10/07 19:29:21 by touteiro         ###   ########.fr        #
+#    Updated: 2022/10/07 20:53:58 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,10 @@ SRCS = ft_isalnum.c \
 		ft_memchr.c \
 		ft_memcmp.c \
 		ft_strnstr.c \
-		ft_atoi.c
+		ft_atoi.c \
+		ft_calloc.c \
+		ft_strdup.c \
+		ft_substr.c
 		
 OBJS = ${SRCS:.c=.o}
 HEAD = libft.h
