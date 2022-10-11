@@ -6,7 +6,7 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/06 17:56:57 by touteiro          #+#    #+#              #
-#    Updated: 2022/10/10 20:34:49 by touteiro         ###   ########.fr        #
+#    Updated: 2022/10/11 10:07:23 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,8 +48,19 @@ SRCS = ft_isalnum.c \
 		ft_putstr_fd.c \
 		ft_putendl_fd.c \
 		ft_putnbr_fd.c
+
+BONUS = ft_lstnew.c \
+		ft_lstadd_front.c \
+		ft_lstsize.c \
+		ft_lstlast.c \
+		ft_lstadd_back.c \
+		ft_lstdelone.c \
+		ft_lstclear.c \
+		ft_lstiter.c \
+		ft_lstmap.c
 		
 OBJS = ${SRCS:.c=.o}
+BONUS_OBJS = ${BONUS:.c=.o}
 HEAD = libft.h
 
 .c.o:
@@ -63,12 +74,16 @@ ${NAME}:	${OBJS}
 
 all: ${NAME}
 
+bonus:		${OBJS}	${BONUS_OBJS}
+			${LIBC} ${NAME} ${OBJS} ${BONUS_OBJS}
+
 clean:
-		${RM} ${OBJS}
+		${RM} ${OBJS} ${BONUS_OBJS}
 
 fclean:	clean
 		${RM} ${NAME}
 
-re:	fclean all
+#DONT FORGET TO CHANGE THIS
+re:	fclean bonus
 
-.PHONY: all clean fclean re libft.a
+.PHONY: all clean fclean re libft.a bonus
