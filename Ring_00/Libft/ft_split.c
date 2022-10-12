@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 00:51:30 by touteiro          #+#    #+#             */
-/*   Updated: 2022/10/10 16:20:51 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/10/12 10:36:34 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static char	**check_str(const char *s, int words, char c, char **split)
 
 	i = 0;
 	j = 0;
-	while (s[i] && j < words)
+	while (j < words && s[i])
 	{
 		while (s[i] == c)
 			s++;

@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:21:05 by touteiro          #+#    #+#             */
-/*   Updated: 2022/10/11 10:39:16 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:15:22 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <strings.h>
 # include <ctype.h>
 # include <limits.h>
+# include <malloc/malloc.h>
 
 typedef struct s_list
 {
