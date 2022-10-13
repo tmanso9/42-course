@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:51:16 by touteiro          #+#    #+#             */
-/*   Updated: 2022/10/12 10:51:11 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:30:33 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 
 	i = 0;
 	str = (char *)s;
-	if (!str)
+	if (n == 0)
 		return (NULL);
 	while (i < n)
 	{

@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 12:03:37 by touteiro          #+#    #+#             */
-/*   Updated: 2022/10/07 12:21:39 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:29:53 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ size_t	ft_strlcat(char *dst, char *src, size_t dstsize)
 	size_t	dst_len;
 
 	i = 0;
+	if (dstsize == 0)
+		return (ft_strlen(src) + dstsize);
 	dst_len = ft_strlen(dst);
 	if (dst_len >= dstsize)
 		return (ft_strlen(src) + dstsize);

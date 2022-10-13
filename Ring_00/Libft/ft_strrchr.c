@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 12:34:41 by touteiro          #+#    #+#             */
-/*   Updated: 2022/10/12 10:29:19 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/10/13 17:49:58 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	unsigned int	i;
+	unsigned char	i;
 	int				count;
 
 	i = c;

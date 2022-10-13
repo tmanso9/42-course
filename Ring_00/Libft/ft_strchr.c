@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 12:34:41 by touteiro          #+#    #+#             */
-/*   Updated: 2022/10/07 12:58:04 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/10/13 17:49:05 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bigger than 128 (outside of ascii table).
 */
 char	*ft_strchr(const char *s, int c)
 {
-	unsigned int	i;
+	unsigned char	i;
 
 	i = c;
 	while (*s)

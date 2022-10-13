@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 10:59:34 by touteiro          #+#    #+#             */
-/*   Updated: 2022/10/07 11:07:46 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:18:31 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	i = 0;
 	d = (char *)dst;
 	s = (char *)src;
+	if (!d && !s)
+		return (dst);
 	while (i < n)
 	{
 		d[i] = s[i];

@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 19:28:38 by touteiro          #+#    #+#             */
-/*   Updated: 2022/10/07 20:12:05 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/10/13 17:05:37 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,53 @@ static int	is_operator(char c)
 		return (0);
 }
 
+static unsigned int	count_digits(unsigned int n)
+{
+	unsigned int	digits;
+
+	digits = 0;
+	if (n == 0)
+		return (1);
+	if (n < 0)
+		digits += 1;
+	while (n != 0)
+	{
+		count_digits(n = n / 10);
+		digits++;
+	}
+	return (digits);
+}
+
+/*
+We start by advancing initial zeros and counting how many we advanced.
+When we enter the while loop, we check if count_digits(res) is smaller
+than i because that means that res is trying to process a number
+bigger than INT_MAX or smaller than INT_MIN.
+We check to see if (str-count)[-1] - i.e., the char before the original
+str - is a minus, because if the number < INT_MIN the original atoi returns 0,
+and if it is > INT_MAX atoi returns -1.
+*/
 static unsigned int	process_num(const char *str, unsigned int res)
 {
-	int	i;
+	unsigned int	i;
+	unsigned int	count;
 
 	i = 0;
+	count = 0;
+	while (str[i] == '0')
+	{
+		str++;
+		count++;
+	}
 	while (ft_isdigit(str[i]))
 	{
+		if (count_digits(res) < i)
+		{
+			if ((str - count)[-1] == '-')
+				return (0);
+			else
+				return (-1);
+		}
 		res *= 10;
 		res += (str[i] - '0');
 		i++;
