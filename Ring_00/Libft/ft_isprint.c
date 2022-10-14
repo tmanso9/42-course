@@ -6,12 +6,15 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:30:12 by touteiro          #+#    #+#             */
-/*   Updated: 2022/10/06 19:06:41 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/10/14 00:58:57 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+The printable characters are enumerated in the isprint manual.
+*/
 int	ft_isprint(int c)
 {
 	if (c >= 32 && c <= 126)
