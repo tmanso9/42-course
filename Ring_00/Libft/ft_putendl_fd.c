@@ -6,12 +6,16 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 20:30:29 by touteiro          #+#    #+#             */
-/*   Updated: 2022/10/10 20:32:31 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:45:28 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+Outputs the string ’s’ to the given file
+descriptor, followed by a newline.
+*/
 void	ft_putendl_fd(char *s, int fd)
 {
 	ft_putstr_fd(s, fd);

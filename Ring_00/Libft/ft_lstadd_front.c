@@ -6,12 +6,17 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 21:10:03 by touteiro          #+#    #+#             */
-/*   Updated: 2022/10/10 21:19:16 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:53:45 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+Adds the element ’new’ at the beginning of the list.
+It first checks if the list exists and it has a first link,
+then it sets the first link to new->next, and sets new as the first link.
+*/
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
 	if (!new)

@@ -6,12 +6,20 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 00:18:56 by touteiro          #+#    #+#             */
-/*   Updated: 2022/10/08 00:48:53 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:30:12 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+Allocates (with malloc(3)) and returns a copy of
+’s1’ with the characters specified in ’set’ removed
+from the beginning and the end of the string.
+Returns the trimmed string.  NULL if the allocation fails.
+We do it by counting how many chars we have to skip in the beginning (i)
+and how many we have to skip in the end (end), and copying the rest.
+*/
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*str;

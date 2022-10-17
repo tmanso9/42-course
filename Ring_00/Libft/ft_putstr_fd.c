@@ -6,12 +6,15 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 20:27:02 by touteiro          #+#    #+#             */
-/*   Updated: 2022/10/10 20:29:31 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:44:38 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+Outputs the string ’s’ to the given file descriptor.
+*/
 void	ft_putstr_fd(char *s, int fd)
 {
 	int	i;

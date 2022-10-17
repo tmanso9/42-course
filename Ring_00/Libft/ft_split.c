@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 00:51:30 by touteiro          #+#    #+#             */
-/*   Updated: 2022/10/12 10:36:34 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:36:39 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,12 @@ static char	**check_str(const char *s, int words, char c, char **split)
 	return (split);
 }
 
+/*
+Allocates (with malloc(3)) and returns an array of strings
+obtained by splitting ’s’ using the character ’c’ as a delimiter.
+The array must be ended by a NULL pointer.
+Returns NULL if the allocation fails.
+*/
 char	**ft_split(const char *s, char c)
 {
 	int		i;

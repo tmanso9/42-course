@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 18:51:13 by touteiro          #+#    #+#             */
-/*   Updated: 2022/10/10 19:28:33 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:38:55 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ static int	count_digits(int n)
 	return (digits);
 }
 
+/*
+Allocates (with malloc(3)) and returns a string
+representing the integer received as an argument.
+Negative numbers must be handled.
+*/
 char	*ft_itoa(int n)
 {
 	char			*str;

@@ -6,12 +6,17 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:17:58 by touteiro          #+#    #+#             */
-/*   Updated: 2022/10/14 01:44:28 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:07:10 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+Testing the original function, we verify that it segfaults when given a NULL
+string as parameter. For this reason, in our version of the function we don't
+check to see if the input is null before running the rest of the code.
+*/
 size_t	ft_strlen(const char *str)
 {
 	int	size;
