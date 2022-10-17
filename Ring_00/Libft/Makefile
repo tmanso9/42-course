@@ -6,7 +6,7 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/06 17:56:57 by touteiro          #+#    #+#              #
-#    Updated: 2022/10/11 10:07:23 by touteiro         ###   ########.fr        #
+#    Updated: 2022/10/17 16:44:46 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,6 @@ clean:
 fclean:	clean
 		${RM} ${NAME}
 
-#DONT FORGET TO CHANGE THIS
 re:	fclean bonus
 
 .PHONY: all clean fclean re libft.a bonus
