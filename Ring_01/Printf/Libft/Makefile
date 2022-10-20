@@ -6,7 +6,7 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/06 17:56:57 by touteiro          #+#    #+#              #
-#    Updated: 2022/10/20 01:27:33 by touteiro         ###   ########.fr        #
+#    Updated: 2022/10/17 16:44:46 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ HEAD = libft.h
 
 .c.o:
 		${CC} ${FLAGS} ${HEAD} -c $<
+		#-o ${<:.c=.o} 
 
 RM = rm -f
 
