@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:05:38 by touteiro          #+#    #+#             */
-/*   Updated: 2022/10/18 23:26:49 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/10/20 17:16:38 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ char	*update_log(char *line_log)
 	}
 	new_log[j] = '\0';
 	free(line_log);
-	line_log = NULL;
 	return (new_log);
 }
 
@@ -65,28 +64,16 @@ char	*extract_line(char *line_log)
 	return (str);
 }
 
-char	*create_log(char *line_log, char *buff)
-{
-	char	*temp;
-
-	temp = ft_strjoin(line_log, buff);
-	free(line_log);
-	line_log = NULL;
-	return (temp);
-}
-
 char	*read_until_nl(int fd, char *line_log)
 {
 	char	*buff;
 	int		f_read;
 
 	f_read = 1;
-	if (!line_log)
-		line_log = ft_calloc(1, 1);
 	buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!buff)
 		return (NULL);
-	while (f_read > 0)
+	while (f_read > 0 && !ft_strchr(line_log, '\n'))
 	{
 		f_read = read(fd, buff, BUFFER_SIZE);
 		if (f_read < 0)
@@ -95,9 +82,7 @@ char	*read_until_nl(int fd, char *line_log)
 			return (NULL);
 		}
 		buff[f_read] = 0;
-		line_log = create_log(line_log, buff);
-		if (ft_strchr(line_log, '\n'))
-			break ;
+		line_log = ft_strjoin(line_log, buff);
 	}
 	free(buff);
 	return (line_log);
@@ -108,12 +93,7 @@ char	*get_next_line(int fd)
 	char		*str;
 	static char	*line_log[1024];
 
-	if (read(fd, 0, 0) < 0 && line_log[fd])
-	{
-		free(line_log[fd]);
-		line_log[fd] = NULL;
-	}
-	if (fd < 0 || fd > 1024 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || fd > 1024 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (line_log[fd] && ft_strchr(line_log[fd], '\n'))
 	{

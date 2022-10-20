@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 18:52:24 by touteiro          #+#    #+#             */
-/*   Updated: 2022/10/18 17:26:31 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/10/20 16:58:11 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,30 @@ size_t	ft_strlen(const char *str)
 	return (size);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*join;
 	int		i;
 	int		j;
 
-	i = 0;
+	i = -1;
 	j = 0;
-	join = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!join || !s1 || !s2)
+	if (s2 && !s1)
+	{
+		s1 = (char *)malloc(1);
+		s1[0] = '\0';
+	}
+	if (!s1 || !s2)
 		return (NULL);
-	while (s1[i])
-	{
+	join = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!join)
+		return (NULL);
+	while (s1[++i])
 		join[i] = s1[i];
-		i++;
-	}
 	while (s2[j])
-	{
-		join[i] = s2[j];
-		i++;
-		j++;
-	}
+		join[i++] = s2[j++];
 	join[i] = '\0';
+	free (s1);
 	return (join);
 }
 
@@ -55,6 +56,8 @@ char	*ft_strchr(const char *s, int c)
 	unsigned char	i;
 
 	i = c;
+	if (!s)
+		return (NULL);
 	while (*s)
 	{
 		if (*s == (char)i)
