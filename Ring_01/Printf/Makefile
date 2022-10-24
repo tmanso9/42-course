@@ -6,7 +6,7 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/18 23:46:50 by touteiro          #+#    #+#              #
-#    Updated: 2022/10/20 01:27:52 by touteiro         ###   ########.fr        #
+#    Updated: 2022/10/20 19:11:17 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,19 @@ SRCS = ft_printf.c \
 		ft_print_num.c \
 		ft_print_x.c \
 		ft_print_ptr.c
-
+BONUS = ft_printf_bonus.c \
+		ft_print_text_bonus.c \
+		ft_print_num.c \
+		ft_print_x.c \
+		ft_print_ptr.c
 OBJS = ${SRCS:.c=.o}
+BONUS_OBJS = ${BONUS:.c=.o}
 
 HEAD = ft_printf.h
+BONUS_HEAD = ft_printf_bonus.h
 
 .c.o:
-		${CC} ${FLAGS} ${HEAD} -c $<
+		${CC} ${FLAGS} ${HEAD} ${BONUS_HEAD} -c $<
 
 RM = rm -f
 
@@ -36,6 +42,12 @@ ${NAME}:	${OBJS}
 			${LIBC} ${NAME} ${OBJS}
 
 all:	${NAME}
+
+bonus:	${BONUS_OBJS}
+		make -C Libft
+		cp Libft/libft.a .
+		mv libft.a ${NAME}
+		${LIBC} ${NAME} ${BONUS_OBJS}
 
 clean:	
 		${RM} ${OBJS}
