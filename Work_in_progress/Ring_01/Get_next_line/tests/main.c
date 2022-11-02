@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 17:02:15 by touteiro          #+#    #+#             */
-/*   Updated: 2022/10/20 16:13:22 by touteiro         ###   ########.fr       */
+/*   Created: 2022/10/31 10:29:03 by touteiro          #+#    #+#             */
+/*   Updated: 2022/11/02 12:32:41 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
-# include <stdlib.h>
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
-
-char	*get_next_line(int fd);
-char	*ft_strjoin(char *s1, char *s2);
-size_t	ft_strlen(const char *str);
-char	*ft_strchr(const char *s, int c);
-void	ft_bzero(void *s, size_t n);
-void	*ft_calloc(size_t count, size_t size);
-
-#endif
+int	main(void)
+{
+	char	*str;
+	int	fd = open("/etc/crontab", O_RDONLY);
+	str = get_next_line(fd);
+	printf("Buffer size: %d\n", BUFFER_SIZE);
+	int i = 1;
+	while (str)
+	{
+		printf("Iteration %d: %s", i, str);
+		i++;
+		free(str);
+		str = get_next_line(fd);
+	}
+	printf("%s", str);
+	free(str);
+	close(fd);
+}
