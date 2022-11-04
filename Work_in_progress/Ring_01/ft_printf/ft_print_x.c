@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:56:59 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/03 21:05:35 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/04 18:56:59 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,14 @@ int	ft_print_x(t_print *tab, char format)
 	{
 		tab->printed += 1;
 		return (write(1, "0", 1));
+	}
+	if (tab->cardinal)
+	{
+		if (format == 'x')
+			ft_putstr_fd("0x", 1);
+		else
+			ft_putstr_fd("0X", 1);
+		tab->printed += 2;
 	}
 	ft_puthex(i, format);
 	tab->printed += hex_digits(i);

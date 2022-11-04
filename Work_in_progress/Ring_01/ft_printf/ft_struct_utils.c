@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 16:02:36 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/04 17:42:17 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/04 18:55:43 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_print	*initialize_struct(t_print *tab)
 	tab->dot = 0;
 	tab->dash = 0;
 	tab->zero = 0;
+	tab->cardinal = 0;
 	return (tab);
 }
 
@@ -81,6 +82,11 @@ int	initial_str_loop(t_print *tab, const char *str, int i)
 			tab->dot = 1;
 			i++;
 			i = process_precision(tab, str, i);
+		}
+		if (str[i] == '#')
+		{
+			tab->cardinal = 1;
+			i++;
 		}
 		i = process_width(tab, str, i);
 	}

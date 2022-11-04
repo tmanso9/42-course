@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:29:47 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/04 18:41:52 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/04 18:54:59 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_print
 	int		dot;
 	int		dash;
 	int		zero;
+	int		cardinal;
 }	t_print;
 
 int		ft_printf(const char *str, ...);
