@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:29:09 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/04 17:00:42 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/06 00:11:09 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,9 @@ int	ft_printf(const char *str, ...)
 {
 	t_print	*tab;
 	int		i;
-	int		count;
 	int		printed;
 
 	i = 0;
-	count = 0;
 	tab = (t_print *)malloc(sizeof(t_print));
 	if (!tab)
 		return (-1);
