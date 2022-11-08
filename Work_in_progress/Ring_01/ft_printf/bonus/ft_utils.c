@@ -1,43 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_text.c                                    :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/19 11:56:59 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/08 18:43:53 by touteiro         ###   ########.fr       */
+/*   Created: 2022/11/08 17:46:51 by touteiro          #+#    #+#             */
+/*   Updated: 2022/11/08 17:52:32 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_print_c(t_print *tab)
+void	ft_putchar_fd(char c, int fd)
 {
-	char			c;
-	unsigned char	un_c;
-
-	c = va_arg(tab->args, int);
-	un_c = (unsigned char)c;
-	if (write(1, &un_c, 1))
-	{
-		tab->printed += 1;
-		return (1);
-	}
-	else
-		return (-1);
+	write(fd, &c, 1);
 }
 
-int	ft_print_s(t_print *tab)
+size_t	ft_strlen(const char *str)
 {
-	char	*str;
-	int		len;
+	int	size;
 
-	str = va_arg(tab->args, char *);
-	if (!str)
-		str = "(null)";
-	len = ft_strlen(str);
-	ft_putstr_fd(str, 1);
-	tab->printed += len;
-	return (1);
+	size = 0;
+	while (str[size])
+		size++;
+	return (size);
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
+}
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (2048);
+	else
+		return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:56:59 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/08 18:51:54 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:53:49 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,26 @@ void	ft_puthex(unsigned int i, char format)
 	}
 }
 
+static void	ft_process_cardinal(t_print *tab, char format)
+{
+	if (format == 'x')
+		ft_putstr_fd("0x", 1);
+	else
+		ft_putstr_fd("0X", 1);
+	tab->printed += 2;
+}
+
+static void	ft_process_x_flags(t_print *tab, unsigned int i, char format, \
+	int count)
+{
+	if (tab->dash)
+		ft_process_x_dash(tab, i, format, count);
+	else if (tab->zero || tab->width)
+		ft_process_x_width(tab, i, format, count);
+	else
+		ft_process_x_dot(tab, i, format, count);
+}
+
 /*
 %d or %i: The int (or appropriate variant) argument is converted to
 signed decimal (d and i) notation.
@@ -55,15 +75,24 @@ signed decimal (d and i) notation.
 int	ft_print_x(t_print *tab, char format)
 {
 	unsigned int	i;
+	int				count;
 
 	i = va_arg(tab->args, unsigned int);
-	if (i == 0)
+	count = -1;
+	if (i == 0 && !tab->dot && !tab->width)
 	{
 		ft_putchar_fd('0', 1);
 		tab->printed += 1;
 		return (1);
 	}
-	ft_puthex(i, format);
-	tab->printed += hex_digits(i);
+	if (tab->cardinal && !tab->width && !tab->zero)
+		ft_process_cardinal(tab, format);
+	if (tab->dot || tab->dash || tab->zero || tab->width)
+		ft_process_x_flags(tab, i, format, count);
+	else
+	{
+		ft_puthex(i, format);
+		tab->printed += hex_digits(i);
+	}
 	return (1);
 }

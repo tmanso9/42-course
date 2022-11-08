@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:29:09 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/08 18:39:09 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/06 00:11:09 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static int	ft_print_percent(t_print *tab)
 
 static int	ft_formats(t_print *tab, const char *str, int i)
 {
+	initialize_struct(tab);
+	i = initial_str_loop(tab, str, i);
 	if (str[i] == '%')
 		i += ft_print_percent(tab);
 	else if (str[i] == 'c')
