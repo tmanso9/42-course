@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:56:59 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/04 18:01:53 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/08 16:19:02 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ static void	ft_process_no_dot(t_print *tab, char *str, int i, int len)
 	}
 }
 
-static void	ft_process_dot(t_print *tab, char *str, int i, int len)
+static void	ft_process_dot(t_print *tab, char *str, int i)
 {
-	if (tab->width > len)
+	if (tab->width > tab->precision)
 	{
 		if (!tab->dash)
 		{
@@ -95,6 +95,30 @@ static void	ft_process_dot(t_print *tab, char *str, int i, int len)
 	}
 }
 
+static int	ft_process_no_str(t_print *tab, char **str, int i)
+{
+	if (tab->precision == -1)
+		tab->precision = 0;
+	if (!*str)
+	{
+		if (!tab->width && tab->dot && tab->precision < 6)
+			return (-1);
+		else if (tab->width && tab->dot && tab->precision < 6)
+		{
+			while (++i < tab->width)
+				ft_putchar_fd(' ', 1);
+			tab->printed += tab->width;
+			return (-1);
+		}
+		else
+		{
+			*str = "(null)";
+			return (1);
+		}
+	}
+	return (1);
+}
+
 /*
 %s: The char * argument is expected to be a pointer to an array of
 character type (pointer to a string).  Characters from the array
@@ -108,15 +132,15 @@ int	ft_print_s(t_print *tab)
 
 	i = -1;
 	str = va_arg(tab->args, char *);
-	if (!str)
-		str = "(null)";
+	if (ft_process_no_str(tab, &str, i) < 0)
+		return (1);
 	len = ft_strlen(str);
 	if (tab->precision > len)
 		tab->precision = len;
 	if (tab->dot || tab->dash || tab->width)
 	{
 		if (tab->dot)
-			ft_process_dot(tab, str, i, len);
+			ft_process_dot(tab, str, i);
 		else
 			ft_process_no_dot(tab, str, i, len);
 	}

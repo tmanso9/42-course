@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:56:59 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/06 00:40:49 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/07 18:45:03 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,46 @@ static void	ft_putptr(uintptr_t i)
 	}
 }
 
+static void	ft_process_no_ptr(t_print *tab, int count)
+{
+	if (tab->width > 5 && !tab->dash)
+	{
+		while (++count < (tab->width - 5))
+			write(1, " ", 1);
+		tab->printed += tab->width;
+	}
+	ft_putstr_fd("(nil)", 1);
+	if (tab->width > 5 && tab->dash)
+	{
+		while (++count < (tab->width - 5))
+			write(1, " ", 1);
+		tab->printed += tab->width;
+	}
+	if (tab->width <= 5)
+		tab->printed += 5;
+}
+
+static void	ft_process_ptr(t_print *tab, uintptr_t i, int len, int count)
+{
+	if (tab->width > (ptr_digits(i) + 2) && !tab->dash)
+	{
+		while (++count < (tab->width - ptr_digits(i) - 2))
+			write(1, " ", 1);
+		tab->printed += tab->width;
+	}
+	ft_putstr_fd("0x", 1);
+	len = 2;
+	ft_putptr(i);
+	if (tab->width > (ptr_digits(i) + 2) && tab->dash)
+	{
+		while (++count < (tab->width - ptr_digits(i) - 2))
+			write(1, " ", 1);
+		tab->printed += tab->width;
+	}
+	if (tab->width <= (ptr_digits(i) + 2))
+		tab->printed += len + ptr_digits(i);
+}
+
 /*
 %d or %i: The int (or appropriate variant) argument is converted to
 signed decimal (d and i) notation.
@@ -57,55 +97,14 @@ int	ft_print_ptr(t_print *tab)
 	uintptr_t	i;
 	int			count;
 
-	count = 0;
+	count = -1;
+	len = 0;
 	i = va_arg(tab->args, uintptr_t);
 	if (!i)
 	{
-		if (tab->width > 5 && !tab->dash)
-		{
-			while (count < (tab->width - 5))
-			{
-				write(1, " ", 1);
-				count++;
-			}
-			tab->printed += tab->width;
-		}
-		ft_putstr_fd("(nil)", 1);
-		if (tab->width > 5 && tab->dash)
-		{
-			while (count < (tab->width - 5))
-			{
-				write(1, " ", 1);
-				count++;
-			}
-			tab->printed += tab->width;
-		}
-		if (tab->width <= 5)
-			tab->printed += 5;
+		ft_process_no_ptr(tab, count);
 		return (1);
 	}
-	if (tab->width > (ptr_digits(i) + 2) && !tab->dash)
-	{
-		while (count < (tab->width - ptr_digits(i) - 2))
-		{
-			write(1, " ", 1);
-			count++;
-		}
-		tab->printed += tab->width;
-	}
-	ft_putstr_fd("0x", 1);
-	len = 2;
-	ft_putptr(i);
-	if (tab->width > (ptr_digits(i) + 2) && tab->dash)
-	{
-		while (count < (tab->width - ptr_digits(i) - 2))
-		{
-			write(1, " ", 1);
-			count++;
-		}
-		tab->printed += tab->width;
-	}
-	if (tab->width <= (ptr_digits(i) + 2))
-		tab->printed += len + ptr_digits(i);
+	ft_process_ptr(tab, i, len, count);
 	return (1);
 }

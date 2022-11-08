@@ -6,91 +6,113 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 18:36:49 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/04 18:44:50 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/08 16:25:00 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_process_i_dash(t_print *tab, char *str, int len, int i)
+static void	ft_width_dot_pt2(t_print *tab, char *str)
 {
-	if (tab->dot)
+	if (tab->precision < (int)ft_strlen(str))
 	{
-		while (++i < (tab->precision - len))
-			ft_putchar_fd('0', 1);
-		i = -1;
-	}
-	ft_putstr_fd(str, 1);
-	if (tab->width > len)
-	{
-		if (tab->precision > len)
-			while (++i < (tab->width - tab->precision))
-				ft_putchar_fd(' ', 1);
+		if (str[0] == '-')
+			tab->precision = (int)ft_strlen(str) - 1;
 		else
-			while (++i < (tab->width - len))
-				ft_putchar_fd(' ', 1);
-		tab->printed += tab->width;
+			if (!(tab->precision <= 0 && ft_atoi(str) == 0))
+				tab->precision = (int)ft_strlen(str);
 	}
-	else
-		tab->printed += len;
+	if (tab->plus && str[0] != '-')
+	{
+		ft_putchar_fd('+', 1);
+		tab->printed += 1;
+	}
+	else if (tab->space && str[0] != '-')
+	{
+		ft_putchar_fd(' ', 1);
+		tab->printed += 1;
+		tab->width -= 1;
+	}
+}
+
+static void	ft_width_dot(t_print *tab, char *str, int len, int i)
+{
+	ft_width_dot_pt2(tab, str);
+	if ((!tab->precision || tab->precision == -1) && ft_atoi(str) == 0)
+	{
+		while (++i < (tab->width))
+			ft_putchar_fd(' ', 1);
+		tab->printed += tab->width;
+		return ;
+	}
+	if (str[0] == '-')
+		tab->precision += 1;
+	while (++i < (tab->width - tab->precision))
+		ft_putchar_fd(' ', 1);
+	i = -1;
+	if (str[0] == '-')
+		ft_putchar_fd('-', 1);
+	while (++i < (tab->precision - len))
+		ft_putchar_fd('0', 1);
+}
+
+static void	ft_width_zero(t_print *tab, char *str, int len, int i)
+{
+	if (str[0] == '-')
+		ft_putchar_fd('-', 1);
+	if (tab->plus && str[0] != '-')
+	{
+		ft_putchar_fd('+', 1);
+		tab->printed += 1;
+	}
+	else if (tab->space && str[0] != '-')
+	{
+		ft_putchar_fd(' ', 1);
+		tab->printed += 1;
+		tab->width -= 1;
+	}
+	while (++i < (tab->width - len))
+		ft_putchar_fd('0', 1);
 }
 
 static void	width_initial_process(t_print *tab, char *str, int len, int i)
 {
 	if (tab->dot)
 	{
-		while (++i < (tab->width - tab->precision))
-			ft_putchar_fd(' ', 1);
-		i = -1;
-		while (++i < (tab->precision - len))
-			ft_putchar_fd('0', 1);
-		i = -1;
+		ft_width_dot(tab, str, len, i);
 		return ;
 	}
 	if (tab->zero)
-	{
-		if (str[0] == '-')
-			ft_putchar_fd('-', 1);
-		if (tab->precision > len)
-			while (++i < (tab->width - tab->precision))
-				ft_putchar_fd('0', 1);
-		else
-			while (++i < (tab->width - len))
-				ft_putchar_fd('0', 1);
-	}
+		ft_width_zero(tab, str, len, i);
 	else
-		while (++i < (tab->width - tab->precision))
+	{
+		if (tab->plus && str[0] != '-')
+		{
+			ft_putchar_fd('+', 1);
+			tab->printed += 1;
+		}
+		else if (tab->space && str[0] != '-')
+		{
 			ft_putchar_fd(' ', 1);
+			tab->printed += 1;
+			tab->width -= 1;
+		}
+		while (++i < (tab->width - len))
+			ft_putchar_fd(' ', 1);
+	}
 }
 
 void	ft_process_i_width(t_print *tab, char *str, int len, int i)
 {
 	width_initial_process(tab, str, len, i);
-	if (str[0] == '-' && tab->zero)
+	if (tab->dot && tab->precision <= 0 && ft_atoi(str) == 0)
+		return ;
+	if (str[0] == '-' && (tab->zero || tab->dot))
 		ft_putstr_fd(str + 1, 1);
 	else
 		ft_putstr_fd(str, 1);
 	if (tab->width > len)
 		tab->printed += tab->width;
-	else
-		tab->printed += len;
-}
-
-void	ft_process_i_dot(t_print *tab, char *str, int len, int i)
-{
-	if (str[0] == '-')
-	{
-		ft_putchar_fd('-', 1);
-		tab->precision++;
-	}
-	while (++i < (tab->precision - len))
-		ft_putchar_fd('0', 1);
-	if (str[0] == '-')
-		ft_putstr_fd(str + 1, 1);
-	else
-		ft_putstr_fd(str, 1);
-	if (tab->precision > len)
-		tab->printed += tab->precision;
 	else
 		tab->printed += len;
 }
