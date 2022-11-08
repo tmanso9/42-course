@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:29:47 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/07 18:05:50 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/08 18:05:49 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdio.h>
-# include "libft/libft.h"
 # include <limits.h>
 # include <inttypes.h>
 # include <stdlib.h>
@@ -54,5 +53,11 @@ void	ft_process_i_dot(t_print *tab, char *str, int len, int i);
 void	ft_process_x_dash(t_print *tab, unsigned int num, char format, int i);
 void	ft_process_x_width(t_print *tab, unsigned int num, char format, int i);
 void	ft_process_x_dot(t_print *tab, unsigned int num, char format, int i);
+char	*ft_itoa(int n);
+int		ft_atoi(const char *str);
+void	ft_putchar_fd(char c, int fd);
+size_t	ft_strlen(const char *str);
+void	ft_putstr_fd(char *s, int fd);
+int		ft_isdigit(int c);
 
 #endif
