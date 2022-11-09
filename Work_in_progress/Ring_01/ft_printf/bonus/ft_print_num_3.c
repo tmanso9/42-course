@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 18:27:42 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/08 16:31:20 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/09 00:55:14 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,18 @@ static void	ft_process_dash_no_dot(t_print *tab, char *str, int len, int i)
 		else
 			while (++i < (tab->width - len))
 				ft_putchar_fd(' ', 1);
-		tab->printed += tab->width;
+		if (tab->precision > tab->width)
+			tab->printed += tab->precision;
+		else
+			tab->printed += tab->width;
 	}
 	else
-		tab->printed += len;
+	{
+		if (tab->dot && tab->precision > len)
+			tab->printed += tab->precision;
+		else
+			tab->printed += len;
+	}
 }
 
 void	ft_process_i_dash(t_print *tab, char *str, int len, int i)
@@ -63,7 +71,7 @@ void	ft_process_i_dash(t_print *tab, char *str, int len, int i)
 
 static void	ft_process_i_dot_pt2(t_print *tab, char *str)
 {
-	if (str[0] == '-' && tab->precision != -1)
+	if (str[0] == '-')
 	{
 		ft_putchar_fd('-', 1);
 		tab->precision++;
