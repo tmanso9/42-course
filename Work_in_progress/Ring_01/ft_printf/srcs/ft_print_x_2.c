@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:21:56 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/08 16:29:17 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/09 12:54:28 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 static void	ft_process_width_dot_pt2(t_print *tab, int i, int len, char format)
 {
@@ -101,8 +101,10 @@ void	ft_process_x_width(t_print *tab, unsigned int num, char format, int i)
 	if (!(tab->precision <= 0 && num == 0 && tab->dot))
 	{
 		ft_puthex(num, format);
-		if (tab->width > len)
+		if (tab->width > len && tab->width > tab->precision)
 			tab->printed += tab->width;
+		else if (tab->dot && tab->precision > len)
+			tab->printed += tab->precision;
 		else
 			tab->printed += len;
 	}

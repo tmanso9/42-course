@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 18:51:13 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/08 17:49:34 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/09 12:54:12 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 static int	count_digits(int n)
 {

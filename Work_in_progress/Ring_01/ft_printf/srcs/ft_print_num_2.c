@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 18:36:49 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/08 16:25:00 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/09 12:54:14 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 static void	ft_width_dot_pt2(t_print *tab, char *str)
 {
@@ -111,8 +111,10 @@ void	ft_process_i_width(t_print *tab, char *str, int len, int i)
 		ft_putstr_fd(str + 1, 1);
 	else
 		ft_putstr_fd(str, 1);
-	if (tab->width > len)
+	if (tab->width > len && tab->width > tab->precision)
 		tab->printed += tab->width;
+	else if (tab->dot && tab->precision > len)
+		tab->printed += tab->precision;
 	else
 		tab->printed += len;
 }

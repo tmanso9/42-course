@@ -6,11 +6,19 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 18:27:42 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/09 00:55:14 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/09 12:54:17 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
+
+static int	return_biggest(int a, int b)
+{
+	if (a > b)
+		return (a);
+	else
+		return (b);
+}
 
 static void	ft_process_dash_no_dot(t_print *tab, char *str, int len, int i)
 {
@@ -32,18 +40,10 @@ static void	ft_process_dash_no_dot(t_print *tab, char *str, int len, int i)
 		else
 			while (++i < (tab->width - len))
 				ft_putchar_fd(' ', 1);
-		if (tab->precision > tab->width)
-			tab->printed += tab->precision;
-		else
-			tab->printed += tab->width;
+		tab->printed += (return_biggest(tab->precision, tab->width));
 	}
 	else
-	{
-		if (tab->dot && tab->precision > len)
-			tab->printed += tab->precision;
-		else
-			tab->printed += len;
-	}
+		tab->printed += (return_biggest(tab->precision, len));
 }
 
 void	ft_process_i_dash(t_print *tab, char *str, int len, int i)

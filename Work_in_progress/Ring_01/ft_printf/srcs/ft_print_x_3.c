@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 18:46:33 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/08 16:26:05 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/09 12:54:34 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 static void	ft_process_after_print(t_print *tab, int len, int i)
 {
@@ -22,10 +22,18 @@ static void	ft_process_after_print(t_print *tab, int len, int i)
 		else
 			while (++i < (tab->width - len))
 				ft_putchar_fd(' ', 1);
-		tab->printed += tab->width;
+		if (tab->precision > tab->width)
+			tab->printed += tab->precision;
+		else
+			tab->printed += tab->width;
 	}
 	else
-		tab->printed += len;
+	{
+		if (tab->dot && tab->precision > len)
+			tab->printed += tab->precision;
+		else
+			tab->printed += len;
+	}
 }
 
 void	ft_process_x_dash(t_print *tab, unsigned int num, char format, int i)

@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 16:02:36 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/07 20:48:22 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/09 12:54:43 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 t_print	*initialize_struct(t_print *tab)
 {

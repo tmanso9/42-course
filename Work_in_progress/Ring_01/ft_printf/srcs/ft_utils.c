@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:46:51 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/08 17:52:32 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/09 12:54:46 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 void	ft_putchar_fd(char c, int fd)
 {
