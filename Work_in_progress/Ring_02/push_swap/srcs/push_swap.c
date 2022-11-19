@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 23:53:05 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/19 19:29:48 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/19 20:50:55 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,8 +188,10 @@ int	main(int argc, char **argv)
 		free(total);
 		return (0);
 	}
-	if (total->a_size > 0)
+	if (total->a_size == 2)
 		size_two(total);
+	else if (total->a_size == 3)
+		size_three(total);
 	while (i < total->a_size)
 	{
 		//printf("%d\n", *total->a[i]);

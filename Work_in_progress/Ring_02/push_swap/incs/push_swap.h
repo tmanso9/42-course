@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 12:56:22 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/19 19:18:02 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/19 20:25:19 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ typedef struct s_stack
 
 void	init_stacks(t_stack *total);
 void	size_two(t_stack *total);
+void	size_three(t_stack *total);
 
 #endif
