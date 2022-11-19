@@ -6,7 +6,7 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 12:21:29 by touteiro          #+#    #+#              #
-#    Updated: 2022/11/19 17:44:11 by touteiro         ###   ########.fr        #
+#    Updated: 2022/11/19 21:06:51 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ LIBFT = libft/libft.a
 
 all: $(NAME)
 
-$(NAME): libft $(HEADERS) $(OBJS)
+$(NAME): libft $(HEADERS) $(OBJS) srcs/push_swap.o
 	@$(CC) $(CFLAGS) srcs/push_swap.c -L. -lft  $(OBJS) -o $(NAME)
 
 libft:

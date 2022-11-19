@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 19:10:29 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/19 20:49:40 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/19 21:02:57 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	size_two(t_stack *total)
 }
 
 void	size_three(t_stack *total)
-{	
+{
 	if (*total->a[0] < *total->a[1] && \
 		*total->a[1] < *total->a[2])
 		return ;
