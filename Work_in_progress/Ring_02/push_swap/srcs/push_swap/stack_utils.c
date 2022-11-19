@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/18 12:56:22 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/19 19:18:02 by touteiro         ###   ########.fr       */
+/*   Created: 2022/11/19 17:59:46 by touteiro          #+#    #+#             */
+/*   Updated: 2022/11/19 19:08:53 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "../../incs/push_swap.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <limits.h>
-# include "../libft/libft.h"
-
-typedef struct s_stack
+void	init_stacks(t_stack *total)
 {
-	int	**a;
-	int	**b;
-	int	a_size;
-	int	b_size;
-}	t_stack;
-
-void	init_stacks(t_stack *total);
-void	size_two(t_stack *total);
-
-#endif
+	total->a_size = 0;
+	total->b_size = 0;
+}

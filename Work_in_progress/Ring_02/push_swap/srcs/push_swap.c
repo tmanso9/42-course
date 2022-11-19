@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 23:53:05 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/19 01:14:43 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/19 19:29:48 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,32 @@ int	return_biggest(int a, int b)
 	return (b);
 }
 
-int	check_digits(char *str)
+int	check_digits(char **nums)
 {
 	int	i;
+	int	j;
+	int	res;
 
 	i = 0;
-	while (str[i])
+	j = 0;
+	res = 1;
+	while (nums[i])
 	{
-		if (!ft_isdigit(str[i]))
+		if (nums[i][0] == '-')
+			j = 1;
+		while (nums[i][j])
 		{
-			printf("Invalid argument! %s isn't a number.\n", str);
-			return (0);
+			if (!ft_isdigit(nums[i][j]))
+			{
+				printf("Invalid arguments! %s isn't a number.\n", nums[i]);
+				res = 0;
+			}
+			j++;
 		}
 		i++;
+		j = 0;
 	}
-	return (1);
+	return (res);
 }
 
 int	check_doubles(char **nums)
@@ -62,25 +73,46 @@ int	check_doubles(char **nums)
 	return (1);
 }
 
-int	check_limits(char *str)
+int	check_limits(char **nums)
 {
-	if (str[0] == '-' && ft_strlen(str) > 10 && \
-		ft_strncmp("-2147483648", str, 12) < 0)
+	int	i;
+
+	i = 0;
+	while (nums[i])
 	{
-		printf("Invalid argument! %s is too small.\n", str);
-		return (0);
-	}
-	else if ((ft_strlen(str) > 9 && \
-		ft_strncmp("2147483647", str, 11) < 0) || \
-		(str[0] != '-' && ft_strlen(str) > 10))
-	{
-		printf("Invalid argument! %s is too big.\n", str);
-		return (0);
+		if (nums[i][0] == '-' && ft_strlen(nums[i]) > 10 && \
+			ft_strncmp("-2147483648", nums[i], 12) < 0)
+		{
+			printf("Invalid arguments! %s is too small.\n", nums[i]);
+			return (0);
+		}
+		else if ((ft_strlen(nums[i]) > 9 && \
+			ft_strncmp("2147483647", nums[i], 11) < 0) || \
+			(nums[i][0] != '-' && ft_strlen(nums[i]) > 10))
+		{
+			printf("Invalid arguments! %s is too big.\n", nums[i]);
+			return (0);
+		}
+		i++;
 	}
 	return (1);
 }
 
-int	**process_args(int argc, char **argv, int **a)
+int	check_args(char **nums)
+{
+	int	res;
+
+	res = 1;
+	if (!check_doubles(nums))
+		res = 0;
+	if (!check_limits(nums))
+		res = 0;
+	if (!check_digits(nums))
+		res = 0;
+	return (res);
+}
+
+t_stack process_args(int argc, char **argv, t_stack total)
 {
 	int		i;
 	char	**nums;
@@ -90,70 +122,80 @@ int	**process_args(int argc, char **argv, int **a)
 	if (argc == 2)
 	{
 		nums = ft_split(argv[1], ' ');
-		while (nums[i])
+		if (!check_args(nums))
 		{
-			/*Add a general check function so it prints all errors*/
-			if (!check_limits(nums[i]) || !check_doubles(nums) || \
-				!check_digits(nums[i]))
-			{
-				i = -1;
-				while (nums[++i])
-					free(nums[i]);
-				free(nums);
-				return (a);
-			}
-			i++;
+			i = -1;
+			while (nums[++i])
+				free(nums[i]);
+			free(nums);
+			//free(total.a);
+			total.a = 0;
+			return (total);
 		}
-		a = ft_calloc(i + 1, sizeof(int *));
+		while (nums[i])
+			i++;
+		total.a_size = i;
+		//free(total.a);
+		total.a = ft_calloc(i + 1, sizeof(int *));
 		i = -1;
 		while (nums[++i])
 		{
-			a[i] = ft_calloc(1, sizeof(int));
-			*a[i] = ft_atoi(nums[i]);
+			total.a[i] = ft_calloc(1, sizeof(int));
+			*(total.a[i]) = ft_atoi(nums[i]);
 			free(nums[i]);
 		}
 		free(nums);
 	}
 	else
 	{
-		while (argc > ++i)
-			if (!check_limits(argv[i]) || \
-				!check_doubles(argv) || \
-				!check_digits(argv[i]))
-				return (a);
-		i = 0;
-		a = ft_calloc(argc, sizeof(int *));
+		if (!check_args(argv + 1))
+		{
+			//free(total.a);
+			total.a = 0;
+			return (total);
+		}
+		total.a_size = argc - 1;
+		//free(total.a);
+		total.a = (int **)malloc(sizeof(int *) * (argc + 1));
+		total.a[argc] = NULL;
 		while (argc > ++i)
 		{
-			a[i - 1] = ft_calloc(1, sizeof(int));
-			*a[i - 1] = ft_atoi(argv[i]);
+			total.a[i - 1] = (int *)malloc(sizeof(int));
+			*(total.a[i - 1]) = ft_atoi(argv[i]);
 		}
 	}
-	return (a);
+	return (total);
 }
 
 int	main(int argc, char **argv)
 {
-	int	**a;
-	//int	**b;
-	int	i;
+	t_stack	*total;
+	int		i;
 
 	i = 0;
-	a = NULL;
+	total = (t_stack *)malloc(sizeof(t_stack));
+	init_stacks(total);
 	if (argc < 2)
 	{
 		(void)argv;
 		write(1, "Must have at least one argument!\n", 33);
 		return (0);
 	}
-	a = process_args(argc, argv, a);
-	if (!a)
-		return (0);
-	while (a[i])
+	*total = process_args(argc, argv, *total);
+	if (!total->a)
 	{
-		printf("%d\n", *a[i]);
-		free(a[i]);
+		free(total->a);
+		free(total);
+		return (0);
+	}
+	if (total->a_size > 0)
+		size_two(total);
+	while (i < total->a_size)
+	{
+		//printf("%d\n", *total->a[i]);
+		free(total->a[i]);
 		i++;
 	}
-	free(a);
+	free(total->a);
+	free(total);
 }
