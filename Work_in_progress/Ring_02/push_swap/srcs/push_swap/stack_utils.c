@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/18 12:29:53 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/18 13:14:37 by touteiro         ###   ########.fr       */
+/*   Created: 2022/11/19 17:59:46 by touteiro          #+#    #+#             */
+/*   Updated: 2022/11/19 19:08:53 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/push_swap.h"
 
-void	test(void)
+void	init_stacks(t_stack *total)
 {
-	write(1, "test\n", 5);
+	total->a_size = 0;
+	total->b_size = 0;
 }

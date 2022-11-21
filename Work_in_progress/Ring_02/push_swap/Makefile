@@ -6,7 +6,7 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 12:21:29 by touteiro          #+#    #+#              #
-#    Updated: 2022/11/18 17:20:18 by touteiro         ###   ########.fr        #
+#    Updated: 2022/11/19 21:06:51 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,11 +23,12 @@ LIBFT = libft/libft.a
 
 all: $(NAME)
 
-$(NAME): libft $(HEADERS) $(OBJS)
+$(NAME): libft $(HEADERS) $(OBJS) srcs/push_swap.o
 	@$(CC) $(CFLAGS) srcs/push_swap.c -L. -lft  $(OBJS) -o $(NAME)
 
 libft:
 	@make --no-print-directory -C libft
+	@cp $(LIBFT) .
 
 libft_clean:
 	@make --no-print-directory -C libft clean
@@ -39,6 +40,6 @@ clean: libft_clean
 	$(RM) $(OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) libft.a $(LIBFT)
 
 .PHONY: all libft clean fclean
