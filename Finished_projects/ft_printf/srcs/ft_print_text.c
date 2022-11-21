@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:56:59 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/09 12:54:25 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/17 18:56:56 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_print_c(t_print *tab)
 		tab->printed += tab->width - 1;
 	}
 	write(1, &un_c, 1);
-		tab->printed += 1;
+	tab->printed += 1;
 	if (tab->width && tab->dash)
 	{
 		while (++i < tab->width - 1)
@@ -69,30 +69,21 @@ static void	ft_process_no_dot(t_print *tab, char *str, int i, int len)
 
 static void	ft_process_dot(t_print *tab, char *str, int i)
 {
-	if (tab->width > tab->precision)
+	if (tab->width > tab->precision && !tab->dash)
 	{
-		if (!tab->dash)
-		{
-			while (++i < (tab->width - tab->precision))
-				ft_putchar_fd(' ', 1);
-			i = -1;
-		}
-		while (++i < tab->precision)
-			ft_putchar_fd(str[i], 1);
+		while (++i < (tab->width - tab->precision))
+			ft_putchar_fd(' ', 1);
 		i = -1;
-		if (tab->dash)
-		{
-			while (++i < (tab->width - tab->precision))
-				ft_putchar_fd(' ', 1);
-		}
-		tab->printed += tab->width;
 	}
-	else
+	while (++i < tab->precision)
+		ft_putchar_fd(str[i], 1);
+	i = -1;
+	if (tab->width > tab->precision && tab->dash)
 	{
-		while (++i < tab->precision)
-			ft_putchar_fd(str[i], 1);
-		tab->printed += tab->precision;
+		while (++i < (tab->width - tab->precision))
+			ft_putchar_fd(' ', 1);
 	}
+	tab->printed += return_biggest(tab->width, tab->precision);
 }
 
 static int	ft_process_no_str(t_print *tab, char **str, int i)

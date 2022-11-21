@@ -6,7 +6,7 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/18 23:46:50 by touteiro          #+#    #+#              #
-#    Updated: 2022/11/09 12:47:46 by touteiro         ###   ########.fr        #
+#    Updated: 2022/11/21 14:17:58 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ ${NAME}: ${OBJS}
 bonus: ${NAME}
 
 clean:
-		${RM} ${OBJS} ${BONUS_OBJS}
+		${RM} ${OBJS}
 
 fclean:	clean
 		${RM} ${NAME} 

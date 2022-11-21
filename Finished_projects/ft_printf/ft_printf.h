@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:29:47 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/08 18:05:49 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/21 14:19:41 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,9 @@
 
 # include <stdarg.h>
 # include <unistd.h>
-# include <stdio.h>
 # include <limits.h>
 # include <inttypes.h>
 # include <stdlib.h>
-# include <stdio.h>
-# include <limits.h>
 
 typedef struct s_print
 {
@@ -59,5 +56,6 @@ void	ft_putchar_fd(char c, int fd);
 size_t	ft_strlen(const char *str);
 void	ft_putstr_fd(char *s, int fd);
 int		ft_isdigit(int c);
+int		return_biggest(int a, int b);
 
 #endif

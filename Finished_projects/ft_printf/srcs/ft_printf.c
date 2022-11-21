@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:29:09 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/09 12:54:40 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/17 18:41:18 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,9 @@ static int	ft_print_normal_char(char c)
 
 static int	ft_print_percent(t_print *tab)
 {
-	if (write(1, "%", 1))
-	{
-		tab->printed += 1;
-		return (1);
-	}
-	else
-		return (-1);
+	write(1, "%", 1);
+	tab->printed += 1;
+	return (1);
 }
 
 static int	ft_formats(t_print *tab, const char *str, int i)

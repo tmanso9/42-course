@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 16:02:36 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/09 12:54:43 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/17 18:43:11 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	process_width(t_print *tab, const char *str, int i)
 	int	count;
 
 	count = 0;
-	while (str[i] >= '0' && str[i] <= '9')
+	while (ft_isdigit(str[i]))
 	{
 		count++;
 		i += 1;
@@ -54,7 +54,7 @@ static int	process_precision(t_print *tab, const char *str, int i)
 		tab->precision = -1;
 		return (i + 1);
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	while (ft_isdigit(str[i]))
 	{
 		count++;
 		i += 1;

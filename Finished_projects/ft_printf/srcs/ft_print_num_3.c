@@ -6,13 +6,13 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 18:27:42 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/09 12:54:17 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/17 19:51:57 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-static int	return_biggest(int a, int b)
+int	return_biggest(int a, int b)
 {
 	if (a > b)
 		return (a);
@@ -20,7 +20,7 @@ static int	return_biggest(int a, int b)
 		return (b);
 }
 
-static void	ft_process_dash_no_dot(t_print *tab, char *str, int len, int i)
+static void	ft_process_i_dash_pt2(t_print *tab, char *str, int len, int i)
 {
 	if (tab->space && str[0] != '-')
 	{
@@ -66,7 +66,7 @@ void	ft_process_i_dash(t_print *tab, char *str, int len, int i)
 			ft_putchar_fd('0', 1);
 		i = -1;
 	}
-	ft_process_dash_no_dot(tab, str, len, i);
+	ft_process_i_dash_pt2(tab, str, len, i);
 }
 
 static void	ft_process_i_dot_pt2(t_print *tab, char *str)
@@ -99,8 +99,5 @@ void	ft_process_i_dot(t_print *tab, char *str, int len, int i)
 		ft_putstr_fd(str + 1, 1);
 	else
 		ft_putstr_fd(str, 1);
-	if (tab->precision > len)
-		tab->printed += tab->precision;
-	else
-		tab->printed += len;
+	tab->printed += return_biggest(tab->precision, len);
 }
