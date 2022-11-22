@@ -6,7 +6,7 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 12:21:29 by touteiro          #+#    #+#              #
-#    Updated: 2022/11/19 21:06:51 by touteiro         ###   ########.fr        #
+#    Updated: 2022/11/22 17:35:48 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,4 +42,4 @@ clean: libft_clean
 fclean: clean
 	$(RM) $(NAME) libft.a $(LIBFT)
 
-.PHONY: all libft clean fclean
+.PHONY: all libft clean fclean libft_clean libft_fclean
