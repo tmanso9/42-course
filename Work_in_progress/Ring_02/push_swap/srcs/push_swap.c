@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 23:53:05 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/22 16:42:30 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/25 20:47:22 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,13 +197,16 @@ int	main(int argc, char **argv)
 		size_two(total);
 	else if (total->a_size == 3)
 		size_three(total);
-	else if (total->a_size == 4)
-		size_four(total);
-	else if (total->a_size == 5)
+	/*else if (total->a_size == 4)
+		size_four(total);*/
+	else if (total->a_size >= 4 && total->a_size < 10)
 		size_five(total);
+	else if (total->a_size >= 10)
+		quicksort_a(total, total->a_size);
+	printf("\n");
 	while (i < total->a_size)
 	{
-		//printf("%d\n", *total->a[i]);
+		printf("%d\n", *total->a[i]);
 		free(total->a[i]);
 		i++;
 	}

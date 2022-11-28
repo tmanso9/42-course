@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:30:13 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/22 18:16:27 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/25 19:56:16 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,26 @@ int	smallest(int **arr, int stack_size)
 	return (i);
 }
 
-int	**transform_index(int **arr, int stack_size)
+int	biggest(t_stack *total)
+{
+	int	i;
+	int	j;
+
+	i = total->a_size - total->curr_b_size;
+	j = i;
+	while (i < total->a_size - 1)
+	{
+		while (j < total->a_size && *total->b[i] >= *total->b[j])
+			j++;
+		if (j == total->a_size)
+			return (i);
+		i++;
+		j = total->a_size - total->curr_b_size;
+	}
+	return (i);
+}
+
+/*int	**transform_index(int **arr, int stack_size)
 {
 	int	i;
 	int	j;
@@ -57,3 +76,4 @@ int	**transform_index(int **arr, int stack_size)
 		index_arr[i] = ft_calloc(1, sizeof(int));
 	i = 0;
 }
+*/

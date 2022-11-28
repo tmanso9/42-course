@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 12:56:22 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/22 15:23:45 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/11/25 19:56:46 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,13 @@ void	size_four(t_stack *total);
 void	size_five(t_stack *total);
 int		is_sorted(t_stack *total);
 int		smallest(int **arr, int stack_size);
+int		biggest(t_stack *total);
+void	quicksort_a(t_stack *total, int len);
+void	quicksort_b(t_stack *total, int len);
+void	rot(t_stack *total, char id, int **stack, int size);
+void	rev_rot(t_stack *total, char id, int **stack, int size);
+void	swap(int *a, int *b);
+void	pa(t_stack *total);
+void	pb(t_stack *total);
 
 #endif
