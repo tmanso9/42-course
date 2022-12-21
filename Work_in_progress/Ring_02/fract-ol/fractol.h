@@ -10,8 +10,8 @@
 # include <unistd.h>
 
 # define MLX_ERROR 1
-# define WIN_WIDTH 1500
-# define WIN_HEIGTH 1500
+# define WIN_WIDTH 500
+# define WIN_HEIGTH 500
 
 typedef struct s_data
 {
@@ -60,5 +60,8 @@ void	zoom_out(t_vars *vars);
 //Shapes
 void	rectangle(t_vars *vars, t_rect rect);
 void	circle(t_vars *vars, t_circle circle);
+
+//Sets
+void	mandelbrot(t_vars *vars);
 
 #endif

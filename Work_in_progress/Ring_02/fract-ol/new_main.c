@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:53:45 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/19 14:34:37 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/12/21 20:24:51 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,17 @@ int	render(t_vars *vars)
 {
 	if (!vars->win)
 		return (1);
-	render_background(&vars->img, get_rgb(250, 230, 200));
+	render_background(&vars->img, get_rgb(0, 0, 0));
 	//circle(vars, (t_circle){WIN_WIDTH / 2 + vars->img.offset_x, \
 		WIN_HEIGTH / 2 + vars->img.offset_y, \
 		200 * vars->img.x, get_rgb(0, 0, 180)});
-	circle(vars, (t_circle){WIN_WIDTH / 2 + 50 + vars->img.offset_x, \
-		WIN_HEIGTH / 2 + vars->img.offset_y, \
-		50 * vars->img.x, get_rgb(180, 100, 180)});
-	rectangle(vars, (t_rect){10 + vars->img.offset_x, \
+	// rectangle(vars, (t_rect){10 + vars->img.offset_x, \
 		10 + vars->img.offset_y, 10 * vars->img.x, \
 		5 * vars->img.y, get_rgb(180, 0, 0)});
+	mandelbrot(vars);
+	// circle(vars, (t_circle){WIN_WIDTH / 2 + vars->img.offset_x, \
+		WIN_HEIGTH / 2 + vars->img.offset_y, \
+		10 * vars->img.x, get_rgb(255, 0, 0)});
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
 	return (0);
 }
