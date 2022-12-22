@@ -4,14 +4,15 @@
 # include <mlx.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
+# include <X11/Xlib.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
 # include <unistd.h>
 
 # define MLX_ERROR 1
-# define WIN_WIDTH 500
-# define WIN_HEIGTH 500
+# define WIN_WIDTH 600
+# define WIN_HEIGTH 600
 
 typedef struct s_data
 {

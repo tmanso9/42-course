@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:54:23 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/21 20:20:53 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/12/22 01:14:05 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static int	get_color(t_vars *vars, double x, double y)
 	int		iterations;
 
 	// z = 0;
-	double	maxval = 1.2;
-	double	minval = -1.7;
+	double	maxval = 1.2 * vars->img.y;
+	double	minval = -1.7 * vars->img.x;
 	// printf("zoom is %f\n", vars->img.offset_x);
 	
 	double	a = map(x, 0, WIN_WIDTH - .1, minval, maxval);
@@ -37,8 +37,16 @@ static int	get_color(t_vars *vars, double x, double y)
 	double	cb = b;
 	i = 0;
 	bright = 0;
-	iterations = 50;
+	iterations = 75;
 	// printf("here\n");
+	/*
+	f(z) = z^2 + c
+	starting at z = 0
+	f(z2) = c^2 + c
+			c^2:
+			(a + bi)^2
+			a^2 - b^2 + 2(a + bi)
+	*/
 	while (i < iterations)
 	{
 		aa = a * a - b * b;
@@ -52,7 +60,7 @@ static int	get_color(t_vars *vars, double x, double y)
 
 	bright = map(i, 0, iterations, 0, 1);
 	bright = map(sqrt(bright), 0, 1, 0, 255);
-	
+
 	if (i == iterations)
 		bright = 0;
 	return (bright);
@@ -73,7 +81,7 @@ void	mandelbrot(t_vars *vars)
 		{
 			bright = get_color(vars, x, y);
 			// printf("x %d, y %d, bright %d\n", x, y, bright);
-			my_pixel_put(&vars->img, x, y, get_rgb(bright, bright, bright));
+			my_pixel_put(&vars->img, x, y, get_rgb(50, bright, 110));
 			y += .1;
 		}
 		x += .1;
