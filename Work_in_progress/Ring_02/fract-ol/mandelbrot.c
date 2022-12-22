@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:54:23 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/22 01:14:05 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/12/22 11:27:32 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,10 @@ static int	get_color(t_vars *vars, double x, double y)
 
 	if (i == iterations)
 		bright = 0;
+	// else if (i >= 0 && i <85)
+	// 	bright += 30;
+	// else if (i >= 85 && i < 170)
+	// 	bright += 50;
 	return (bright);
 }
 
@@ -81,7 +85,7 @@ void	mandelbrot(t_vars *vars)
 		{
 			bright = get_color(vars, x, y);
 			// printf("x %d, y %d, bright %d\n", x, y, bright);
-			my_pixel_put(&vars->img, x, y, get_rgb(50, bright, 110));
+			my_pixel_put(&vars->img, x, y, get_rgb(100, bright, 210));
 			y += .1;
 		}
 		x += .1;
