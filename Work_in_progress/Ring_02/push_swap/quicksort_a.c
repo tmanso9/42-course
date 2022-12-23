@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 15:26:12 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/22 20:48:45 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/12/23 01:29:57 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,6 @@ static void	rotate_while_searching(t_stack *total, int to_rotate)
 		total->rev++;
 }
 
-static int	last_is_smallest(t_stack *total, int *count, int i)
-{
-	while (*total->a[total->curr_a_size - 1] <= total->a_median)
-	{
-		rev_rot(total, 'a', total->a, total->curr_a_size);
-		update_arr(total, 7);
-		pb(total);
-		(*count)++;
-		i++;
-	}
-	return (i);
-}
-
 int	send_to_b(t_stack *total, int len, int to_rotate, int count)
 {
 	int	i;
@@ -52,13 +39,11 @@ int	send_to_b(t_stack *total, int len, int to_rotate, int count)
 	{
 		if (is_sorted(total))
 			break ;
-		if (*total->a[0] <= total->a_median)
+		if (*total->a[0] < total->a_median)
 		{
 			pb(total);
 			count++;
 		}
-		else if (*total->a[total->curr_a_size - 1] <= total->a_median)
-			i = last_is_smallest(total, &count, i);
 		else
 			rotate_while_searching(total, to_rotate);
 	}
@@ -73,7 +58,7 @@ void	quicksort_a(t_stack *total, int len)
 	count = 0;
 	if (is_sorted(total))
 		return ;
-	if (len < 11 || total->curr_a_size < 10)
+	if (len < 11 || total->curr_a_size < 15)
 	{
 		if (len == 2)
 			size_two_a(total);

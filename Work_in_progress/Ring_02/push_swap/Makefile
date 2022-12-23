@@ -6,14 +6,14 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 12:21:29 by touteiro          #+#    #+#              #
-#    Updated: 2022/12/22 22:06:24 by touteiro         ###   ########.fr        #
+#    Updated: 2022/12/23 02:32:18 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-#CFLAGS += -fsanitize=address -g3
+CFLAGS += -fsanitize=address -g3
 RM = rm -f
 SRCS = args_checker.c \
 		args_valid.c \
@@ -29,23 +29,30 @@ SRCS = args_checker.c \
 		two_stack_b.c \
 		two_stack.c \
 		utils_b.c \
-		utils.c
+		utils.c \
+		optimize.c
+EXE = push_swap.c
+CHE = checker.c
 HEADERS = push_swap.h
 OBJS = ${SRCS:.c=.o}
+OBJ_EXE = ${EXE:.c=.o}
+OBJ_CHE = ${CHE:.c=.o}
 LIBFT = libft/libft.a
 
 all: $(NAME)
 
-$(NAME): $(OBJS) push_swap.o
+$(NAME): $(OBJS) $(OBJ_EXE)
 	@echo "- - - - - - - - - - - - - - - "
 	@echo "Temporary object files created"
 	@make --no-print-directory -C libft
-	@$(CC) $(CFLAGS) push_swap.o $(OBJS) -L libft/ -lft -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ_EXE) $(OBJS) -L libft/ -lft -o $(NAME)
 	@echo "\033[92mpush_swap ready to use\033[0m"
 	@echo "------------------------------"
 
-checker: $(OBJS) checker.o
-	@$(CC) $(CFLAGS) checker.o $(OBJS) -L libft/ -lft -o checker
+checker: $(OBJS) $(OBJ_CHE)
+	@$(CC) $(CFLAGS) $(OBJ_CHE) $(OBJS) -L libft/ -lft -o checker
+	@echo "\033[92mchecker ready to use\033[0m"
+	@echo "------------------------------"
 
 libft:
 	@make --no-print-directory -C libft
@@ -57,7 +64,7 @@ libft_fclean:
 	@make --no-print-directory -C libft fclean
 
 clean: libft_clean
-	@$(RM) $(OBJS) push_swap.o checker.o
+	@$(RM) $(OBJS) $(OBJ_EXE) $(OBJ_CHE)
 	@echo "\033[31mTemporary object files deleted\033[0m"
 
 fclean: clean libft_fclean
@@ -66,6 +73,6 @@ fclean: clean libft_fclean
 
 re: fclean all checker
 
-.SILENT: $(OBJS)
+.SILENT: $(OBJS) $(OBJ_EXE) $(OBJ_CHE)
 
 .PHONY: all libft clean fclean libft_clean libft_fclean checker

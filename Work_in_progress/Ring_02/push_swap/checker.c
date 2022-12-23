@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/23 02:25:28 by touteiro          #+#    #+#             */
+/*   Updated: 2022/12/23 02:59:54 by touteiro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	main(int argc, char **argv)
@@ -10,7 +22,7 @@ int	main(int argc, char **argv)
 		return (0);
 	if (argc == 2 && !ft_strlen(argv[1]))
 		return (0);
-	final = malloc(sizeof(t_stack));
+	final = ft_calloc(1, sizeof(t_stack));
 	if (!final)
 		return (0);
 	init_stacks(final);
@@ -24,10 +36,10 @@ int	main(int argc, char **argv)
 	while (str)
 	{
 		if (!(ft_strncmp("sa\n", str, 4)))
-			swap(final->a[0], final->a[1]);
+			swap(final->a[0], final->a[1], final);
 		else if (!(ft_strncmp("sb\n", str, 4)))
 			swap(final->b[final->a_size - final->curr_b_size], \
-				final->b[final->a_size - final->curr_b_size + 1]);
+				final->b[final->a_size - final->curr_b_size + 1], final);
 		else if (!(ft_strncmp("pa\n", str, 4)))
 			pa(final);
 		else if (!(ft_strncmp("pb\n", str, 4)))
@@ -42,9 +54,9 @@ int	main(int argc, char **argv)
 			rev_rot(final, 'b', final->b, final->curr_b_size);
 		else if (!(ft_strncmp("ss\n", str, 4)))
 		{
-			swap(final->a[0], final->a[1]);
+			swap(final->a[0], final->a[1], final);
 			swap(final->b[final->a_size - final->curr_b_size], \
-				final->b[final->a_size - final->curr_b_size + 1]);
+				final->b[final->a_size - final->curr_b_size + 1], final);
 		}
 		else if (!(ft_strncmp("rr\n", str, 4)))
 		{
@@ -58,7 +70,7 @@ int	main(int argc, char **argv)
 		}
 		else
 		{
-			ft_printf("Error\n");
+			write(2, "Error\n", 6);
 			free_stacks(final);
 			free (str);
 			exit(0);

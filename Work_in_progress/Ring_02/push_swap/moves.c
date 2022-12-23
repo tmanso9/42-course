@@ -6,17 +6,19 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:48:02 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/14 14:05:06 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/12/23 02:58:50 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(int *a, int *b)
+void	swap(int *a, int *b, t_stack *total)
 {
 	int	*tmp;
 
 	tmp = ft_calloc(1, sizeof(int *));
+	if (!tmp)
+		clean_exit(total);
 	*tmp = *a;
 	*a = *b;
 	*b = *tmp;
@@ -25,7 +27,9 @@ void	swap(int *a, int *b)
 
 void	pa(t_stack *total)
 {
-	total->a[total->curr_a_size] = (int *)malloc(sizeof(int));
+	total->a[total->curr_a_size] = ft_calloc(1, sizeof(int));
+	if (!total->a[total->curr_a_size])
+		clean_exit(total);
 	total->curr_a_size++;
 	rev_rot(total, 'a', total->a, total->curr_a_size);
 	*total->a[0] = *total->b[total->a_size - total->curr_b_size];
@@ -37,7 +41,9 @@ void	pa(t_stack *total)
 void	pb(t_stack *total)
 {
 	total->curr_b_size++;
-	total->b[total->a_size - total->curr_b_size] = (int *)malloc(sizeof(int));
+	total->b[total->a_size - total->curr_b_size] = ft_calloc(1, sizeof(int));
+	if (!total->b[total->a_size - total->curr_b_size])
+		clean_exit(total);
 	*total->b[total->a_size - total->curr_b_size] = *total->a[0];
 	rot(total, 'a', total->a, total->curr_a_size);
 	total->curr_a_size--;

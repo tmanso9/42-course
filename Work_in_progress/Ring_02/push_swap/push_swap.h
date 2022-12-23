@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 12:56:22 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/14 14:10:38 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/12/23 02:56:56 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,14 @@ typedef struct s_stack
 	int		b_median;
 	int		rev;
 	int		len;
-	char	*res_arr;
+	char	*log;
 	int		index;
 }	t_stack;
 
 // Initialize stacks and process arguments
 void	init_stacks(t_stack *total);
 void	free_stacks(t_stack *total);
+void	clean_exit(t_stack *total);
 void	process_args(int argc, char **argv, t_stack *total);
 int		check_args(char **nums);
 
@@ -48,7 +49,7 @@ void	size_five_a(t_stack *total);
 // Moves and utils
 void	rot(t_stack *total, char id, int **stack, int size);
 void	rev_rot(t_stack *total, char id, int **stack, int size);
-void	swap(int *a, int *b);
+void	swap(int *a, int *b, t_stack *total);
 void	pa(t_stack *total);
 void	pb(t_stack *total);
 int		smallest(int **arr, int stack_size);
@@ -66,6 +67,11 @@ int		b_is_sorted(t_stack *total);
 
 // Update buffer and write it
 void	update_arr(t_stack *total, char code);
+int		opt_revsa(t_stack *total, int i, int j, int *changed);
+int		opt_revsb(t_stack *total, int i, int j, int *changed);
+int		opt_sa_pb(t_stack *total, int i, int j, int *changed);
+int		opt_sb_pa(t_stack *total, int i, int j, int *changed);
+int		opt_swap_both(t_stack *total, int i, int j, int *changed);
 void	write_output(t_stack *total);
 
 #endif

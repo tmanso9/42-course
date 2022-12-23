@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:14:06 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/14 14:05:42 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/12/23 02:57:24 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	first_bigger(t_stack *total)
 {
 	if (total->curr_a_size > 3)
 	{
-		swap(total->a[0], total->a[1]);
+		swap(total->a[0], total->a[1], total);
 		update_arr(total, 1);
 		size_three_a(total);
 	}
@@ -60,7 +60,7 @@ void	size_three_a(t_stack *total)
 	if (*total->a[0] > *total->a[1] && \
 		*total->a[0] < *total->a[2])
 	{
-		swap(total->a[0], total->a[1]);
+		swap(total->a[0], total->a[1], total);
 		update_arr(total, 1);
 		size_three_a(total);
 	}

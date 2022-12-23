@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:53:37 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/22 13:51:40 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/12/23 01:15:26 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	rev_rotate_if_needed(int *rev, t_stack *total)
 
 static int	send_to_a(t_stack *total, int *count, int *to_rotate, int *rev)
 {
-	if (*total->b[total->a_size - total->curr_b_size] >= total->b_median)
+	if (*total->b[total->a_size - total->curr_b_size] > total->b_median)
 	{
 		pa(total);
 		(*count)++;

@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 23:53:05 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/14 15:38:31 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/12/23 02:43:41 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 		return (0);
 	if (argc == 2 && !ft_strlen(argv[1]))
 		return (0);
-	total = malloc(sizeof(t_stack));
+	total = ft_calloc(1, sizeof(t_stack));
 	if (!total)
 		return (0);
 	init_stacks(total);
@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 		size_five_a(total);
 	else if (total->a_size >= 9 && !is_sorted(total))
 		quicksort_a(total, total->a_size);
-	if (total->a_size > 1 && total->res_arr[0])
+	if (total->a_size > 1 && total->log[0])
 		write_output(total);
 	free_stacks(total);
 }

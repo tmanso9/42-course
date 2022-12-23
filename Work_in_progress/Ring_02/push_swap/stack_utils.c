@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 17:59:46 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/14 14:05:31 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/12/23 02:51:24 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_stacks(t_stack *total)
 	total->curr_b_size = 0;
 	total->len = 0;
 	total->index = 0;
-	total->res_arr = 0;
+	total->log = 0;
 	total->a = 0;
 	total->b = 0;
 	total->a_median = 0;
@@ -31,27 +31,32 @@ void	free_stacks(t_stack *total)
 	int	i;
 
 	i = 0;
-	while (i < total->a_size)
+	while (i < total->curr_a_size)
 	{
 		free(total->a[i]);
 		i++;
 	}
 	if (total->a)
 		free(total->a);
-	if (total->curr_b_size > 0)
+	if (total->curr_b_size)
 	{
-		i = 0;
-		while (i < total->curr_b_size)
+		while (total->curr_b_size)
 		{
-			free(total->b[i]);
-			i++;
+			free(total->b[total->a_size - total->curr_b_size]);
+			total->curr_b_size--;
 		}
 	}
 	if (total->b)
 		free(total->b);
-	if (total->res_arr)
-		free(total->res_arr);
+	if (total->log)
+		free(total->log);
 	free(total);
+}
+
+void	clean_exit(t_stack *total)
+{
+	free_stacks(total);
+	exit(0);
 }
 
 /*
@@ -67,6 +72,6 @@ CODE
 */
 void	update_arr(t_stack *total, char code)
 {
-	total->res_arr[total->index] = code;
+	total->log[total->index] = code;
 	total->index++;
 }
