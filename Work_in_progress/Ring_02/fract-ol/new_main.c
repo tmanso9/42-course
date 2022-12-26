@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:53:45 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/21 20:24:51 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/12/26 18:34:15 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ int	render(t_vars *vars)
 	// rectangle(vars, (t_rect){10 + vars->img.offset_x, \
 		10 + vars->img.offset_y, 10 * vars->img.x, \
 		5 * vars->img.y, get_rgb(180, 0, 0)});
-	mandelbrot(vars);
+	if (vars->fractal == 1)
+		mandelbrot(vars);
+	if (vars->fractal == 2)
+		julia(vars);
 	// circle(vars, (t_circle){WIN_WIDTH / 2 + vars->img.offset_x, \
 		WIN_HEIGTH / 2 + vars->img.offset_y, \
 		10 * vars->img.x, get_rgb(255, 0, 0)});
@@ -66,6 +69,10 @@ int	handle_key(int keysym, t_vars *vars)
 		zoom_in(vars);
 	if (keysym == XK_minus)
 		zoom_out(vars);
+	if (keysym == XK_1)
+		vars->fractal = 1;
+	if (keysym == XK_2)
+		vars->fractal = 2;
 	return (0);
 }
 
@@ -84,6 +91,13 @@ int	handle_mouse(int button, int x, int y, t_vars *vars)
 	return (0);
 }
 
+int	handle_motion(int x, int y, t_vars *vars)
+{
+	vars->img.mousex = x;
+	vars->img.mousey = y;
+	printf("%d %d\n", x, y);
+}
+
 int	handle_cross(t_vars *vars)
 {
 	mlx_destroy_window(vars->mlx, vars->win);
@@ -96,7 +110,7 @@ int	handle_cross(t_vars *vars)
 	return (0);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_vars	*vars;
 
@@ -105,6 +119,16 @@ int	main(void)
 	vars->win = mlx_new_window(vars->mlx, WIN_WIDTH, WIN_HEIGTH, "First window");
 	vars->img.x = 1;
 	vars->img.y = 1;
+	vars->img.mousex = 0;
+	vars->img.mousey = 0;
+	vars->fractal = 0;
+	if (argc > 1)
+	{
+		if (!ft_strcmp(argv[1], "mandel") || (!ft_strcmp(argv[1], "1")))
+			vars->fractal = 1;
+		else if (!ft_strcmp(argv[1], "julia") || (!ft_strcmp(argv[1], "2")))
+			vars->fractal = 2;
+	}
 	vars->img.offset_x = 0;
 	vars->img.offset_y = 0;
 	vars->img.img = mlx_new_image(vars->mlx, WIN_WIDTH, WIN_HEIGTH);
@@ -113,6 +137,7 @@ int	main(void)
 	mlx_loop_hook(vars->mlx, &render, vars);
 	mlx_key_hook(vars->win, &handle_key, vars);
 	mlx_mouse_hook(vars->win, &handle_mouse, vars);
+	mlx_hook(vars->win, MotionNotify, PointerMotionMask, &handle_motion, vars);
 	mlx_hook(vars->win, DestroyNotify, 0, &handle_cross, vars);
 	mlx_loop(vars->mlx);
 	

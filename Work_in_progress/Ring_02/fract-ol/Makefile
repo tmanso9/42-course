@@ -3,10 +3,12 @@ CC = cc
 #CFLAGS = -Wall -Wextra -Werror
 CFLAGS += -fsanitize=address -g3
 SRC = new_main.c \
+	utils.c \
 	draw.c \
 	shapes.c \
 	render.c \
-	mandelbrot.c
+	mandelbrot.c \
+	julia.c
 OBJ = $(SRC:.c=.o)
 
 %.o: %.c

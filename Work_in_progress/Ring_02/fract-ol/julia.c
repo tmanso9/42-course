@@ -1,21 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/21 17:54:23 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/26 18:00:42 by touteiro         ###   ########.fr       */
+/*   Created: 2022/12/26 17:31:02 by touteiro          #+#    #+#             */
+/*   Updated: 2022/12/26 18:38:54 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-double map(double x, double in_min, double in_max, double out_min, double out_max)
-{
-  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-}
 
 static int	get_color(t_vars *vars, double x, double y)
 {
@@ -27,17 +22,18 @@ static int	get_color(t_vars *vars, double x, double y)
 	int		iterations;
 
 	// z = 0;
-	double	maxval = 1.2 * vars->img.y;
-	double	minval = -1.7 * vars->img.x;
+	double	maxval = 1.2;
+	double	minval = -1.2;
 	// printf("zoom is %f\n", vars->img.offset_x);
 	
 	double	a = map(x, 0, WIN_WIDTH - .1, minval, maxval);
 	double	b = map(y, 0, WIN_HEIGTH - .1, minval, maxval);
-	double	ca = a;
-	double	cb = b;
+
 	i = 0;
 	bright = 0;
 	iterations = 75;
+	double	ca = map(vars->img.mousex, 0, WIN_WIDTH - .1, -1, 1);
+	double	cb = map(vars->img.mousey, 0, WIN_HEIGTH - .1, -1, 1);
 	// printf("here\n");
 	/*
 	f(z) = z^2 + c
@@ -51,10 +47,10 @@ static int	get_color(t_vars *vars, double x, double y)
 	{
 		aa = a * a - b * b;
 		bb = 2.0 * a * b;
+		if (abs(aa) > 4.0)
+			break ;
 		a = aa + ca;
 		b = bb + cb;
-		if (abs(aa) > 16.0)
-			break ;
 		i++;
 	}
 
@@ -70,12 +66,11 @@ static int	get_color(t_vars *vars, double x, double y)
 	return (bright);
 }
 
-
-void	mandelbrot(t_vars *vars)
+void	julia(t_vars *vars)
 {
 	double	x;
 	double	y;
-	int	bright;
+	int		bright;
 	
 	x = 0;
 	y = 0;
