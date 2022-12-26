@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 12:56:22 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/23 02:56:56 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/12/23 19:05:44 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ typedef struct s_stack
 // Initialize stacks and process arguments
 void	init_stacks(t_stack *total);
 void	free_stacks(t_stack *total);
-void	clean_exit(t_stack *total);
+void	free_nums(char **nums);
+void	clean_exit(t_stack *total, char **nums);
 void	process_args(int argc, char **argv, t_stack *total);
 int		check_args(char **nums);
 

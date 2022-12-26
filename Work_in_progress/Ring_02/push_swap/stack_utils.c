@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 17:59:46 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/23 02:51:24 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/12/24 01:26:59 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,20 @@ void	free_stacks(t_stack *total)
 	free(total);
 }
 
-void	clean_exit(t_stack *total)
+void	free_nums(char **nums)
 {
+	int	i;
+
+	i = -1;
+	while (nums[++i])
+		free(nums[i]);
+	free(nums);
+}
+
+void	clean_exit(t_stack *total, char **nums)
+{
+	if (nums)
+		free_nums(nums);
 	free_stacks(total);
 	exit(0);
 }

@@ -6,53 +6,51 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 18:52:24 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/29 19:46:02 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/12/24 01:30:36 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/libft.h"
 
-char	*ft_strjoin_gnl(char *s1, char *s2)
+int	ft_strlen_gnl(char *str)
 {
-	char	*join;
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i] && str[i] != '\n' )
+		i++;
+	if (str[i] == '\n')
+		i++;
+	return (i);
+}
+
+char	*strjoin_gnl(char *s1, char *s2)
+{
+	int		size_concat;
+	char	*concat;
 	int		i;
 	int		j;
 
-	i = -1;
-	j = 0;
-	if (s2 && !s1)
+	i = 0;
+	j = -1;
+	size_concat = ft_strlen_gnl(s1) + ft_strlen_gnl(s2);
+	concat = (char *)malloc(size_concat + 1 * sizeof(char));
+	if (!concat)
+		return (NULL);
+	while (s1 && s1[i])
 	{
-		s1 = (char *)malloc(1);
-		s1[0] = '\0';
+		concat[i] = s1[i];
+		i++;
 	}
-	if (!s1 || !s2)
-		return (NULL);
-	join = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!join)
-		return (NULL);
-	while (s1[++i])
-		join[i] = s1[i];
-	while (s2[j])
-		join[i++] = s2[j++];
-	join[i] = '\0';
-	free (s1);
-	return (join);
-}
-
-char	*ft_strchr_gnl(const char *s, int c)
-{
-	unsigned char	i;
-
-	i = c;
-	if (!s)
-		return (NULL);
-	while (*s)
+	while (s2[++j])
 	{
-		if (*s == (char)i)
-			return ((char *)s);
-		s++;
+		concat[i++] = s2[j];
+		if (s2[j] == '\n')
+			break ;
 	}
-	if (i == '\0')
-		return ((char *)s);
-	return (NULL);
+	concat[i] = 0;
+	free(s1);
+	return (concat);
 }

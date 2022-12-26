@@ -6,7 +6,7 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/27 17:29:50 by touteiro          #+#    #+#              #
-#    Updated: 2022/12/12 13:22:31 by touteiro         ###   ########.fr        #
+#    Updated: 2022/12/24 00:56:49 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ ${NAME}:	${OBJS}
 			@echo "libft.a compiled"
 
 clean:
-		@${RM} ${OBJS} ${BONUS_OBJS}
+		@${RM} ${OBJS}
 
 fclean:	clean
 		@${RM} ${NAME}

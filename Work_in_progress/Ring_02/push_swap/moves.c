@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:48:02 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/23 02:58:50 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/12/23 19:08:03 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	swap(int *a, int *b, t_stack *total)
 
 	tmp = ft_calloc(1, sizeof(int *));
 	if (!tmp)
-		clean_exit(total);
+		clean_exit(total, 0);
 	*tmp = *a;
 	*a = *b;
 	*b = *tmp;
@@ -29,7 +29,7 @@ void	pa(t_stack *total)
 {
 	total->a[total->curr_a_size] = ft_calloc(1, sizeof(int));
 	if (!total->a[total->curr_a_size])
-		clean_exit(total);
+		clean_exit(total, 0);
 	total->curr_a_size++;
 	rev_rot(total, 'a', total->a, total->curr_a_size);
 	*total->a[0] = *total->b[total->a_size - total->curr_b_size];
@@ -43,7 +43,7 @@ void	pb(t_stack *total)
 	total->curr_b_size++;
 	total->b[total->a_size - total->curr_b_size] = ft_calloc(1, sizeof(int));
 	if (!total->b[total->a_size - total->curr_b_size])
-		clean_exit(total);
+		clean_exit(total, 0);
 	*total->b[total->a_size - total->curr_b_size] = *total->a[0];
 	rot(total, 'a', total->a, total->curr_a_size);
 	total->curr_a_size--;

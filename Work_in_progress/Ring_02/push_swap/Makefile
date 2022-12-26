@@ -6,14 +6,14 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 12:21:29 by touteiro          #+#    #+#              #
-#    Updated: 2022/12/23 02:32:18 by touteiro         ###   ########.fr        #
+#    Updated: 2022/12/24 00:34:41 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-CFLAGS += -fsanitize=address -g3
+#CFLAGS += -fsanitize=address -g3
 RM = rm -f
 SRCS = args_checker.c \
 		args_valid.c \
@@ -32,7 +32,7 @@ SRCS = args_checker.c \
 		utils.c \
 		optimize.c
 EXE = push_swap.c
-CHE = checker.c
+CHE = checker.c checker_moves.c
 HEADERS = push_swap.h
 OBJS = ${SRCS:.c=.o}
 OBJ_EXE = ${EXE:.c=.o}
@@ -49,7 +49,9 @@ $(NAME): $(OBJS) $(OBJ_EXE)
 	@echo "\033[92mpush_swap ready to use\033[0m"
 	@echo "------------------------------"
 
-checker: $(OBJS) $(OBJ_CHE)
+bonus: checker
+
+checker: $(NAME) $(OBJ_CHE)
 	@$(CC) $(CFLAGS) $(OBJ_CHE) $(OBJS) -L libft/ -lft -o checker
 	@echo "\033[92mchecker ready to use\033[0m"
 	@echo "------------------------------"
@@ -71,8 +73,8 @@ fclean: clean libft_fclean
 	@$(RM) $(NAME) checker
 	@echo "\033[31mExecutable deleted\033[0m"
 
-re: fclean all checker
+re: fclean all bonus
 
 .SILENT: $(OBJS) $(OBJ_EXE) $(OBJ_CHE)
 
-.PHONY: all libft clean fclean libft_clean libft_fclean checker
+.PHONY: all libft clean fclean libft_clean libft_fclean bonus

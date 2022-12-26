@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 23:53:05 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/23 02:43:41 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/12/23 19:09:15 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ int	main(int argc, char **argv)
 		quicksort_a(total, total->a_size);
 	if (total->a_size > 1 && total->log[0])
 		write_output(total);
-	free_stacks(total);
+	clean_exit(total, 0);
 }

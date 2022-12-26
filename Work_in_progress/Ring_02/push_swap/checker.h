@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 17:02:15 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/24 01:31:42 by touteiro         ###   ########.fr       */
+/*   Created: 2022/12/23 23:52:26 by touteiro          #+#    #+#             */
+/*   Updated: 2022/12/23 23:55:05 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#ifndef CHECKER_H
+# define CHECKER_H
 
-# include <stdlib.h>
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdint.h>
-# include <string.h>
+# include "push_swap.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
-# endif
-
-char	*get_next_line(int fd);
-char	*strjoin_gnl(char *s1, char *s2);
+int	check_moves(t_stack *final, char *str);
 
 #endif
