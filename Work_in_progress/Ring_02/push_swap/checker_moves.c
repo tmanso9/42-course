@@ -6,12 +6,21 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:51:39 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/24 02:39:09 by touteiro         ###   ########.fr       */
+/*   Updated: 2022/12/26 16:30:28 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
+/*
+ * It checks if the string is a reverse rotate command,
+ * and if it is, it executes it
+ * 
+ * @param final the final stack
+ * @param str the string to check
+ * 
+ * @return 1 if the string is a reverse rotate command, 0 if not.
+ */
 int	check_rev_rotate(t_stack *final, char *str)
 {
 	if (!(ft_strncmp("rra\n", str, 4)))
@@ -35,6 +44,15 @@ int	check_rev_rotate(t_stack *final, char *str)
 	return (0);
 }
 
+/*
+ * It checks if the string is a rotate command, and if it is,
+ * it executes the rotate command
+ * 
+ * @param final the final stack that will be checked
+ * @param str the string to check
+ * 
+ * @return 1 if the str is a commmand to rotate, 0 if it is not.
+ */
 int	check_rotate(t_stack *final, char *str)
 {
 	if (!(ft_strncmp("ra\n", str, 4)))
@@ -57,6 +75,15 @@ int	check_rotate(t_stack *final, char *str)
 	return (0);
 }
 
+/*
+ * It checks if the string is a push command, and if it is,
+ * it executes it
+ * 
+ * @param final the final stack that will be sorted
+ * @param str the string that is being checked
+ * 
+ * @return 1 if the string is a push, 0 if not.
+ */
 int	check_push(t_stack *final, char *str)
 {
 	if (!(ft_strncmp("pa\n", str, 4)))
@@ -73,6 +100,15 @@ int	check_push(t_stack *final, char *str)
 	return (0);
 }
 
+/*
+ * It checks if the string is a swap command, and if it is,
+ * it executes the swap command
+ * 
+ * @param final the final stack
+ * @param str the string that is being checked
+ * 
+ * @return 1 if the command was a swap, 0 if not.
+ */
 int	check_swap(t_stack *final, char *str)
 {
 	if (!(ft_strncmp("sa\n", str, 4)))
@@ -98,6 +134,13 @@ int	check_swap(t_stack *final, char *str)
 	return (0);
 }
 
+/*
+ * It checks if the string is a valid move, and if it is,
+ * it performs the move
+ * 
+ * @param final the final stack that we want to change
+ * @param str the string that is being checked
+ */
 int	check_moves(t_stack *final, char *str)
 {
 	if (!(check_swap(final, str)) && !(check_push(final, str)) && \
