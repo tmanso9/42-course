@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:53:45 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/26 18:34:15 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/03 18:35:09 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,26 @@ int	handle_key(int keysym, t_vars *vars)
 		zoom_in(vars);
 	if (keysym == XK_minus)
 		zoom_out(vars);
+	if (keysym == XK_0)
+		vars->julia_set = 0;
 	if (keysym == XK_1)
-		vars->fractal = 1;
+		vars->julia_set = 1;
 	if (keysym == XK_2)
+		vars->julia_set = 2;
+	if (keysym == XK_3)
+		vars->julia_set = 3;
+	if (keysym == XK_4)
+		vars->julia_set = 4;
+	if (keysym == XK_5)
+		vars->julia_set = 5;
+	if (keysym == XK_6)
+		vars->julia_set = 6;
+	if (keysym == XK_m)
+		vars->fractal = 1;
+	if (keysym == XK_j)
 		vars->fractal = 2;
+	if (keysym == XK_r)
+		vars->img.x = 1;
 	return (0);
 }
 
@@ -95,7 +111,8 @@ int	handle_motion(int x, int y, t_vars *vars)
 {
 	vars->img.mousex = x;
 	vars->img.mousey = y;
-	printf("%d %d\n", x, y);
+	// printf("%d %d\n", x, y);
+	return (0);
 }
 
 int	handle_cross(t_vars *vars)
@@ -122,12 +139,17 @@ int	main(int argc, char **argv)
 	vars->img.mousex = 0;
 	vars->img.mousey = 0;
 	vars->fractal = 0;
+	vars->julia_set = 0;
 	if (argc > 1)
 	{
 		if (!ft_strcmp(argv[1], "mandel") || (!ft_strcmp(argv[1], "1")))
 			vars->fractal = 1;
 		else if (!ft_strcmp(argv[1], "julia") || (!ft_strcmp(argv[1], "2")))
+		{
 			vars->fractal = 2;
+			if (argv[2])
+				vars->julia_set = ft_atoi(argv[2]);
+		}
 	}
 	vars->img.offset_x = 0;
 	vars->img.offset_y = 0;

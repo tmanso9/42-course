@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 01:26:53 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/03 16:41:57 by touteiro         ###   ########.fr       */
+/*   Created: 2022/10/17 17:02:15 by touteiro          #+#    #+#             */
+/*   Updated: 2022/12/14 14:10:52 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
-void	zoom_in(t_vars *vars)
-{
-	vars->img.x *= 1.2;
-	vars->img.y *= 1.2;
-//	vars->img.offset_x -= 2;
-//	vars->img.offset_y -= 2;
-}
+# include <stdlib.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdint.h>
+# include <string.h>
 
-void	zoom_out(t_vars *vars)
-{
-	vars->img.x /= 1.2;
-	vars->img.y /= 1.2;
-//	vars->img.offset_x += 2;
-//	vars->img.offset_y += 2;
-}
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 2
+# endif
+
+char	*get_next_line(int fd);
+char	*ft_strjoin_gnl(char *s1, char *s2);
+char	*ft_strchr_gnl(const char *s, int c);
+
+#endif

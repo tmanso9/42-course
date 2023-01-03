@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 01:26:53 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/03 16:41:57 by touteiro         ###   ########.fr       */
+/*   Created: 2022/10/06 19:25:29 by touteiro          #+#    #+#             */
+/*   Updated: 2022/11/29 19:30:24 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../../incs/libft.h"
 
-void	zoom_in(t_vars *vars)
+/*
+The memset() function writes len bytes of value c (converted to an unsigned
+char) to the string b.
+*/
+void	*ft_memset(void *b, int c, size_t len)
 {
-	vars->img.x *= 1.2;
-	vars->img.y *= 1.2;
-//	vars->img.offset_x -= 2;
-//	vars->img.offset_y -= 2;
-}
+	size_t			i;
+	unsigned char	*str;
 
-void	zoom_out(t_vars *vars)
-{
-	vars->img.x /= 1.2;
-	vars->img.y /= 1.2;
-//	vars->img.offset_x += 2;
-//	vars->img.offset_y += 2;
+	i = 0;
+	str = b;
+	while (i < len)
+	{
+		str[i] = (unsigned char)c;
+		i++;
+	}
+	return (b);
 }

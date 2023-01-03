@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 01:26:53 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/03 16:41:57 by touteiro         ###   ########.fr       */
+/*   Created: 2022/10/10 20:12:33 by touteiro          #+#    #+#             */
+/*   Updated: 2022/11/29 19:31:00 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../../incs/libft.h"
 
-void	zoom_in(t_vars *vars)
+/*
+Applies the function f to each character of the
+string passed as argument, and passing its index
+as first argument.  Each character is passed by
+address to f to be modified if necessary.
+*/
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	vars->img.x *= 1.2;
-	vars->img.y *= 1.2;
-//	vars->img.offset_x -= 2;
-//	vars->img.offset_y -= 2;
-}
+	unsigned int	i;
 
-void	zoom_out(t_vars *vars)
-{
-	vars->img.x /= 1.2;
-	vars->img.y /= 1.2;
-//	vars->img.offset_x += 2;
-//	vars->img.offset_y += 2;
+	i = 0;
+	if (s == NULL)
+		return ;
+	while (s[i])
+	{
+		(*f)(i, &s[i]);
+		i++;
+	}
 }

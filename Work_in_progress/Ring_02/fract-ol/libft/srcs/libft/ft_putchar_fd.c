@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 01:26:53 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/03 16:41:57 by touteiro         ###   ########.fr       */
+/*   Created: 2022/10/10 20:19:05 by touteiro          #+#    #+#             */
+/*   Updated: 2022/11/29 19:30:27 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../../incs/libft.h"
 
-void	zoom_in(t_vars *vars)
+/*
+Outputs the character ’c’ to the given file descriptor.
+*/
+void	ft_putchar_fd(char c, int fd)
 {
-	vars->img.x *= 1.2;
-	vars->img.y *= 1.2;
-//	vars->img.offset_x -= 2;
-//	vars->img.offset_y -= 2;
-}
-
-void	zoom_out(t_vars *vars)
-{
-	vars->img.x /= 1.2;
-	vars->img.y /= 1.2;
-//	vars->img.offset_x += 2;
-//	vars->img.offset_y += 2;
+	write(fd, &c, 1);
 }

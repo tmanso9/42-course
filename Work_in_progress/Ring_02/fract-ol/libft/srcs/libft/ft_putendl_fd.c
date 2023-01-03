@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 01:26:53 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/03 16:41:57 by touteiro         ###   ########.fr       */
+/*   Created: 2022/10/10 20:30:29 by touteiro          #+#    #+#             */
+/*   Updated: 2022/11/29 19:30:29 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../../incs/libft.h"
 
-void	zoom_in(t_vars *vars)
+/*
+Outputs the string ’s’ to the given file
+descriptor, followed by a newline.
+*/
+void	ft_putendl_fd(char *s, int fd)
 {
-	vars->img.x *= 1.2;
-	vars->img.y *= 1.2;
-//	vars->img.offset_x -= 2;
-//	vars->img.offset_y -= 2;
-}
-
-void	zoom_out(t_vars *vars)
-{
-	vars->img.x /= 1.2;
-	vars->img.y /= 1.2;
-//	vars->img.offset_x += 2;
-//	vars->img.offset_y += 2;
+	ft_putstr_fd(s, fd);
+	write(fd, "\n", 1);
 }

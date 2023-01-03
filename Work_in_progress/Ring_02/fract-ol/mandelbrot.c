@@ -6,15 +6,15 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:54:23 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/26 18:00:42 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/03 18:31:48 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-double map(double x, double in_min, double in_max, double out_min, double out_max)
+double	map(double x, double in_max, double out_min, double out_max)
 {
-  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+	return ((x * (out_max - out_min) / in_max) + out_min);
 }
 
 static int	get_color(t_vars *vars, double x, double y)
@@ -27,17 +27,24 @@ static int	get_color(t_vars *vars, double x, double y)
 	int		iterations;
 
 	// z = 0;
-	double	maxval = 1.2 * vars->img.y;
+	double	maxval = 1.2 * vars->img.x;
 	double	minval = -1.7 * vars->img.x;
 	// printf("zoom is %f\n", vars->img.offset_x);
 	
-	double	a = map(x, 0, WIN_WIDTH - .1, minval, maxval);
-	double	b = map(y, 0, WIN_HEIGTH - .1, minval, maxval);
+	double	a = map(x, WIN_WIDTH - .1, minval, maxval);
+	double	b = map(y, WIN_HEIGTH - .1, minval, maxval);
 	double	ca = a;
 	double	cb = b;
 	i = 0;
 	bright = 0;
-	iterations = 75;
+	double	temp = vars->img.x;
+	double	zoom_times = 1;
+	while (temp > 1)
+	{
+		temp = temp / 1.2;
+		zoom_times += 1;
+	}
+	iterations = 40 * (4 * zoom_times);
 	// printf("here\n");
 	/*
 	f(z) = z^2 + c
@@ -53,13 +60,13 @@ static int	get_color(t_vars *vars, double x, double y)
 		bb = 2.0 * a * b;
 		a = aa + ca;
 		b = bb + cb;
-		if (abs(aa) > 16.0)
+		if (fabs(aa) > 16.0)
 			break ;
 		i++;
 	}
 
-	bright = map(i, 0, iterations, 0, 1);
-	bright = map(sqrt(bright), 0, 1, 0, 255);
+	bright = map(i, iterations, 0, 1);
+	bright = map(sqrt(bright), 1, 0, 255);
 
 	if (i == iterations)
 		bright = 0;
@@ -85,10 +92,10 @@ void	mandelbrot(t_vars *vars)
 		{
 			bright = get_color(vars, x, y);
 			// printf("x %d, y %d, bright %d\n", x, y, bright);
-			my_pixel_put(&vars->img, x, y, get_rgb(100, bright, 210));
-			y += .1;
+			my_pixel_put(&vars->img, x, y, get_rgb(bright, bright, 100));
+			y += .5;
 		}
-		x += .1;
+		x += .5;
 		y = 0;
 	}
 }
