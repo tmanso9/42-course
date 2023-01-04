@@ -45,7 +45,7 @@ typedef struct s_rect
 	double	y;
 	double	width;
 	double	height;
-	int	color;
+	int		color;
 }	t_rect;
 
 typedef struct s_circle
@@ -63,7 +63,7 @@ void	my_pixel_put(t_data *img, int x, int y, int color);
 int		in_bounds(int x, int y);
 void	zoom_in(t_vars *vars);
 void	zoom_out(t_vars *vars);
-double map(double x, double in_max, double out_min, double out_max);
+double	map(double x, double in_max, double out_min, double out_max);
 //Shapes
 void	rectangle(t_vars *vars, t_rect rect);
 void	circle(t_vars *vars, t_circle circle);

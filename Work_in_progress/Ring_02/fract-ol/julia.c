@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:31:02 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/03 18:44:29 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/04 19:43:44 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,21 @@ static int	get_color(t_vars *vars, double x, double y)
 	double	minval = -1.2 * vars->img.x;
 	// printf("zoom is %f\n", vars->img.offset_x);
 	
-	double	a = map(x, WIN_WIDTH - .1, minval, maxval);
-	double	b = map(y, WIN_HEIGTH - .1, minval, maxval);
+	double	a = map(x + vars->img.offset_x, WIN_WIDTH - 1, minval, maxval);
+	double	b = map(y + vars->img.offset_y, WIN_HEIGTH - 1, minval, maxval);
 
 	i = 0;
 	bright = 0;
 	double	temp = vars->img.x;
 	double	zoom_times = 1;
-	while (temp > 1)
+	while (temp < 1)
 	{
-		temp = temp / 1.2;
+		temp = temp * 1.1;
 		zoom_times += 1;
 	}
-	iterations = 40 * (4 * zoom_times);
+	iterations = 100;
+	if (zoom_times > 1)
+		iterations += (5 * zoom_times);
 	// double	ca = map(vars->img.mousex, 0, WIN_WIDTH - .1, -1, 1);
 	// double	cb = map(vars->img.mousey, 0, WIN_HEIGTH - .1, -1, 1);
 	double	const_a[6];
@@ -82,7 +84,7 @@ static int	get_color(t_vars *vars, double x, double y)
 	{
 		aa = a * a - b * b;
 		bb = 2.0 * a * b;
-		if (fabs(aa) > 4.0)
+		if (fabs(aa) > 16.0)
 			break ;
 		a = aa + ca;
 		b = bb + cb;
@@ -92,12 +94,9 @@ static int	get_color(t_vars *vars, double x, double y)
 	bright = map(i, iterations, 0, 1);
 	bright = map(sqrt(bright), 1, 0, 255);
 
-	if (i == iterations)
+	// printf("%f %d %d\n", vars->img.x, (int)iterations, i);
+	if (i == (int)iterations)
 		bright = 0;
-	// else if (i >= 0 && i <85)
-	// 	bright += 30;
-	// else if (i >= 85 && i < 170)
-	// 	bright += 50;
 	return (bright);
 }
 
@@ -115,6 +114,7 @@ void	julia(t_vars *vars)
 		{
 			bright = get_color(vars, x, y);
 			// printf("x %d, y %d, bright %d\n", x, y, bright);
+			// if (in_bounds(x + vars->img.offset_x, y + vars->img.offset_y))
 			my_pixel_put(&vars->img, x, y, get_rgb(bright, bright, 100));
 			y += 1;
 		}

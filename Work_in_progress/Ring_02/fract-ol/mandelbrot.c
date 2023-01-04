@@ -6,12 +6,17 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:54:23 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/03 18:31:48 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/04 18:35:54 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+/*
+ * > It takes a value, a maximum out value, a minimum out value, and a maximum
+ * in value, and returns a value that
+ * is scaled to the new range.
+ */
 double	map(double x, double in_max, double out_min, double out_max)
 {
 	return ((x * (out_max - out_min) / in_max) + out_min);
@@ -28,11 +33,11 @@ static int	get_color(t_vars *vars, double x, double y)
 
 	// z = 0;
 	double	maxval = 1.2 * vars->img.x;
-	double	minval = -1.7 * vars->img.x;
+	double	minval = -1.2 * vars->img.x;
 	// printf("zoom is %f\n", vars->img.offset_x);
 	
-	double	a = map(x, WIN_WIDTH - .1, minval, maxval);
-	double	b = map(y, WIN_HEIGTH - .1, minval, maxval);
+	double	a = map(x + vars->img.offset_x, WIN_WIDTH - .1, minval, maxval);
+	double	b = map(y + vars->img.offset_y, WIN_HEIGTH - .1, minval, maxval);
 	double	ca = a;
 	double	cb = b;
 	i = 0;
@@ -41,10 +46,10 @@ static int	get_color(t_vars *vars, double x, double y)
 	double	zoom_times = 1;
 	while (temp > 1)
 	{
-		temp = temp / 1.2;
+		temp = temp / 1.1;
 		zoom_times += 1;
 	}
-	iterations = 40 * (4 * zoom_times);
+	iterations = 40 * 1.1 * zoom_times;
 	// printf("here\n");
 	/*
 	f(z) = z^2 + c
