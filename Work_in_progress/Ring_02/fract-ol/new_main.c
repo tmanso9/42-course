@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:53:45 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/04 18:12:10 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:31:19 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	render_background(t_data *img, int color)
 	int	j;
 
 	i = 0;
-	while (i < WIN_HEIGTH)
+	while (i < WIN_HEIGHT)
 	{
 		j = 0;
 		while (j < WIN_WIDTH)
@@ -34,7 +34,7 @@ int	render(t_vars *vars)
 		return (1);
 	// render_background(&vars->img, get_rgb(0, 0, 0));
 	//circle(vars, (t_circle){WIN_WIDTH / 2 + vars->img.offset_x, \
-		WIN_HEIGTH / 2 + vars->img.offset_y, \
+		WIN_HEIGHT / 2 + vars->img.offset_y, \
 		200 * vars->img.x, get_rgb(0, 0, 180)});
 	// rectangle(vars, (t_rect){10 + vars->img.offset_x, \
 	// 	10 + vars->img.offset_y, 10 * vars->img.x, \
@@ -44,10 +44,10 @@ int	render(t_vars *vars)
 	if (vars->fractal == 2)
 		julia(vars);
 	// rectangle(vars, (t_rect){WIN_WIDTH / 2 - vars->img.x, \
-	// 	WIN_HEIGTH / 2 - vars->img.x, 10.0 * (vars->img.x), \
+	// 	WIN_HEIGHT / 2 - vars->img.x, 10.0 * (vars->img.x), \
 	// 	10.0 * (vars->img.x), get_rgb(255, 0, 0)});
 	// circle(vars, (t_circle){WIN_WIDTH / 2 + vars->img.offset_x, \
-		WIN_HEIGTH / 2 + vars->img.offset_y, \
+		WIN_HEIGHT / 2 + vars->img.offset_y, \
 		10 * vars->img.x, get_rgb(255, 0, 0)});
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
 	return (0);
@@ -69,9 +69,14 @@ int	handle_key(int keysym, t_vars *vars)
 	if (keysym == XK_Down || keysym == XK_s)
 		vars->img.offset_y += 50;
 	if (keysym == XK_plus)
-		zoom_in(vars);
+	{
+		zoom_in(vars, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	}
 	if (keysym == XK_minus)
-		zoom_out(vars);
+	{
+		printf("minus\n");	
+		zoom_out(vars, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	}
 	if (keysym == XK_0)
 		vars->julia_set = 0;
 	if (keysym == XK_1)
@@ -103,11 +108,11 @@ int	handle_mouse(int button, int x, int y, t_vars *vars)
 {
 	if (button == 4)
 	{
-		zoom_in(vars);
+		zoom_out(vars, x, y);
 	}
 	if (button == 5)
 	{
-		zoom_out(vars);
+		zoom_in(vars, x, y);
 	}
 	return (0);
 }
@@ -177,10 +182,10 @@ int	main(int argc, char **argv)
 		exit(0);
 	}
 	vars->mlx = mlx_init();
-	vars->win = mlx_new_window(vars->mlx, WIN_WIDTH, WIN_HEIGTH, "First window");
+	vars->win = mlx_new_window(vars->mlx, WIN_WIDTH, WIN_HEIGHT, "First window");
 	vars->img.offset_x = 0;
 	vars->img.offset_y = 0;
-	vars->img.img = mlx_new_image(vars->mlx, WIN_WIDTH, WIN_HEIGTH);
+	vars->img.img = mlx_new_image(vars->mlx, WIN_WIDTH, WIN_HEIGHT);
 	vars->img.addr = mlx_get_data_addr(vars->img.img, \
 		&vars->img.bits_per_pixel, &vars->img.line_length, &vars->img.endian);
 	mlx_loop_hook(vars->mlx, &render, vars);

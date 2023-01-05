@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:03:09 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/16 19:29:03 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/05 20:40:59 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ int	get_rgb(int r, int g, int b)
 
 int	in_bounds(int x, int y)
 {
-	if (x >= 0 && y >= 0 && x < WIN_WIDTH && y < WIN_HEIGTH)
+	if (x >= 0 && y >= 0 && x < WIN_WIDTH && y < WIN_HEIGHT)
 		return (1);
 	return (0);
 }
-

@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:04:45 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/04 17:55:02 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/05 20:42:12 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 void	offset_check(t_rect *rect)
 {
-	//printf("%f %f\n", rect->x, rect->width);
 	if (in_bounds(rect->x, rect->y))
 		return ;
 	while (rect->x < 0)
@@ -33,7 +32,7 @@ void	offset_check(t_rect *rect)
 		rect->x -= .5;
 		rect->width += 1.1;
 	}
-	while (rect->y >= WIN_HEIGTH - 1)
+	while (rect->y >= WIN_HEIGHT - 1)
 	{
 		rect->y -= .5;
 		rect->height += 1.1;

@@ -6,7 +6,7 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/03 15:48:37 by touteiro          #+#    #+#              #
-#    Updated: 2023/01/03 18:48:09 by touteiro         ###   ########.fr        #
+#    Updated: 2023/01/05 20:15:38 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC = new_main.c \
 	draw.c \
 	shapes.c \
 	render.c \
+	fractal_math.c \
 	mandelbrot.c \
 	julia.c
 OBJ = $(SRC:.c=.o)
