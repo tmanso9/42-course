@@ -10,6 +10,7 @@ It allows for (almost) infinite zoom and moving around.
 ## Usage/Examples
 
 run make
+
 ./fractol mandel or ./fractol 1 for mandelbrot set
 
 ./fractol julia <0-6> or ./fractol 2 <0-6> for julia set
