@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:31:02 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/06 00:58:22 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/06 18:27:41 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	julia_loop(t_fract *julia, double iterations)
 	{
 		aa = pow(julia->real, 2) - pow(julia->im, 2);
 		bb = 2.0 * julia->real * julia->im;
-		if (fabs(aa) > 4.0)
+		if (fabs(aa) > 16.0)
 			break ;
 		julia->real = aa + julia->ca;
 		julia->im = bb + julia->cb;
@@ -38,17 +38,17 @@ static void	find_set(t_vars *vars, t_fract *julia)
 	double	const_b[6];
 
 	const_a[0] = -.4;
-	const_a[1] = 0.285;
-	const_a[2] = -0.70176;
-	const_a[3] = -0.8;
-	const_a[4] = -0.7269;
-	const_a[5] = 0;
 	const_b[0] = .6;
-	const_b[1] = 0.01;
-	const_b[2] = -0.3842;
+	const_a[1] = 0.285;
+	const_b[1] = -0.01;
+	const_a[2] = -0.70176;
+	const_b[2] = 0.3842;
+	const_a[3] = -0.8;
 	const_b[3] = 0.156;
-	const_b[4] = 0.1889;
-	const_b[5] = -0.8;
+	const_a[4] = -0.7269;
+	const_b[4] = -0.1889;
+	const_a[5] = -0.835;
+	const_b[5] = 0.232;
 	if (vars->julia_set)
 	{
 		julia->ca = const_a[vars->julia_set - 1];
@@ -67,12 +67,12 @@ int	get_color_julia(t_vars *vars, double x, double y, double iterations)
 	double	bright;
 	t_fract	julia;
 
-	julia.real = get_coords(x, vars->img.x);
-	julia.im = get_coords(y, vars->img.x);
+	julia.real = get_coords(x, vars->img.zoom, 'x');
+	julia.im = get_coords(y, vars->img.zoom, 'y');
 	find_set(vars, &julia);
 	i = julia_loop(&julia, iterations);
 	bright = map(i, iterations, 0, 1);
-	bright = map(sqrt(bright), 1, 50, 255);
+	bright = map(sqrt(bright), 1, 0, 255);
 	if (i == (int)iterations)
 		bright = 0;
 	return (bright);

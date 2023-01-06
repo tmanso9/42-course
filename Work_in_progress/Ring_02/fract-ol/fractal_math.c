@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 20:14:53 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/06 00:25:10 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/06 18:12:41 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,24 @@ double	map(double x, double in_max, double out_min, double out_max)
 	return ((x * (out_max - out_min) / in_max) + out_min);
 }
 
-double	get_coords(double x, double zoom)
+double	get_coords(double x, double zoom, char type)
 {
-	return (map(x, WIN_WIDTH - 1, -zoom, zoom));
+	if (type == 'x')
+		return (map(x, WIN_WIDTH - 1, -zoom, zoom));
+	else
+		return (map(x, WIN_HEIGHT - 1, -zoom, zoom));
 }
 
 double	calc_iterations(t_vars *vars, double iterations)
 {
 	double	temp;
 
-	temp = vars->img.x;
-	iterations = 70;
+	temp = vars->img.zoom;
+	iterations = 100;
+	if (vars->fractal == 2 && vars->julia_set == 5)
+		iterations = 200;
+	else if (vars->fractal == 1)
+		iterations = 65;
 	while (temp < 1)
 	{
 		temp = temp * 1.1;
@@ -61,7 +68,7 @@ void	do_fractal(t_vars *vars, char set)
 			else
 				bright = get_color_julia(vars, x + vars->img.offset_x, \
 					y + vars->img.offset_y, iterations);
-			my_pixel_put(&vars->img, x, y, get_rgb(bright, bright, 100));
+			palette(vars, bright, x, y);
 			y++;
 		}
 		x++;

@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:53:45 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/06 00:59:05 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/06 18:09:12 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,20 @@ int	render(t_vars *vars)
 	// render_background(&vars->img, get_rgb(0, 0, 0));
 	//circle(vars, (t_circle){WIN_WIDTH / 2 + vars->img.offset_x, \
 		WIN_HEIGHT / 2 + vars->img.offset_y, \
-		200 * vars->img.x, get_rgb(0, 0, 180)});
+		200 * vars->img.zoom, get_rgb(0, 0, 180)});
 	// rectangle(vars, (t_rect){10 + vars->img.offset_x, \
-	// 	10 + vars->img.offset_y, 10 * vars->img.x, \
+	// 	10 + vars->img.offset_y, 10 * vars->img.zoom, \
 	// 	5 * vars->img.y, get_rgb(180, 0, 0)});
 	if (vars->fractal == 1)
 		mandelbrot(vars);
 	if (vars->fractal == 2)
 		julia(vars);
-	// rectangle(vars, (t_rect){WIN_WIDTH / 2 - vars->img.x, \
-	// 	WIN_HEIGHT / 2 - vars->img.x, 10.0 * (vars->img.x), \
-	// 	10.0 * (vars->img.x), get_rgb(255, 0, 0)});
+	// rectangle(vars, (t_rect){WIN_WIDTH / 2 - vars->img.zoom, \
+	// 	WIN_HEIGHT / 2 - vars->img.zoom, 10.0 * (vars->img.zoom), \
+	// 	10.0 * (vars->img.zoom), get_rgb(255, 0, 0)});
 	// circle(vars, (t_circle){WIN_WIDTH / 2 + vars->img.offset_x, \
 		WIN_HEIGHT / 2 + vars->img.offset_y, \
-		10 * vars->img.x, get_rgb(255, 0, 0)});
+		10 * vars->img.zoom, get_rgb(255, 0, 0)});
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
 	return (0);
 }
@@ -92,13 +92,23 @@ int	handle_key(int keysym, t_vars *vars)
 	if (keysym == XK_6)
 		vars->julia_set = 6;
 	if (keysym == XK_m)
+	{
+		if (vars->fractal == 2)
+			vars->img.offset_x -= 100;
 		vars->fractal = 1;
+	}
 	if (keysym == XK_j)
+	{
+		if (vars->fractal == 1)
+			vars->img.offset_x += 100;
 		vars->fractal = 2;
+	}
 	if (keysym == XK_r)
 	{
-		vars->img.x = 1;
+		vars->img.zoom = 1.1;
 		vars->img.offset_x = 0;
+		if (vars->fractal == 1)
+			vars->img.offset_x = -100;
 		vars->img.offset_y = 0;
 	}
 	return (0);
@@ -142,8 +152,7 @@ int	main(int argc, char **argv)
 	t_vars	*vars;
 
 	vars = malloc(sizeof(t_vars));
-	vars->img.x = 1.2;
-	vars->img.y = 1;
+	vars->img.zoom = 1.1;
 	vars->img.mousex = 0;
 	vars->img.mousey = 0;
 	vars->fractal = 0;
@@ -151,9 +160,13 @@ int	main(int argc, char **argv)
 	if (argc > 1)
 	{
 		if (!ft_strcmp(argv[1], "mandelbrot") || (!ft_strcmp(argv[1], "1")))
+		{
+			vars->img.offset_x = -100;
 			vars->fractal = 1;
+		}
 		else if (!ft_strcmp(argv[1], "julia") || (!ft_strcmp(argv[1], "2")))
 		{
+			vars->img.offset_x = 0;
 			vars->fractal = 2;
 			if (argv[2])
 				vars->julia_set = ft_atoi(argv[2]);
@@ -183,7 +196,6 @@ int	main(int argc, char **argv)
 	}
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, WIN_WIDTH, WIN_HEIGHT, "First window");
-	vars->img.offset_x = 0;
 	vars->img.offset_y = 0;
 	vars->img.img = mlx_new_image(vars->mlx, WIN_WIDTH, WIN_HEIGHT);
 	vars->img.addr = mlx_get_data_addr(vars->img.img, \
