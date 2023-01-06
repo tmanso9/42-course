@@ -7,6 +7,13 @@ It computes the mandelbrot set and 7 different types of julia sets.
 
 It allows for (almost) infinite zoom and moving around.
 
+# Work in progress
+
+Need to improve:
+- Zoom out at start
+- Colors
+- Add bonus features if there is time
+
 ## Usage/Examples
 
 run make
