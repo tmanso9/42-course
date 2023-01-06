@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:54:23 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/05 20:34:21 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/06 00:58:42 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	get_color_mandel(t_vars *vars, double x, double y, double iterations)
 	mandel.cb = mandel.im;
 	i = mandel_loop(&mandel, iterations);
 	bright = map(i, iterations, 0, 1);
-	bright = map(sqrt(bright), 1, 0, 255);
+	bright = map(sqrt(bright), 1, 50, 255);
 	if (i == (int)iterations)
 		bright = 0;
 	return (bright);

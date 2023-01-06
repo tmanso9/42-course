@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:31:02 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/05 20:41:24 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/06 00:58:22 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	get_color_julia(t_vars *vars, double x, double y, double iterations)
 	find_set(vars, &julia);
 	i = julia_loop(&julia, iterations);
 	bright = map(i, iterations, 0, 1);
-	bright = map(sqrt(bright), 1, 0, 200);
+	bright = map(sqrt(bright), 1, 50, 255);
 	if (i == (int)iterations)
 		bright = 0;
 	return (bright);

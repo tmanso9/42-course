@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 16:04:03 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/05 20:29:54 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/06 00:53:52 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include "libft/incs/libft.h"
 
 # define MLX_ERROR 1
-# define WIN_WIDTH 1000
-# define WIN_HEIGHT 1000
+# define WIN_WIDTH 720
+# define WIN_HEIGHT 720
 
 typedef struct s_data
 {

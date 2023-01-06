@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:53:45 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/05 17:31:19 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/06 00:59:05 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ int	main(int argc, char **argv)
 	t_vars	*vars;
 
 	vars = malloc(sizeof(t_vars));
-	vars->img.x = 1;
+	vars->img.x = 1.2;
 	vars->img.y = 1;
 	vars->img.mousex = 0;
 	vars->img.mousey = 0;
