@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:03:09 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/07 00:22:39 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/07 00:51:27 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,19 @@ int	in_bounds(int x, int y)
 
 void	palette(t_vars *vars, int bright, double x, double y)
 {
-	if (bright == 0)
-		my_pixel_put(&vars->img, x, y, get_rgb(155, 30, 245));
-	else if (bright < 55)
-		my_pixel_put(&vars->img, x, y, get_rgb(10, bright * .5, bright * .6));
-	else if (bright < 85)
-		my_pixel_put(&vars->img, x, y, get_rgb(10, bright * .7, bright * .8));
-	else if (bright < 170)
-		my_pixel_put(&vars->img, x, y, get_rgb(10, bright * .8, bright * .9));
+	if (!vars->color)
+	{
+		if (bright == 0)
+			my_pixel_put(&vars->img, x, y, get_rgb(155, 30, 245));
+		else if (bright < 55)
+			my_pixel_put(&vars->img, x, y, get_rgb(10, bright * .5, bright * .6));
+		else if (bright < 85)
+			my_pixel_put(&vars->img, x, y, get_rgb(10, bright * .7, bright * .8));
+		else if (bright < 170)
+			my_pixel_put(&vars->img, x, y, get_rgb(10, bright * .8, bright * .9));
+		else
+			my_pixel_put(&vars->img, x, y, get_rgb(0, bright * .9, bright * .9));
+	}
 	else
-		my_pixel_put(&vars->img, x, y, get_rgb(0, bright * .9, bright * .9));
+		my_pixel_put(&vars->img, x, y, get_rgb(bright, bright, bright));
 }

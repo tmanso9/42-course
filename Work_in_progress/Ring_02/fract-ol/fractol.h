@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 16:04:03 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/07 00:38:14 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/07 00:49:10 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_vars
 	char	fractal;
 	char	julia_set;
 	char	follow_mouse;
+	char	color;
 }	t_vars;
 
 typedef struct s_fract

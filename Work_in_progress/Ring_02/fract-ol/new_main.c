@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:53:45 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/07 00:45:34 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/07 00:50:10 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,13 @@ int	handle_key(int keysym, t_vars *vars)
 		else
 			vars->follow_mouse = 1;
 	}
+	if (keysym == XK_c)
+	{
+		if (vars->color)
+			vars->color = 0;
+		else
+			vars->color = 1;
+	}
 	return (0);
 }
 
@@ -146,6 +153,7 @@ int	main(int argc, char **argv)
 	vars->fractal = 0;
 	vars->julia_set = 0;
 	vars->follow_mouse = 0;
+	vars->color = 0;
 	if (argc > 1)
 	{
 		if (!ft_strcmp(argv[1], "mandelbrot") || (!ft_strcmp(argv[1], "1")))
