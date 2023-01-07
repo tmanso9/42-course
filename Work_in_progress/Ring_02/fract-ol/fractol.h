@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 16:04:03 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/06 18:08:26 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/07 00:38:14 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ typedef struct s_data
 	double	zoom;
 	double	offset_x;
 	double	offset_y;
-	double	mousex;
-	double	mousey;
 }	t_data;
 
 typedef struct s_vars
@@ -48,6 +46,7 @@ typedef struct s_vars
 	t_data	img;
 	char	fractal;
 	char	julia_set;
+	char	follow_mouse;
 }	t_vars;
 
 typedef struct s_fract

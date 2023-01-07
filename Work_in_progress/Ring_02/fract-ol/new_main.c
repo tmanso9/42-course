@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:53:45 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/06 18:09:12 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/07 00:45:34 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,9 @@ int	handle_key(int keysym, t_vars *vars)
 	if (keysym == XK_Down || keysym == XK_s)
 		vars->img.offset_y += 50;
 	if (keysym == XK_plus)
-	{
 		zoom_in(vars, WIN_WIDTH / 2, WIN_HEIGHT / 2);
-	}
 	if (keysym == XK_minus)
-	{
-		printf("minus\n");	
 		zoom_out(vars, WIN_WIDTH / 2, WIN_HEIGHT / 2);
-	}
 	if (keysym == XK_0)
 		vars->julia_set = 0;
 	if (keysym == XK_1)
@@ -111,27 +106,22 @@ int	handle_key(int keysym, t_vars *vars)
 			vars->img.offset_x = -100;
 		vars->img.offset_y = 0;
 	}
+	if (keysym == XK_f)
+	{
+		if (vars->follow_mouse)
+			vars->follow_mouse = 0;
+		else
+			vars->follow_mouse = 1;
+	}
 	return (0);
 }
 
 int	handle_mouse(int button, int x, int y, t_vars *vars)
 {
 	if (button == 4)
-	{
 		zoom_out(vars, x, y);
-	}
 	if (button == 5)
-	{
 		zoom_in(vars, x, y);
-	}
-	return (0);
-}
-
-int	handle_motion(int x, int y, t_vars *vars)
-{
-	vars->img.mousex = x;
-	vars->img.mousey = y;
-	// printf("%d %d\n", x, y);
 	return (0);
 }
 
@@ -153,10 +143,9 @@ int	main(int argc, char **argv)
 
 	vars = malloc(sizeof(t_vars));
 	vars->img.zoom = 1.1;
-	vars->img.mousex = 0;
-	vars->img.mousey = 0;
 	vars->fractal = 0;
 	vars->julia_set = 0;
+	vars->follow_mouse = 0;
 	if (argc > 1)
 	{
 		if (!ft_strcmp(argv[1], "mandelbrot") || (!ft_strcmp(argv[1], "1")))
@@ -203,11 +192,8 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(vars->mlx, &render, vars);
 	mlx_key_hook(vars->win, &handle_key, vars);
 	mlx_mouse_hook(vars->win, &handle_mouse, vars);
-	mlx_hook(vars->win, MotionNotify, PointerMotionMask, &handle_motion, vars);
 	mlx_hook(vars->win, DestroyNotify, 0, &handle_cross, vars);
 	mlx_loop(vars->mlx);
-	
-	//printf("got here\n");
 	
 	mlx_destroy_image(vars->mlx, vars->img.img);
 	mlx_destroy_display(vars->mlx);
