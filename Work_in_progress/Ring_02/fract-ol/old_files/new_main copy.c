@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:53:45 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/07 00:50:10 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:34:10 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	render(t_vars *vars)
 {
 	if (!vars->win)
 		return (1);
-	// render_background(&vars->img, get_rgb(0, 0, 0));
+	// render_background(&vars->img, get_rgb(255, 255, 255));
 	//circle(vars, (t_circle){WIN_WIDTH / 2 + vars->img.offset_x, \
 		WIN_HEIGHT / 2 + vars->img.offset_y, \
 		200 * vars->img.zoom, get_rgb(0, 0, 180)});
@@ -50,6 +50,7 @@ int	render(t_vars *vars)
 		WIN_HEIGHT / 2 + vars->img.offset_y, \
 		10 * vars->img.zoom, get_rgb(255, 0, 0)});
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
+	print_help(vars);
 	return (0);
 }
 
@@ -73,19 +74,40 @@ int	handle_key(int keysym, t_vars *vars)
 	if (keysym == XK_minus)
 		zoom_out(vars, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	if (keysym == XK_0)
+	{
 		vars->julia_set = 0;
+		vars->change_julia = 0;
+	}
 	if (keysym == XK_1)
+	{
 		vars->julia_set = 1;
+		vars->change_julia = 0;
+	}
 	if (keysym == XK_2)
+	{
 		vars->julia_set = 2;
+		vars->change_julia = 0;
+	}
 	if (keysym == XK_3)
+	{
 		vars->julia_set = 3;
+		vars->change_julia = 0;
+	}
 	if (keysym == XK_4)
+	{
 		vars->julia_set = 4;
+		vars->change_julia = 0;		
+	}
 	if (keysym == XK_5)
+	{
 		vars->julia_set = 5;
+		vars->change_julia = 0;
+	}
 	if (keysym == XK_6)
+	{
 		vars->julia_set = 6;
+		vars->change_julia = 0;
+	}
 	if (keysym == XK_m)
 	{
 		if (vars->fractal == 2)
@@ -105,6 +127,7 @@ int	handle_key(int keysym, t_vars *vars)
 		if (vars->fractal == 1)
 			vars->img.offset_x = -100;
 		vars->img.offset_y = 0;
+		vars->change_julia = 0;
 	}
 	if (keysym == XK_f)
 	{
@@ -120,6 +143,17 @@ int	handle_key(int keysym, t_vars *vars)
 		else
 			vars->color = 1;
 	}
+	if (keysym == XK_h)
+	{
+		if (vars->help)
+			vars->help = 0;
+		else
+			vars->help = 1;
+	}
+	if (keysym == XK_period)
+		vars->change_julia += .01;
+	if (keysym == XK_comma)
+		vars->change_julia -= .01;
 	return (0);
 }
 
@@ -152,8 +186,10 @@ int	main(int argc, char **argv)
 	vars->img.zoom = 1.1;
 	vars->fractal = 0;
 	vars->julia_set = 0;
-	vars->follow_mouse = 0;
+	vars->follow_mouse = 1;
 	vars->color = 0;
+	vars->help = 0;
+	vars->change_julia = 0;
 	if (argc > 1)
 	{
 		if (!ft_strcmp(argv[1], "mandelbrot") || (!ft_strcmp(argv[1], "1")))
@@ -182,17 +218,17 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		ft_printf("\nMissing arguments!\n\nUsage: ./fractol <type of fractol> <additional params>\n");
+		ft_printf("\nMISSING ARGUMENTS!\n\nUsage: ./fractol <type of fractal> <optional additional params>\n");
 		ft_printf("\nTypes of fractals: mandelbrot (1) or julia (2)\n");
 		ft_printf("Additional params for julia: number from 0-6 to chose the set (defaults to 0)\n");
-		ft_printf("\nExamples:\n./fractol mandelbrot\n");
-		ft_printf("./fractol 1\n./fractol julia 2\n./fractol 2 6\n\n");
+		ft_printf("Examples:\n./fractol mandelbrot OR ");
+		ft_printf("./fractol 1\n./fractol julia 2 OR ./fractol 2 6\n\n");
 		free(vars->mlx);
 		free(vars);
 		exit(0);
 	}
 	vars->mlx = mlx_init();
-	vars->win = mlx_new_window(vars->mlx, WIN_WIDTH, WIN_HEIGHT, "First window");
+	vars->win = mlx_new_window(vars->mlx, WIN_WIDTH, WIN_HEIGHT, "Fract-ol");
 	vars->img.offset_y = 0;
 	vars->img.img = mlx_new_image(vars->mlx, WIN_WIDTH, WIN_HEIGHT);
 	vars->img.addr = mlx_get_data_addr(vars->img.img, \

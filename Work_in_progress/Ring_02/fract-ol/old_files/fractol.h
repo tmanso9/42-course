@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 16:04:03 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/07 00:49:10 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/09 19:20:14 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 # include <stdio.h>
 # include <math.h>
 # include <unistd.h>
-# include "libft/incs/libft.h"
+# include "../libft/incs/libft.h"
 
 # define MLX_ERROR 1
-# define WIN_WIDTH 600
-# define WIN_HEIGHT 600
+# define WIN_WIDTH 800
+# define WIN_HEIGHT 800
 
 typedef struct s_data
 {
@@ -46,8 +46,11 @@ typedef struct s_vars
 	t_data	img;
 	char	fractal;
 	char	julia_set;
+	double	change_julia_re;
+	double	change_julia_im;
 	char	follow_mouse;
 	char	color;
+	char	help;
 }	t_vars;
 
 typedef struct s_fract
@@ -57,7 +60,6 @@ typedef struct s_fract
 	double	ca;
 	double	cb;
 }	t_fract;
-
 
 typedef struct s_rect
 {
@@ -77,13 +79,24 @@ typedef struct s_circle
 }	t_circle;
 
 //Utils
+void	check_args(int argc, char **argv, t_vars *vars);
+void	init_struct(t_vars *vars);
+void	clean_exit(t_vars *vars);
 int		ft_strcmp(char *s1, char *s2);
+void	print_help(t_vars *vars);
 int		in_bounds(int x, int y);
 void	zoom_in(t_vars *vars, int x, int y);
 void	zoom_out(t_vars *vars, int x, int y);
 double	map(double x, double in_max, double out_min, double out_max);
 double	get_coords(double x, double zoom, char type);
 double	calc_iterations(t_vars *vars, double iterations);
+
+//Handles
+int		handle_cross(t_vars *vars);
+int		handle_mouse(int button, int x, int y, t_vars *vars);
+int		render(t_vars *vars);
+int		handle_key(int keysym, t_vars *vars);
+void	key_fractal_utils(int keysym, t_vars *vars);
 
 //Draw
 int		get_rgb(int r, int g, int b);
