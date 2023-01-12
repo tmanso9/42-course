@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:25:55 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/12 19:44:45 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/12 22:53:27 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <errno.h>
 
 /* Execute another program */
-int	execute_program(char **argv)
+void	execute_program(char **argv)
 {
 	char	*path;
 	int		id;
@@ -26,25 +26,20 @@ int	execute_program(char **argv)
 	else if (id == 0)
 	{
 		if (execve(path, argv, NULL) == -1)
-			return(printf("Couldn't find command\n"));
+			exit(printf("Couldn't find command\n"));
 	}
 	else
 	{
 		int wstatus;
+		int	statusCode;
 		wait(&wstatus);
-		printf("%d\n", wstatus);
-		int	statusCode = WIFEXITED(wstatus);
-		printf("%d\n", statusCode);
-		if (WIFEXITED(wstatus))
-		{
-			if (statusCode == 0)
-				printf("Sucess!\n");
-			else
-				printf("Failure running %s\n", argv[0]);
-			return 0;
-		}
+		statusCode = WEXITSTATUS(wstatus);
+		if (statusCode == 0)
+			printf("Sucess!\n");
+		else
+			printf("Failure running %s\n", argv[0]);
 	}
-	return 0;
+	free(path);
 }
 
 /* 
