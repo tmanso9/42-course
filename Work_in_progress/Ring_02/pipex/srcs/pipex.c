@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:25:55 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/13 19:23:10 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/13 21:03:26 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,7 @@ int	main(int argc, char **argv, char **env)
 	// if (argc > 1)
 	// 	execute_program(&argv[1]);
 	// int	i = 0;
-	if (argc > 4)
+	if (argc > 1)
 	{
 		t_command	*commands;
 		t_command	*temp;
@@ -208,13 +208,13 @@ int	main(int argc, char **argv, char **env)
 		temp = commands;
 		find_path(commands, env);
 		commands = temp;
-		while (commands)
+/* 		while (commands)
 		{
 			printf("%s\n", commands->path);
 			commands = commands->next;
-		}
+		} */
 		// printf("Number of commands: %d\n", ft_lstsize((t_list *)commands));
-		// do_actions(&files, commands);
+		do_actions(commands);
 		free_all(files, temp);
 	}
 }

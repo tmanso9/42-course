@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 15:28:41 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/13 19:51:24 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/13 21:11:10 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	find_path(t_command *commands, char **env)
 	char	*path_line;
 	char	*intermediate;
 	char	**paths;
-	char	**cmd_full;
 	int		i;
 
 	i = -1;
@@ -39,11 +38,10 @@ void	find_path(t_command *commands, char **env)
 	i = -1;
 	while (commands)
 	{
-		cmd_full = ft_split(commands->args[0], ' ');
 		while (paths[++i])
 		{
 			intermediate = ft_strjoin(paths[i], "/");
-			path_line = ft_strjoin(intermediate, cmd_full[0]);
+			path_line = ft_strjoin(intermediate, commands->args[0]);
 			if (!access(path_line, F_OK))
 			{
 				commands->path = ft_strdup(path_line);
@@ -57,9 +55,6 @@ void	find_path(t_command *commands, char **env)
 		i = -1;
 		if (!commands->path)
 			commands->path = ft_strdup(commands->args[0]);
-		while (cmd_full[++i])
-			free(cmd_full[i]);
-		free (cmd_full);
 		i = -1;
 		commands = commands->next;
 	}
@@ -85,14 +80,18 @@ void	parse_args(int argc, char **argv, t_files *files, t_command *commands)
 			commands->fd_read = open(files->infile, O_RDONLY);
 		else
 			commands->fd_read = 0;
-		commands->fd_write = 1;
 		if (i != argc - 2)
 		{
+			commands->fd_write = 1;
 			commands->next = ft_calloc(1, sizeof(t_command));
 			commands = commands->next;
 		}
 		else
+		{
+			commands->fd_write = open(files->outfile, O_WRONLY | O_CREAT, 0777);
+			// printf("ORIGINAL WRITE %d\n", commands->fd_write);
 			commands->next = NULL;
+		}
 	}
 	commands = first;
 }

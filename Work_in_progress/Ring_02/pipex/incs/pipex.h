@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:26:23 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/13 19:06:25 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/13 21:03:33 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ typedef struct s_files
 void	parse_args(int argc, char **argv, t_files *files, t_command *commands);
 void	find_path(t_command *commands, char **env);
 void	free_all(t_files files, t_command *commands);
-void	do_actions(t_files *files, t_command *commands);
+void	do_actions(t_command *commands);
 
 #endif

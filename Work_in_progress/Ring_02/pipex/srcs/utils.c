@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:02:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/13 19:29:12 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/13 21:02:58 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	free_commands(t_command *commands)
 		// printf("%s\n", commands->args[0]);
 		free(commands->args);
 		free(commands->path);
+		if (!commands->next)
+			close(commands->fd_write);
 		temp = commands;
 		commands = commands->next;
 		free(temp);
