@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:10:58 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/13 21:17:55 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/13 21:20:26 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_command	*execute_command(t_command *commands)
 		exit(printf("Error forking\n"));
 	else if (id == 0)
 	{
-		printf("read is %d, write is %d\n", commands->fd_read, commands->fd_write);
+		printf("read  is %d, write is %d\n", commands->fd_read, commands->fd_write);
 		dup2(commands->fd_write, STDOUT_FILENO);
 		dup2(commands->fd_read, STDIN_FILENO);
 		if (execve(commands->path, commands->args, NULL) == -1)
