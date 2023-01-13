@@ -6,15 +6,16 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/01/11 15:28:46 by touteiro         ###   ########.fr        #
+#    Updated: 2023/01/13 19:08:36 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
-#CFLAGS += -fsanitize=address
-SRC = pipex.c
+CFLAGS = -I incs/
+# CFLAGS += -Wall -Wextra -Werror -g
+CFLAGS += -fsanitize=address
+SRC = pipex.c parse_args.c utils.c execute.c
 OBJ = $(addprefix srcs/, $(SRC:.c=.o))
 LIBFT = libft/libft.a
 

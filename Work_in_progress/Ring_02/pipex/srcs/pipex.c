@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:25:55 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/12 22:53:27 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/13 19:23:10 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/pipex.h"
+#include "pipex.h"
 #include <errno.h>
 
 /* Execute another program */
@@ -18,13 +18,21 @@ void	execute_program(char **argv)
 {
 	char	*path;
 	int		id;
+	int		file;
 
 	path = ft_strjoin("/usr/bin/", argv[0]);
+	// if (access("test2", O_WRONLY) != 0)
+	// 	exit(printf("Couldn't access file\n"));
 	id = fork();
 	if (id == -1)
 		exit(printf("Error forking\n"));
 	else if (id == 0)
 	{
+		file = open("test2", O_RDWR | O_CREAT, 0777);
+		if (file == -1)
+			exit(printf("Couldn't access file\n"));
+		dup2(file, STDOUT_FILENO);
+		close(file);
 		if (execve(path, argv, NULL) == -1)
 			exit(printf("Couldn't find command\n"));
 	}
@@ -173,7 +181,7 @@ void	fork_print_ten_numbers(void)
 		ft_printf("\n");
 }
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char **env)
 {
 	// fork_print_ten_numbers();
 	
@@ -186,6 +194,27 @@ int	main(int argc, char **argv)
 	/* 	Sum of array by forking and dividing processing in two*/
 	// second_test_with_pipe();
 
-	if (argc > 1)
-		execute_program(&argv[1]);
+	// if (argc > 1)
+	// 	execute_program(&argv[1]);
+	// int	i = 0;
+	if (argc > 4)
+	{
+		t_command	*commands;
+		t_command	*temp;
+		t_files		files;
+
+		commands = ft_calloc(1, sizeof(t_command));
+		parse_args(argc, argv, &files, commands);
+		temp = commands;
+		find_path(commands, env);
+		commands = temp;
+		while (commands)
+		{
+			printf("%s\n", commands->path);
+			commands = commands->next;
+		}
+		// printf("Number of commands: %d\n", ft_lstsize((t_list *)commands));
+		// do_actions(&files, commands);
+		free_all(files, temp);
+	}
 }
