@@ -6,92 +6,95 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 15:28:41 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/13 21:11:10 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/14 19:18:49 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	line_is_path(int i, char **env)
+int	is_path_line(char **paths)
 {
-	if (ft_strchr(env[i], 'P') == env[i] && \
-		ft_strchr(env[i], 'A') == env[i] + 1 && \
-		ft_strchr(env[i], 'T') == env[i] + 2 && \
-		ft_strchr(env[i], 'H') == env[i] + 3)
-		return (1);
+	int	i;
+
+	i = -1;
+	while (paths[++i])
+	{
+		if (ft_strchr(paths[i], 'P') == paths[i] && \
+			ft_strchr(paths[i], 'A') == paths[i] + 1 && \
+			ft_strchr(paths[i], 'T') == paths[i] + 2 && \
+			ft_strchr(paths[i], 'H') == paths[i] + 3)
+			return (i);
+	}
 	return (0);
 }
 
-void	find_path(t_command *commands, char **env)
+char	*find_path(char **env_path, char *cmd)
 {
+	char	**paths;
 	char	*path_line;
 	char	*intermediate;
-	char	**paths;
+	char	*final_path;
 	int		i;
 
 	i = -1;
-	while (env[++i])
-		if (line_is_path(i, env))
-			path_line = ft_strdup(env[i] + 5);
+	path_line = env_path[is_path_line(env_path)];
 	paths = ft_split(path_line, ':');
-	free(path_line);
-	i = -1;
-	while (commands)
-	{
-		while (paths[++i])
-		{
-			intermediate = ft_strjoin(paths[i], "/");
-			path_line = ft_strjoin(intermediate, commands->args[0]);
-			if (!access(path_line, F_OK))
-			{
-				commands->path = ft_strdup(path_line);
-				free (intermediate);
-				free (path_line);
-				break ;
-			}
-			free (intermediate);
-			free (path_line);
-		}
-		i = -1;
-		if (!commands->path)
-			commands->path = ft_strdup(commands->args[0]);
-		i = -1;
-		commands = commands->next;
-	}
-	i = -1;
 	while (paths[++i])
-		free (paths[i]);
-	free (paths);
+	{
+		intermediate = ft_strjoin(paths[i], "/");
+		final_path = ft_strjoin(intermediate, cmd);
+		if (access(final_path, F_OK) == 0)
+		{
+			free (intermediate);
+			free_arr((void *)paths);
+			return (final_path);
+		}
+		free (intermediate);
+		free (final_path);
+	}
+	free_arr((void *)paths);
+	return (ft_strdup(cmd));
 }
 
-void	parse_args(int argc, char **argv, t_files *files, t_command *commands)
+t_command	**parse_cmds(t_command **head, char **argv, t_env *env)
 {
 	int			i;
-	t_command	*first;
+	t_command	*temp;
+	t_command	*end;
 
 	i = 1;
-	first = commands;
-	files->infile = ft_strdup(argv[1]);
-	files->outfile = ft_strdup(argv[argc - 1]);
-	while (++i < argc - 1)
+	end = NULL;
+	while (argv[++i + 1])
 	{
-		commands->args = ft_split(argv[i], ' ');
-		if (i == 2)
-			commands->fd_read = open(files->infile, O_RDONLY);
-		else
-			commands->fd_read = 0;
-		if (i != argc - 2)
-		{
-			commands->fd_write = 1;
-			commands->next = ft_calloc(1, sizeof(t_command));
-			commands = commands->next;
-		}
-		else
-		{
-			commands->fd_write = open(files->outfile, O_WRONLY | O_CREAT, 0777);
-			// printf("ORIGINAL WRITE %d\n", commands->fd_write);
-			commands->next = NULL;
-		}
+		temp = ft_calloc(1, sizeof(t_command));
+		if (!temp)
+			return (NULL);
+		temp->args = ft_split(argv[i], ' ');
+		temp->path = find_path(env->envp, temp->args[0]);
+		temp->next = NULL;
+		if (!(*head))
+			*head = temp;
+		if (end)
+			end->next = temp;
+		end = temp;
 	}
-	commands = first;
+	return (head);
+}
+
+void	parse_env(int argc, char **argv, t_env *env)
+{
+	env->infile = argv[1];
+	env->outfile = argv[argc - 1];
+	env->files[0] = open(env->infile, O_RDONLY);
+	if (env->files[0] < 0)
+		error_handle(env->infile, 0);
+	env->files[1] = open(env->outfile, O_RDWR | O_CREAT | O_TRUNC, 0644);
+	if (env->files[1] < 0)
+		error_handle(env->outfile, 0);
+}
+
+void	parse_args(int argc, char **argv, t_env *env, t_command **commands)
+{
+	parse_env(argc, argv, env);
+	env->cmds = parse_cmds(commands, argv, env);
 }

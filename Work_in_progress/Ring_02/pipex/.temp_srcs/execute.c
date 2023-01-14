@@ -6,44 +6,33 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:10:58 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/14 19:28:33 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/14 12:29:33 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	execute_command(t_command *cmd, t_env *env)
+void	print_to_outfile(t_command *commands)
 {
-	dup2(cmd->fd_in, STDIN_FILENO);
-	if (cmd->next)
-		dup2(cmd->fd[1], STDOUT_FILENO);
-	else
-		dup2(env->files[1], STDOUT_FILENO);
-	close(cmd->fd[0]);
-	close(cmd->fd[1]);
-	execve(cmd->path, cmd->args, env->envp);
-	error_handle(cmd->args[0], 2);
+	dup2(commands->fd_write, STDOUT_FILENO);
+	dup2(commands->fd_read, STDIN_FILENO);
+	if (execve(commands->path, commands->args, NULL) == -1)
+		exit(printf("Couldn't find command\n"));
 }
 
-void	process_pipe(t_env *env, t_command *cmd)
+t_command	*execute_command(t_command *commands)
 {
-	int			pid;
+	int	id;
 
-	cmd->fd_in = env->files[0];
-	while (cmd)
-	{
-		if (pipe(cmd->fd) == -1)
-			error_handle("Error creating a pipe", 1);
-		pid = fork();
-		if (pid == -1)
-			error_handle("Error creating a fork", 1);
-		if (pid == 0)
-			execute_command(cmd, env);
-		if (cmd->next)
-			cmd->next->fd_in = dup(cmd->fd[0]);
-		close(cmd->fd[0]);
-		close(cmd->fd[1]);
-		waitpid(pid, NULL, 0);
-		cmd = cmd->next;
-	}
+	
+}
+
+void	do_actions(t_command *commands)
+{
+	if (!commands)
+		return ;
+	// printf("read  is %d, write is %d\n", commands->fd_read, commands->fd_write);
+	commands = execute_command(commands);
+	// printf("read  is %d, write is %d\n", commands->fd_read, commands->fd_write);
+	do_actions(commands);
 }

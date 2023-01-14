@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:26:23 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/13 21:03:33 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/14 19:11:01 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,24 @@ typedef struct s_command
 {
 	char				**args;
 	char				*path;
-	int					fd_read;
-	int					fd_write;
+	int					fd_in;
+	int					fd[2];
 	struct s_command	*next;
 }	t_command;
 
-typedef struct s_files
+typedef struct s_env
 {
-	char	*infile;
-	char	*outfile;
-}	t_files;
+	char		*infile;
+	char		*outfile;
+	int			files[2];
+	char		**envp;
+	t_command	**cmds;
+}	t_env;
 
-void	parse_args(int argc, char **argv, t_files *files, t_command *commands);
-void	find_path(t_command *commands, char **env);
-void	free_all(t_files files, t_command *commands);
-void	do_actions(t_command *commands);
+void	parse_args(int argc, char **argv, t_env *env, t_command **commands);
+void	process_pipe(t_env *env, t_command *cmd);
+void	error_handle(char *message, int id);
+void	free_arr(void **arr);
+void	final_free(t_command *commands);
 
 #endif

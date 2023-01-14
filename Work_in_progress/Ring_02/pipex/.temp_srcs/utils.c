@@ -6,51 +6,43 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:02:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/14 19:13:56 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/13 21:02:58 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	error_handle(char *message, int id)
+void	free_files(t_files files)
 {
-	if (id == -1)
-	{
-		ft_putendl_fd("Incorrect number of arguments.", 2);
-		ft_putendl_fd("\nUsage: ./pipex \"infile\" \"cmd1\" \"cmd2\" \"outfile\"", 2);
-	}
-	else if (id == 0)
-		perror(message);
-	else if (id == 1)
-		ft_putendl_fd(message, 2);
-	else if (id == 2)
-	{
-		ft_putstr_fd("Error executing ", 2);
-		ft_putendl_fd(message, 2);
-	}
-	exit (1);
+	// printf("%s %s\n", files.infile, files.outfile);
+	free(files.infile);
+	free(files.outfile);
 }
 
-void	free_arr(void **arr)
-{
-	int	i;
-
-	i = -1;
-	while (arr[++i])
-		free (arr[i]);
-	free (arr);
-}
-
-void	final_free(t_command *commands)
+void	free_commands(t_command *commands)
 {
 	t_command	*temp;
+	int			i;
 
+	close(commands->fd_read);
 	while (commands)
 	{
-		free_arr((void *)commands->args);
+		i = -1;
+		while(commands->args[++i])
+			free(commands->args[i]);
+		// printf("%s\n", commands->args[0]);
+		free(commands->args);
 		free(commands->path);
+		if (!commands->next)
+			close(commands->fd_write);
 		temp = commands;
 		commands = commands->next;
 		free(temp);
 	}
+}
+
+void	free_all(t_files files, t_command *commands)
+{
+	free_files(files);
+	free_commands(commands);
 }
