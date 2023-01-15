@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 15:28:41 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/15 02:48:17 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/15 03:39:19 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ char	*find_path(char **env_path, char *cmd)
 	{
 		intermediate = ft_strjoin(paths[i], "/");
 		final_path = ft_strjoin(intermediate, cmd);
-		printf("checking if path is %s\n", final_path);
 		if (access(final_path, F_OK) == 0)
 		{
 			free (intermediate);
