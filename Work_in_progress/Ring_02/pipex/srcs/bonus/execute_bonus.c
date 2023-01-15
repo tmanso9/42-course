@@ -1,24 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.c                                          :+:      :+:    :+:   */
+/*   execute_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:10:58 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/15 02:26:24 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/15 01:22:06 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
-/*
- * It takes a command and an environment, and executes the command to the fd
- * appropriate to the pipe process.
- * If it is the last command, it writes the output to the outfile; else, it
- * writes to the pipe write file.
- * Both files in the pipe are closed before execution.
- */
 void	execute_command(t_command *cmd, t_env *env)
 {
 	dup2(cmd->fd_in, STDIN_FILENO);
@@ -32,10 +25,6 @@ void	execute_command(t_command *cmd, t_env *env)
 	error_handle(cmd->args[0], 2);
 }
 
-/*
- * It creates a pipe for each command, forks a child process,
- * executes the command, and waits for the child process to finish.
- */
 void	process_pipe(t_env *env, t_command *cmd)
 {
 	int			pid;

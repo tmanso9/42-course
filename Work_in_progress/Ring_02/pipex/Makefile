@@ -6,17 +6,19 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/01/14 19:11:14 by touteiro         ###   ########.fr        #
+#    Updated: 2023/01/15 02:05:40 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 CC = cc
-CFLAGS = -I incs/
-CFLAGS += -Wall -Wextra -Werror -g
-CFLAGS += -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -I incs/
+# CFLAGS += -fsanitize=address
 SRC = pipex.c parse_args.c utils.c execute.c
+B_SRC = pipex_bonus.c parse_args_bonus.c utils_bonus.c \
+		execute_bonus.c heredoc_bonus.c
 OBJ = $(addprefix srcs/, $(SRC:.c=.o))
+B_OBJ = $(addprefix srcs/bonus/, $(B_SRC:.c=.o))
 LIBFT = libft/libft.a
 
 %.o: %.c
@@ -26,9 +28,17 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@echo "- - - - - - - - - - - - - - - "
-	@echo "Temporary object files created"
+	@echo "Temporary object files ready"
 	@make --no-print-directory -C libft
 	@$(CC) $(CFLAGS) $(OBJ) -L libft/ -lft -o $(NAME)
+	@echo "\033[92mpipex ready to use\033[0m"
+	@echo "------------------------------"
+
+bonus: $(B_OBJ)
+	@echo "- - - - - - - - - - - - - - - "
+	@echo "Temporary bonus object files ready"
+	@make --no-print-directory -C libft
+	@$(CC) $(CFLAGS) $(B_OBJ) -L libft/ -lft -o $(NAME)
 	@echo "\033[92mpipex ready to use\033[0m"
 	@echo "------------------------------"
 
@@ -39,7 +49,7 @@ libft_fclean:
 	@make --no-print-directory -C libft fclean
 
 clean: libft_clean
-	@rm -rf $(OBJ)
+	@rm -rf $(OBJ) $(B_OBJ)
 	@echo "\033[31mTemporary object files deleted\033[0m"
 
 fclean: clean libft_fclean
@@ -48,6 +58,6 @@ fclean: clean libft_fclean
 
 re: fclean all
 
-.SILENT: $(OBJ)
+.SILENT: $(OBJ) $(B_OBJ)
 
-.PHONY: all libft clean fclean libft_clean libft_fclean
+.PHONY: all bonus re libft clean fclean libft_clean libft_fclean

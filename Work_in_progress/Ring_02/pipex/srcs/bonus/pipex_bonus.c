@@ -1,23 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:25:55 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/15 02:26:27 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/15 01:22:25 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
-/**
- * The main function parses the arguments, creates the linked list of commands,
- * and then calls the process_pipe function to execute the commands
- * 
- * @param env_path the environment variables
- */
 int	main(int argc, char **argv, char **env_path)
 {
 	static t_env		env;
@@ -25,7 +19,7 @@ int	main(int argc, char **argv, char **env_path)
 	static t_command	*head;
 	int					i;
 
-	if (argc != 5)
+	if (argc < 5)
 		error_handle("", -1);
 	env.envp = env_path;
 	parse_args(argc, argv, &env, &commands);
@@ -37,5 +31,7 @@ int	main(int argc, char **argv, char **env_path)
 	final_free(head);
 	close(env.files[0]);
 	close(env.files[1]);
+	if (env.here_doc)
+		unlink(argv[1]);
 	exit (EXIT_SUCCESS);
 }
