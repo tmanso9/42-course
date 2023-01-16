@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 15:28:41 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/15 01:22:19 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/16 19:43:18 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,14 @@ t_command	**parse_cmds(t_command **head, char **argv, t_env *env)
  */
 void	parse_env(int argc, char **argv, t_env *env)
 {
+	env->random = 0;
 	env->infile = argv[1];
 	env->outfile = argv[argc - 1];
 	if (!(ft_strncmp(env->infile, "here_doc", 8)))
 		process_heredoc(argv, env);
+	else if (!(ft_strncmp(env->infile, "/dev/random", 11)) || \
+			!(ft_strncmp(env->infile, "/dev/urandom", 12)))
+		process_random(env);
 	else
 	{
 		env->here_doc = 0;
@@ -94,9 +98,9 @@ void	parse_env(int argc, char **argv, t_env *env)
 		env->files[1] = open(env->outfile, O_RDWR | O_CREAT | O_TRUNC, 0666);
 	}
 	if (env->files[0] < 0)
-		error_handle(env->infile, 0);
+		error_handle(env->infile, 0, NULL);
 	if (env->files[1] < 0)
-		error_handle(env->outfile, 0);
+		error_handle(env->outfile, 0, NULL);
 }
 
 void	parse_args(int argc, char **argv, t_env *env, t_command **commands)

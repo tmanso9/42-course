@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc.c                                          :+:      :+:    :+:   */
+/*   heredoc_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 22:52:41 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/15 01:22:12 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/16 17:44:37 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,27 @@ void	process_heredoc(char **argv, t_env *env)
 	close(env->files[0]);
 	env->files[0] = open(env->infile, O_RDONLY);
 	env->files[1] = open(env->outfile, O_RDWR | O_CREAT | O_APPEND, 0666);
+}
+
+void	process_random(t_env *env)
+{
+	char	input[1];
+	int		fd;
+	int		bytes;
+
+	env->random = 1;
+	fd = open(env->infile, O_RDONLY);
+	env->infile = ".temp";
+	env->files[0] = open(env->infile, O_RDWR | O_CREAT, 0666);
+	bytes = 10000;
+	while (bytes)
+	{
+		read(fd, input, 1);
+		write(env->files[0], input, 1);
+		bytes--;
+	}
+	close(fd);
+	close(env->files[0]);
+	env->files[0] = open(env->infile, O_RDONLY);
+	env->files[1] = open(env->outfile, O_RDWR | O_CREAT | O_TRUNC, 0666);
 }

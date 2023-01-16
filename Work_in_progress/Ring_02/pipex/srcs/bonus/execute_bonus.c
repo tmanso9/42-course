@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:10:58 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/15 01:22:06 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:46:39 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	execute_command(t_command *cmd, t_env *env)
 	close(cmd->fd[0]);
 	close(cmd->fd[1]);
 	execve(cmd->path, cmd->args, env->envp);
-	error_handle(cmd->args[0], 2);
+	error_handle(cmd->args[0], 2, cmd);
 }
 
 void	process_pipe(t_env *env, t_command *cmd)
@@ -33,10 +33,10 @@ void	process_pipe(t_env *env, t_command *cmd)
 	while (cmd)
 	{
 		if (pipe(cmd->fd) == -1)
-			error_handle("Error creating a pipe", 1);
+			error_handle("Error creating a pipe", 1, NULL);
 		pid = fork();
 		if (pid == -1)
-			error_handle("Error creating a fork", 1);
+			error_handle("Error creating a fork", 1, NULL);
 		if (pid == 0)
 			execute_command(cmd, env);
 		if (cmd->next)

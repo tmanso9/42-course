@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 15:28:41 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/15 03:39:19 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/16 19:41:18 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*find_path(char **env_path, char *cmd)
 	int		i;
 
 	i = -1;
-	path_line = env_path[is_path_line(env_path)];
+	path_line = env_path[is_path_line(env_path)] + 5;
 	paths = ft_split(path_line, ':');
 	while (paths[++i])
 	{
@@ -96,14 +96,21 @@ t_command	**parse_cmds(t_command **head, char **argv, t_env *env)
  */
 void	parse_env(int argc, char **argv, t_env *env)
 {
+	env->random = 0;
 	env->infile = argv[1];
 	env->outfile = argv[argc - 1];
-	env->files[0] = open(env->infile, O_RDONLY);
-	env->files[1] = open(env->outfile, O_RDWR | O_CREAT | O_TRUNC, 0666);
+	if (!(ft_strncmp(env->infile, "/dev/random", 11)) || \
+		!(ft_strncmp(env->infile, "/dev/urandom", 12)))
+		process_random(env);
+	else
+	{
+		env->files[0] = open(env->infile, O_RDONLY);
+		env->files[1] = open(env->outfile, O_RDWR | O_CREAT | O_TRUNC, 0666);
+	}
 	if (env->files[0] < 0)
-		error_handle(env->infile, 0);
+		error_handle(env->infile, 0, NULL);
 	if (env->files[1] < 0)
-		error_handle(env->outfile, 0);
+		error_handle(env->outfile, 0, NULL);
 }
 
 void	parse_args(int argc, char **argv, t_env *env, t_command **commands)

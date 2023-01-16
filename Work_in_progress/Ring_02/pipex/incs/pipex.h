@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:26:23 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/15 02:26:09 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/16 17:42:14 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,17 @@ typedef struct s_env
 {
 	char		*infile;
 	char		*outfile;
+	char		random;
 	int			files[2];
 	char		**envp;
 	t_command	**cmds;
 }	t_env;
 
 void	parse_args(int argc, char **argv, t_env *env, t_command **commands);
+void	process_random(t_env *env);
 void	process_pipe(t_env *env, t_command *cmd);
-void	error_handle(char *message, int id);
+void	error_handle(char *message, int id, t_command *cmd);
+void	unlink_files(t_env env);
 void	free_arr(void **arr);
 void	final_free(t_command *commands);
 

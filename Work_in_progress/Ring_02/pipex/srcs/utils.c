@@ -6,13 +6,13 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:02:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/15 01:38:00 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/16 17:44:22 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	error_handle(char *message, int id)
+void	error_handle(char *message, int id, t_command *cmd)
 {
 	if (id == -1)
 	{
@@ -27,6 +27,7 @@ void	error_handle(char *message, int id)
 	{
 		ft_putstr_fd("Error executing ", 2);
 		ft_putendl_fd(message, 2);
+		final_free(cmd);
 	}
 	exit (EXIT_FAILURE);
 }
@@ -53,4 +54,33 @@ void	final_free(t_command *commands)
 		commands = commands->next;
 		free(temp);
 	}
+}
+
+void	process_random(t_env *env)
+{
+	char	input[1];
+	int		fd;
+	int		bytes;
+
+	env->random = 1;
+	fd = open(env->infile, O_RDONLY);
+	env->infile = ".temp";
+	env->files[0] = open(env->infile, O_RDWR | O_CREAT, 0666);
+	bytes = 10000;
+	while (bytes)
+	{
+		read(fd, input, 1);
+		write(env->files[0], input, 1);
+		bytes--;
+	}
+	close(fd);
+	close(env->files[0]);
+	env->files[0] = open(env->infile, O_RDONLY);
+	env->files[1] = open(env->outfile, O_RDWR | O_CREAT | O_TRUNC, 0666);
+}
+
+void	unlink_files(t_env env)
+{
+	if (env.random)
+		unlink(".temp");
 }

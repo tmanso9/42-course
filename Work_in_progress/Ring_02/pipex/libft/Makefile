@@ -6,7 +6,7 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/27 17:29:50 by touteiro          #+#    #+#              #
-#    Updated: 2023/01/15 01:55:03 by touteiro         ###   ########.fr        #
+#    Updated: 2023/01/16 16:11:48 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ all: ${NAME}
 
 ${NAME}:	${OBJS}
 			@${LIBC} ${NAME} ${OBJS}
-			@echo "libft.a compiled"
+			@echo "\033[33m[OK]	" $@ "\033[0m"
+
 
 clean:
 		@${RM} ${OBJS} ${BONUS_OBJS}

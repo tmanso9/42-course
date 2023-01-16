@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:25:55 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/15 02:26:27 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/16 19:58:35 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv, char **env_path)
 	int					i;
 
 	if (argc != 5)
-		error_handle("", -1);
+		error_handle("", -1, NULL);
 	env.envp = env_path;
 	parse_args(argc, argv, &env, &commands);
 	head = *env.cmds;
@@ -37,5 +37,6 @@ int	main(int argc, char **argv, char **env_path)
 	final_free(head);
 	close(env.files[0]);
 	close(env.files[1]);
+	unlink_files(env);
 	exit (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/01/15 02:05:40 by touteiro         ###   ########.fr        #
+#    Updated: 2023/01/16 19:58:16 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,23 +23,22 @@ LIBFT = libft/libft.a
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
+	@echo "\033[33m[OK]	" $@ "\033[0m"
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@echo "- - - - - - - - - - - - - - - "
-	@echo "Temporary object files ready"
 	@make --no-print-directory -C libft
+	@echo "------------------------------"
 	@$(CC) $(CFLAGS) $(OBJ) -L libft/ -lft -o $(NAME)
-	@echo "\033[92mpipex ready to use\033[0m"
+	@echo "\033[92m[OK]	 pipex ready to use\033[0m"
 	@echo "------------------------------"
 
 bonus: $(B_OBJ)
-	@echo "- - - - - - - - - - - - - - - "
-	@echo "Temporary bonus object files ready"
 	@make --no-print-directory -C libft
+	@echo "------------------------------"
 	@$(CC) $(CFLAGS) $(B_OBJ) -L libft/ -lft -o $(NAME)
-	@echo "\033[92mpipex ready to use\033[0m"
+	@echo "\033[92m[OK]	 pipex ready to use\033[0m"
 	@echo "------------------------------"
 
 libft_clean:
@@ -55,6 +54,7 @@ clean: libft_clean
 fclean: clean libft_fclean
 	@rm -rf $(NAME)
 	@echo "\033[31mExecutable deleted\033[0m"
+	@echo ""
 
 re: fclean all
 
