@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:10:58 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/16 19:25:49 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:19:50 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	process_pipe(t_env *env, t_command *cmd)
 			error_handle("Error creating a fork", 1, NULL);
 		if (pid == 0)
 			execute_command(cmd, env);
-		waitpid(pid, NULL, 0);
 		if (cmd->next)
 			cmd->next->fd_in = dup(cmd->fd[0]);
 		close(cmd->fd[0]);

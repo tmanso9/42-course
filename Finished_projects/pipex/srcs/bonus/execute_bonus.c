@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:10:58 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/16 16:46:39 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:28:44 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	process_pipe(t_env *env, t_command *cmd)
 			cmd->next->fd_in = dup(cmd->fd[0]);
 		close(cmd->fd[0]);
 		close(cmd->fd[1]);
-		waitpid(pid, NULL, 0);
 		cmd = cmd->next;
 	}
 }

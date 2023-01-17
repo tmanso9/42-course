@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_bonus.c                                      :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:02:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/16 17:36:16 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:17:54 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "pipex.h"
 
 void	error_handle(char *message, int id, t_command *cmd)
 {
 	if (id == -1)
 	{
 		ft_putendl_fd("Incorrect number of arguments.", 2);
-		ft_putstr_fd("\nUsage: ./pipex \"infile\" \"cmd1\" ... ", 2);
-		ft_putendl_fd("\"cmdn\" \"outfile\"", 2);
-		ft_putendl_fd("\nIn case infile is here_doc:", 2);
-		ft_putstr_fd("Usage: ./pipex \"here_doc\" \"LIMITER\" \"cmd1\"", 2);
-		ft_putendl_fd(" ... \"cmdn\" \"outfile\"", 2);
+		ft_putendl_fd("\nUsage: ./pipex \"infile\" \"cmd1\" \"cmd2\" \"outfile\"", 2);
 	}
 	else if (id == 0)
 		perror(message);
@@ -58,12 +54,4 @@ void	final_free(t_command *commands)
 		commands = commands->next;
 		free(temp);
 	}
-}
-
-void	unlink_files(char **argv, t_env env)
-{
-	if (env.here_doc)
-		unlink(argv[1]);
-	if (env.random)
-		unlink(".temp");
 }

@@ -1,21 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_args.c                                       :+:      :+:    :+:   */
+/*   parse_args_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 15:28:41 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/16 19:41:18 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:26:29 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
-/*
- * Returns the index of the line in the environment
- * that contains the PATH variable
- */
 int	is_path_line(char **paths)
 {
 	int	i;
@@ -23,18 +19,12 @@ int	is_path_line(char **paths)
 	i = -1;
 	while (paths[++i])
 	{
-		if (ft_strncmp(paths[i], "PATH=", 5) == 0)
+		if (ft_strncmp(paths[i], "PATH", 4) == 0)
 			return (i);
 	}
 	return (0);
 }
 
-/**
- * It takes the environment variables and the command to be executed,
- * and returns the path to the command.
- * The command is checked using the access function.
- * All intermediate strings created in the process are freed before return.
- */
 char	*find_path(char **env_path, char *cmd)
 {
 	char	**paths;
@@ -63,16 +53,13 @@ char	*find_path(char **env_path, char *cmd)
 	return (ft_strdup(cmd));
 }
 
-/*
- * It takes a list of arguments and returns a list of commands and their paths.
- */
 t_command	**parse_cmds(t_command **head, char **argv, t_env *env)
 {
 	int			i;
 	t_command	*temp;
 	t_command	*end;
 
-	i = 1;
+	i = 1 + env->here_doc;
 	end = NULL;
 	while (argv[++i + 1])
 	{
@@ -91,19 +78,18 @@ t_command	**parse_cmds(t_command **head, char **argv, t_env *env)
 	return (head);
 }
 
-/*
- * It opens the input and output files, and checks for errors.
+/**
+ * It opens the input and output files, and sets the here_doc flag
  */
 void	parse_env(int argc, char **argv, t_env *env)
 {
-	env->random = 0;
 	env->infile = argv[1];
 	env->outfile = argv[argc - 1];
-	if (!(ft_strncmp(env->infile, "/dev/random", 11)) || \
-		!(ft_strncmp(env->infile, "/dev/urandom", 12)))
-		process_random(env);
+	if (!(ft_strncmp(env->infile, "here_doc", 8)))
+		process_heredoc(argv, env);
 	else
 	{
+		env->here_doc = 0;
 		env->files[0] = open(env->infile, O_RDONLY);
 		env->files[1] = open(env->outfile, O_RDWR | O_CREAT | O_TRUNC, 0666);
 	}

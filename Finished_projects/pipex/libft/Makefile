@@ -6,7 +6,7 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/27 17:29:50 by touteiro          #+#    #+#              #
-#    Updated: 2023/01/16 16:11:48 by touteiro         ###   ########.fr        #
+#    Updated: 2023/01/17 14:45:53 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,12 +40,11 @@ OBJS = ${LIBFT_OBJS} ${GNL_OBJS} ${PRINTF_OBJS}
 
 RM = rm -f
 
-all: ${NAME}
-
 ${NAME}:	${OBJS}
 			@${LIBC} ${NAME} ${OBJS}
 			@echo "\033[33m[OK]	" $@ "\033[0m"
 
+all: ${NAME}
 
 clean:
 		@${RM} ${OBJS} ${BONUS_OBJS}

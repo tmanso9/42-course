@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 22:52:41 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/16 17:44:37 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:26:37 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,44 +23,28 @@
 */
 void	process_heredoc(char **argv, t_env *env)
 {
-	char	input[1];
+	char	*str;
+	char	*lim;
 
 	env->here_doc = 1;
 	write(1, "> ", 2);
 	env->files[0] = open(env->infile, O_RDWR | O_CREAT, 0666);
-	while (1)
+	str = get_next_line(0);
+	lim = ft_strjoin(argv[2], "\n");
+	while (str)
 	{
-		read(0, input, 1);
-		if (input[0] == *argv[2])
+		write(1, "> ", 2);
+		if (ft_strchr(str, *lim) && \
+			(!ft_strncmp(ft_strchr(str, *lim), lim, ft_strlen(lim))))
 			break ;
-		write(env->files[0], input, 1);
-		if (input[0] == '\n')
-			write(1, "> ", 2);
+		ft_putstr_fd(str, env->files[0]);
+		free(str);
+		str = get_next_line(0);
 	}
+	if (str)
+		free(str);
+	free(lim);
 	close(env->files[0]);
 	env->files[0] = open(env->infile, O_RDONLY);
 	env->files[1] = open(env->outfile, O_RDWR | O_CREAT | O_APPEND, 0666);
-}
-
-void	process_random(t_env *env)
-{
-	char	input[1];
-	int		fd;
-	int		bytes;
-
-	env->random = 1;
-	fd = open(env->infile, O_RDONLY);
-	env->infile = ".temp";
-	env->files[0] = open(env->infile, O_RDWR | O_CREAT, 0666);
-	bytes = 10000;
-	while (bytes)
-	{
-		read(fd, input, 1);
-		write(env->files[0], input, 1);
-		bytes--;
-	}
-	close(fd);
-	close(env->files[0]);
-	env->files[0] = open(env->infile, O_RDONLY);
-	env->files[1] = open(env->outfile, O_RDWR | O_CREAT | O_TRUNC, 0666);
 }

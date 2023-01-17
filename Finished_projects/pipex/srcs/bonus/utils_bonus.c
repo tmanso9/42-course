@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:02:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/16 17:44:22 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:13:15 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 void	error_handle(char *message, int id, t_command *cmd)
 {
 	if (id == -1)
 	{
 		ft_putendl_fd("Incorrect number of arguments.", 2);
-		ft_putendl_fd("\nUsage: ./pipex \"infile\" \"cmd1\" \"cmd2\" \"outfile\"", 2);
+		ft_putstr_fd("\nUsage: ./pipex \"infile\" \"cmd1\" ... ", 2);
+		ft_putendl_fd("\"cmdn\" \"outfile\"", 2);
+		ft_putendl_fd("\nIn case infile is here_doc:", 2);
+		ft_putstr_fd("Usage: ./pipex \"here_doc\" \"LIMITER\" \"cmd1\"", 2);
+		ft_putendl_fd(" ... \"cmdn\" \"outfile\"", 2);
 	}
 	else if (id == 0)
 		perror(message);
@@ -56,31 +60,8 @@ void	final_free(t_command *commands)
 	}
 }
 
-void	process_random(t_env *env)
+void	unlink_files(char **argv, t_env env)
 {
-	char	input[1];
-	int		fd;
-	int		bytes;
-
-	env->random = 1;
-	fd = open(env->infile, O_RDONLY);
-	env->infile = ".temp";
-	env->files[0] = open(env->infile, O_RDWR | O_CREAT, 0666);
-	bytes = 10000;
-	while (bytes)
-	{
-		read(fd, input, 1);
-		write(env->files[0], input, 1);
-		bytes--;
-	}
-	close(fd);
-	close(env->files[0]);
-	env->files[0] = open(env->infile, O_RDONLY);
-	env->files[1] = open(env->outfile, O_RDWR | O_CREAT | O_TRUNC, 0666);
-}
-
-void	unlink_files(t_env env)
-{
-	if (env.random)
-		unlink(".temp");
+	if (env.here_doc)
+		unlink(argv[1]);
 }

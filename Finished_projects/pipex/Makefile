@@ -6,14 +6,14 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/01/16 19:58:16 by touteiro         ###   ########.fr        #
+#    Updated: 2023/01/17 16:24:04 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g -I incs/
-# CFLAGS += -fsanitize=address
+CFLAGS += -fsanitize=address
 SRC = pipex.c parse_args.c utils.c execute.c
 B_SRC = pipex_bonus.c parse_args_bonus.c utils_bonus.c \
 		execute_bonus.c heredoc_bonus.c
@@ -25,14 +25,14 @@ LIBFT = libft/libft.a
 	$(CC) $(CFLAGS) -c $< -o $@
 	@echo "\033[33m[OK]	" $@ "\033[0m"
 
-all: $(NAME)
-
 $(NAME): $(OBJ)
 	@make --no-print-directory -C libft
 	@echo "------------------------------"
 	@$(CC) $(CFLAGS) $(OBJ) -L libft/ -lft -o $(NAME)
 	@echo "\033[92m[OK]	 pipex ready to use\033[0m"
 	@echo "------------------------------"
+
+all: $(NAME)
 
 bonus: $(B_OBJ)
 	@make --no-print-directory -C libft

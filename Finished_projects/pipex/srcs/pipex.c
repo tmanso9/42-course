@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:25:55 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/16 19:58:35 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:19:19 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,9 @@ int	main(int argc, char **argv, char **env_path)
 	head = *env.cmds;
 	process_pipe(&env, commands);
 	i = 1;
-	while (++i < argc - 2)
-		waitpid(-1, NULL, 0);
-	final_free(head);
+	waitpid(-1, NULL, 0);
 	close(env.files[0]);
 	close(env.files[1]);
-	unlink_files(env);
+	final_free(head);
 	exit (EXIT_SUCCESS);
 }
