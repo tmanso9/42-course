@@ -6,14 +6,14 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/01/17 16:24:04 by touteiro         ###   ########.fr        #
+#    Updated: 2023/01/19 20:00:19 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -I incs/
-CFLAGS += -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -I incs/ -I libft/incs
+# CFLAGS += -fsanitize=address
 SRC = pipex.c parse_args.c utils.c execute.c
 B_SRC = pipex_bonus.c parse_args_bonus.c utils_bonus.c \
 		execute_bonus.c heredoc_bonus.c

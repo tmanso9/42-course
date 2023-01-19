@@ -6,14 +6,14 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:26:23 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/17 17:13:32 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/19 19:51:40 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include "../libft/incs/libft.h"
+# include "libft.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>

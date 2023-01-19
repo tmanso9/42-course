@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:56:59 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/29 19:27:05 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/19 19:33:33 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/libft.h"
+#include "libft.h"
 
 static int	ptr_digits(uintptr_t i)
 {

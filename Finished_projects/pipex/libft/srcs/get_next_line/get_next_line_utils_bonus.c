@@ -5,54 +5,68 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 18:52:24 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/29 19:46:02 by touteiro         ###   ########.fr       */
+/*   Created: 2023/01/19 16:20:08 by touteiro          #+#    #+#             */
+/*   Updated: 2023/01/19 19:31:41 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/libft.h"
+#include "libft.h"
 
-char	*ft_strjoin_gnl(char *s1, char *s2)
+int	ft_check(char *buffer)
 {
-	char	*join;
-	int		i;
-	int		j;
+	int	i;
+	int	j;
+	int	new_line;
 
-	i = -1;
+	i = 0;
 	j = 0;
-	if (s2 && !s1)
+	new_line = 0;
+	while (buffer[i])
 	{
-		s1 = (char *)malloc(1);
-		s1[0] = '\0';
+		if (new_line)
+			buffer[j++] = buffer[i];
+		if (buffer[i] == '\n')
+			new_line = 1;
+		buffer[i++] = 0;
 	}
-	if (!s1 || !s2)
-		return (NULL);
-	join = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!join)
-		return (NULL);
-	while (s1[++i])
-		join[i] = s1[i];
-	while (s2[j])
-		join[i++] = s2[j++];
-	join[i] = '\0';
-	free (s1);
-	return (join);
+	return (new_line);
 }
 
-char	*ft_strchr_gnl(const char *s, int c)
+static int	special_strlen(char *str)
 {
-	unsigned char	i;
+	int	size;
 
-	i = c;
-	if (!s)
+	size = 0;
+	if (!str)
+		return (0);
+	while (str[size] && str[size] != '\n')
+		size++;
+	if (str[size] == '\n')
+		size++;
+	return (size);
+}
+
+char	*ft_join(char *temp, char *buffer)
+{
+	int		i;
+	int		j;
+	char	*aux;
+
+	aux = malloc(special_strlen(temp) + special_strlen(buffer) + 1);
+	if (!aux)
 		return (NULL);
-	while (*s)
+	i = 0;
+	j = 0;
+	while (temp && temp[i])
+		aux[j++] = temp[i++];
+	free (temp);
+	i = 0;
+	while (buffer && buffer[i])
 	{
-		if (*s == (char)i)
-			return ((char *)s);
-		s++;
+		aux[j++] = buffer[i];
+		if (buffer[i++] == '\n')
+			break ;
 	}
-	if (i == '\0')
-		return ((char *)s);
-	return (NULL);
+	aux[j] = 0;
+	return (aux);
 }
