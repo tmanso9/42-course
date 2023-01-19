@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 00:18:56 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/29 19:31:26 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/19 19:36:20 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/libft.h"
+#include "libft.h"
 
 /*
 Allocates (with malloc(3)) and returns a copy of

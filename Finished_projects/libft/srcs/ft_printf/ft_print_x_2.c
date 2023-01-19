@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:21:56 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/29 19:27:12 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/19 19:34:33 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/libft.h"
+#include "libft.h"
 
 static void	ft_process_width_dot_pt2(t_print *tab, int i, int len, char format)
 {

@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 01:24:49 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/29 19:29:50 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/19 19:36:20 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/libft.h"
+#include "libft.h"
 
 /*
 Deletes and frees the given element and every successor of that element,

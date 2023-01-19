@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 19:31:03 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/29 19:31:15 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/19 19:36:20 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/libft.h"
+#include "libft.h"
 
 /*
 Applies the function ’f’ to each character of the

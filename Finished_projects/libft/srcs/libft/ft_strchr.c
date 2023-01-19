@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 12:34:41 by touteiro          #+#    #+#             */
-/*   Updated: 2022/11/29 19:30:42 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/19 19:36:20 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/libft.h"
+#include "libft.h"
 
 /*
 The  strchr() function returns a pointer to the first occurrence

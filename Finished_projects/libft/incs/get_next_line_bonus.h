@@ -5,28 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 17:02:15 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/14 14:10:52 by touteiro         ###   ########.fr       */
+/*   Created: 2023/01/19 15:44:29 by touteiro          #+#    #+#             */
+/*   Updated: 2023/01/19 19:18:46 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 
+# include <unistd.h>
 # include <stdlib.h>
 # include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
+# include <sys/stat.h>
 # include <fcntl.h>
-# include <stdint.h>
-# include <string.h>
+# include <stdio.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 2
+#  define BUFFER_SIZE 9
 # endif
 
 char	*get_next_line(int fd);
-char	*ft_strjoin_gnl(char *s1, char *s2);
-char	*ft_strchr_gnl(const char *s, int c);
+char	*ft_join(char *temp, char *buffer);
+int		ft_check(char *buffer);
 
 #endif
