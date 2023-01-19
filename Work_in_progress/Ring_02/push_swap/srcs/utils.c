@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:30:13 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/22 13:51:16 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/19 03:33:05 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,25 +82,20 @@ int	find_median(int **arr, int len)
 {
 	int	i;
 	int	j;
-	int	lower;
 	int	higher;
 
 	i = -1;
 	j = -1;
-	lower = 0;
 	higher = 0;
 	while (++i < len - 1)
 	{
 		while (++j < len)
 		{
-			if (*arr[i] > *arr[j])
-				lower++;
 			if (*arr[i] < *arr[j])
 				higher++;
 		}
 		if (higher == len / 2)
 			return (*arr[i]);
-		lower = 0;
 		higher = 0;
 		j = -1;
 	}

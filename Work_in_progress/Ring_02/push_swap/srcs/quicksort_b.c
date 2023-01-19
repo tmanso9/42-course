@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:53:37 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/23 19:36:23 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/19 03:25:59 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	rev_rotate_if_needed(int *rev, t_stack *total)
 	while (*rev)
 	{
 		rev_rot(total, 'b', total->b, total->curr_b_size);
-		update_arr(total, 8);
+		update_arr(total, RRB);
 		(*rev)--;
 	}
 }
@@ -32,7 +32,7 @@ static int	send_to_a(t_stack *total, int *count, int *to_rotate, int *rev)
 	else
 	{
 		rot(total, 'b', total->b, total->curr_b_size);
-		update_arr(total, 6);
+		update_arr(total, RB);
 		if (*to_rotate)
 			(*rev)++;
 	}

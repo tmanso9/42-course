@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   two_stack_b.c                                      :+:      :+:    :+:   */
+/*   two_stack.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/07 19:32:07 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/23 02:57:42 by touteiro         ###   ########.fr       */
+/*   Created: 2022/12/07 16:13:47 by touteiro          #+#    #+#             */
+/*   Updated: 2023/01/19 03:30:33 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	size_two_b(t_stack *total)
+void	size_two_a(t_stack *total)
 {
-	if (total->curr_b_size == 1)
+	if (is_sorted(total))
 		return ;
-	if (*total->b[total->a_size - total->curr_b_size] > \
-		*total->b[total->a_size - total->curr_b_size + 1])
-		return ;
-	swap(total->b[total->a_size - total->curr_b_size], \
-		total->b[total->a_size - total->curr_b_size + 1], total);
-	update_arr(total, 2);
+	swap(total->a[0], total->a[1], total);
+	update_arr(total, SA);
 }

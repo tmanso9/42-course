@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 19:10:29 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/14 14:04:56 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/19 03:23:43 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ static void	rotate_and_repeat_a(t_stack *total, char code)
 	if (code == 5)
 	{
 		rot(total, 'a', total->a, total->curr_a_size);
-		update_arr(total, 5);
+		update_arr(total, RA);
 		size_five_a(total);
 	}
 	if (code == 7)
 	{
 		rev_rot(total, 'a', total->a, total->curr_a_size);
-		update_arr(total, 7);
+		update_arr(total, RRA);
 		size_five_a(total);
 	}
 }

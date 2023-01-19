@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 02:20:16 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/23 02:26:12 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/19 03:29:41 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	opt_revsa(t_stack *total, int i, int j, int *changed)
 {
-	if (total->log[i] == 4 && \
-		total->log[i + 1] && total->log[i + 1] == 7 && \
-		total->log[i + 2] && total->log[i + 2] == 3)
+	if (total->log[i] == PB && \
+		total->log[i + 1] && total->log[i + 1] == RRA && \
+		total->log[i + 2] && total->log[i + 2] == PA)
 	{
-		total->log[i] = 7;
-		total->log[i + 1] = 1;
+		total->log[i] = RRA;
+		total->log[i + 1] = SA;
 		j = i + 2;
 		while (total->log[j + 1])
 		{
@@ -35,12 +35,12 @@ int	opt_revsa(t_stack *total, int i, int j, int *changed)
 
 int	opt_revsb(t_stack *total, int i, int j, int *changed)
 {
-	if (total->log[i] == 3 && \
-		total->log[i + 1] && total->log[i + 1] == 8 && \
-		(total->log[i + 2] && total->log[i + 2] == 4))
+	if (total->log[i] == PA && \
+		total->log[i + 1] && total->log[i + 1] == RRB && \
+		(total->log[i + 2] && total->log[i + 2] == PB))
 	{
-		total->log[i] = 8;
-		total->log[i + 1] = 2;
+		total->log[i] = RRB;
+		total->log[i + 1] = SB;
 		j = i + 2;
 		while (total->log[j + 1])
 		{
@@ -56,12 +56,12 @@ int	opt_revsb(t_stack *total, int i, int j, int *changed)
 
 int	opt_sa_pb(t_stack *total, int i, int j, int *changed)
 {
-	if (total->log[i] == 5 && \
-		total->log[i + 1] && total->log[i + 1] == 4 && \
-		total->log[i + 2] && total->log[i + 2] == 7)
+	if (total->log[i] == RA && \
+		total->log[i + 1] && total->log[i + 1] == PB && \
+		total->log[i + 2] && total->log[i + 2] == RRA)
 	{
-		total->log[i] = 1;
-		total->log[i + 1] = 4;
+		total->log[i] = SA;
+		total->log[i + 1] = PB;
 		j = i + 2;
 		while (total->log[j + 1])
 		{
@@ -77,12 +77,12 @@ int	opt_sa_pb(t_stack *total, int i, int j, int *changed)
 
 int	opt_sb_pa(t_stack *total, int i, int j, int *changed)
 {
-	if (total->log[i] == 6 && \
-		total->log[i + 1] && total->log[i + 1] == 3 && \
-		total->log[i + 2] && total->log[i + 2] == 8)
+	if (total->log[i] == RB && \
+		total->log[i + 1] && total->log[i + 1] == PA && \
+		total->log[i + 2] && total->log[i + 2] == RRB)
 	{
-		total->log[i] = 2;
-		total->log[i + 1] = 3;
+		total->log[i] = SB;
+		total->log[i + 1] = PA;
 		j = i + 2;
 		while (total->log[j + 1])
 		{
@@ -98,12 +98,12 @@ int	opt_sb_pa(t_stack *total, int i, int j, int *changed)
 
 int	opt_swap_both(t_stack *total, int i, int j, int *changed)
 {
-	if ((total->log[i] == 1 && \
-		total->log[i + 1] && total->log[i + 1] == 2) || \
-		(total->log[i] == 2 && \
-		total->log[i + 1] && total->log[i + 1] == 1))
+	if ((total->log[i] == SA && \
+		total->log[i + 1] && total->log[i + 1] == SB) || \
+		(total->log[i] == SB && \
+		total->log[i + 1] && total->log[i + 1] == SA))
 	{
-		total->log[i] = 9;
+		total->log[i] = SS;
 		j = i + 1;
 		while (total->log[j + 1])
 		{

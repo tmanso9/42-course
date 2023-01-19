@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/07 16:45:07 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/23 02:20:42 by touteiro         ###   ########.fr       */
+/*   Created: 2023/01/19 03:17:22 by touteiro          #+#    #+#             */
+/*   Updated: 2023/01/19 03:22:02 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ CODE
 
 int	opt_rot_both(t_stack *total, int i, int j, int *changed)
 {
-	if ((total->log[i] == 5 && \
-		total->log[i + 1] && total->log[i + 1] == 6) || \
-		(total->log[i] == 6 && \
-		total->log[i + 1] && total->log[i + 1] == 5))
+	if ((total->log[i] == RA && \
+		total->log[i + 1] && total->log[i + 1] == RB) || \
+		(total->log[i] == RB && \
+		total->log[i + 1] && total->log[i + 1] == RA))
 	{
-		total->log[i] = 10;
+		total->log[i] = RR;
 		j = i + 1;
 		while (total->log[j + 1])
 		{
@@ -50,18 +50,22 @@ int	opt_rot_both(t_stack *total, int i, int j, int *changed)
 
 int	opt_redundant(t_stack *total, int i, int j, int *changed)
 {
-	if ((total->log[i] == 5 && total->log[i + 1] && total->log[i + 1] == 7) || \
-		(total->log[i] == 6 && total->log[i + 1] && total->log[i + 1] == 8) || \
-		(total->log[i] == 7 && total->log[i + 1] && total->log[i + 1] == 5) || \
-		(total->log[i] == 8 && total->log[i + 1] && total->log[i + 1] == 6) || \
-		(total->log[i] == 3 && total->log[i + 1] && total->log[i + 1] == 4) || \
-		(total->log[i] == 4 && total->log[i + 1] && total->log[i + 1] == 3) || \
-		(total->log[i] == 1 && total->log[i + 1] && total->log[i + 1] == 1) || \
-		(total->log[i] == 2 && total->log[i + 1] && total->log[i + 1] == 2) || \
-		(total->log[i] == 9 && total->log[i + 1] && total->log[i + 1] == 9) || \
-		(total->log[i] == 10 && \
-		total->log[i + 1] && total->log[i + 1] == 11) || \
-		(total->log[i] == 11 && total->log[i + 1] && total->log[i + 1] == 10))
+	if ((total->log[i] == RA && total->log[i + 1] && \
+		total->log[i + 1] == RRA) || (total->log[i] == RB && total->log[i + 1] \
+		&& total->log[i + 1] == RRB) || (total->log[i] == RRA && \
+		total->log[i + 1] && total->log[i + 1] == RA) || \
+		(total->log[i] == RRB && total->log[i + 1] && \
+		total->log[i + 1] == RB) || (total->log[i] == PA && \
+		total->log[i + 1] && total->log[i + 1] == PB) || \
+		(total->log[i] == PB && total->log[i + 1] && \
+		total->log[i + 1] == PA) || (total->log[i] == SA && \
+		total->log[i + 1] && total->log[i + 1] == SA) || \
+		(total->log[i] == SB && total->log[i + 1] && \
+		total->log[i + 1] == SB) || (total->log[i] == SS && \
+		total->log[i + 1] && total->log[i + 1] == SS) || \
+		(total->log[i] == RR && \
+		total->log[i + 1] && total->log[i + 1] == RRR) || \
+		(total->log[i] == RRR && total->log[i + 1] && total->log[i + 1] == RR))
 	{
 		j = i - 1;
 		while (total->log[++j + 2])
@@ -77,27 +81,27 @@ void	final_write(t_stack *total, int i)
 {
 	while (total->log[++i])
 	{
-		if (total->log[i] == 1)
+		if (total->log[i] == SA)
 			write(1, "sa\n", 3);
-		else if (total->log[i] == 2)
+		else if (total->log[i] == SB)
 			write(1, "sb\n", 3);
-		else if (total->log[i] == 3)
+		else if (total->log[i] == PA)
 			write(1, "pa\n", 3);
-		else if (total->log[i] == 4)
+		else if (total->log[i] == PB)
 			write(1, "pb\n", 3);
-		else if (total->log[i] == 5)
+		else if (total->log[i] == RA)
 			write(1, "ra\n", 3);
-		else if (total->log[i] == 6)
+		else if (total->log[i] == RB)
 			write(1, "rb\n", 3);
-		else if (total->log[i] == 7)
+		else if (total->log[i] == RRA)
 			write(1, "rra\n", 4);
-		else if (total->log[i] == 8)
+		else if (total->log[i] == RRB)
 			write(1, "rrb\n", 4);
-		else if (total->log[i] == 9)
+		else if (total->log[i] == SS)
 			write(1, "ss\n", 3);
-		else if (total->log[i] == 10)
+		else if (total->log[i] == RR)
 			write(1, "rr\n", 3);
-		else if (total->log[i] == 11)
+		else if (total->log[i] == RRR)
 			write(1, "rrr\n", 4);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 12:56:22 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/26 16:07:40 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/19 03:44:41 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,19 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
-# include "libft/incs/libft.h"
+# include "libft.h"
+
+# define SA 1
+# define SB 2
+# define PA 3
+# define PB 4
+# define RA 5
+# define RB 6
+# define RRA 7
+# define RRB 8
+# define SS 9
+# define RR 10
+# define RRR 11
 
 typedef struct s_stack
 {

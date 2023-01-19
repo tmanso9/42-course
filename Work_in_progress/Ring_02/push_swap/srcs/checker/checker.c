@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 02:25:28 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/26 16:54:49 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/19 03:36:12 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ char	*do_moves(t_stack *final, char *str)
 	str = get_next_line(0);
 	return (str);
 }
-
 
 /*
  * It takes a string of moves and applies them to a stack

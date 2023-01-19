@@ -6,16 +6,16 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 12:21:29 by touteiro          #+#    #+#              #
-#    Updated: 2022/12/24 00:34:41 by touteiro         ###   ########.fr        #
+#    Updated: 2023/01/19 03:54:08 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -I incs -I libft/incs
 #CFLAGS += -fsanitize=address -g3
 RM = rm -f
-SRCS = args_checker.c \
+SRCS = 	args_checker.c \
 		args_valid.c \
 		buffer_write.c \
 		five_stack.c \
@@ -34,26 +34,30 @@ SRCS = args_checker.c \
 EXE = push_swap.c
 CHE = checker.c checker_moves.c
 HEADERS = push_swap.h
-OBJS = ${SRCS:.c=.o}
+OBJS = ${addprefix srcs/, ${SRCS:.c=.o}}
 OBJ_EXE = ${EXE:.c=.o}
-OBJ_CHE = ${CHE:.c=.o}
+OBJ_CHE = ${addprefix srcs/checker/, ${CHE:.c=.o}}
 LIBFT = libft/libft.a
 
-all: $(NAME)
-
-$(NAME): $(OBJS) $(OBJ_EXE)
-	@echo "- - - - - - - - - - - - - - - "
-	@echo "Temporary object files created"
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+	@echo "\033[33m[OK]	" $@ "\033[0m"
+	
+$(NAME): $(OBJ_EXE) $(OBJS)
 	@make --no-print-directory -C libft
-	@$(CC) $(CFLAGS) $(OBJ_EXE) $(OBJS) -L libft/ -lft -o $(NAME)
-	@echo "\033[92mpush_swap ready to use\033[0m"
 	@echo "------------------------------"
+	@$(CC) $(CFLAGS) $(OBJS) $(OBJ_EXE) -L libft/ -lft -o $(NAME)
+	@echo "\033[92m[OK]	 push_swap ready to use\033[0m"
+	@echo "------------------------------"
+
+all: $(NAME)
 
 bonus: checker
 
 checker: $(NAME) $(OBJ_CHE)
 	@$(CC) $(CFLAGS) $(OBJ_CHE) $(OBJS) -L libft/ -lft -o checker
-	@echo "\033[92mchecker ready to use\033[0m"
+	@echo "------------------------------"
+	@echo "\033[92m[OK]	 checker ready to use\033[0m"
 	@echo "------------------------------"
 
 libft:

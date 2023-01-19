@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 19:33:05 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/14 14:05:01 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/19 03:24:28 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ void	size_four_b(t_stack *total)
 		biggest(total) < total->a_size - 2)
 	{
 		rot(total, 'b', total->b, total->curr_b_size);
-		update_arr(total, 6);
+		update_arr(total, RB);
 		size_four_b(total);
 	}
 	else
 	{
 		rev_rot(total, 'b', total->b, total->curr_b_size);
-		update_arr(total, 8);
+		update_arr(total, RRB);
 		size_four_b(total);
 	}
 }

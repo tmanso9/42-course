@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:48:02 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/23 19:08:03 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/19 03:12:45 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	pa(t_stack *total)
 	*total->a[0] = *total->b[total->a_size - total->curr_b_size];
 	free(total->b[total->a_size - total->curr_b_size]);
 	total->curr_b_size--;
-	update_arr(total, 3);
+	update_arr(total, PA);
 }
 
 void	pb(t_stack *total)
@@ -48,7 +48,7 @@ void	pb(t_stack *total)
 	rot(total, 'a', total->a, total->curr_a_size);
 	total->curr_a_size--;
 	free(total->a[total->curr_a_size]);
-	update_arr(total, 4);
+	update_arr(total, PB);
 }
 
 void	rot(t_stack *total, char id, int **stack, int size)
