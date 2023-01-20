@@ -6,7 +6,7 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 12:21:29 by touteiro          #+#    #+#              #
-#    Updated: 2023/01/19 03:54:08 by touteiro         ###   ########.fr        #
+#    Updated: 2023/01/20 12:17:49 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ OBJ_EXE = ${EXE:.c=.o}
 OBJ_CHE = ${addprefix srcs/checker/, ${CHE:.c=.o}}
 LIBFT = libft/libft.a
 
-%.o: %.c
+%.o: %.c incs/push_swap.h incs/checker.h
 	$(CC) $(CFLAGS) -c $< -o $@
 	@echo "\033[33m[OK]	" $@ "\033[0m"
 	

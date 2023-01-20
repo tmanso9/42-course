@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 02:25:28 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/19 03:36:12 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/20 12:13:58 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	main(int argc, char **argv)
 	if (!final)
 		return (0);
 	init_stacks(final);
-	process_args(argc, argv, final);
+	process_args(argv, final);
 	str = get_next_line(0);
 	check_sorted_input(final, str);
 	apply_move_list(final, str);

@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 12:56:22 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/19 03:44:41 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/20 12:17:53 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	init_stacks(t_stack *total);
 void	free_stacks(t_stack *total);
 void	free_nums(char **nums);
 void	clean_exit(t_stack *total, char **nums);
-void	process_args(int argc, char **argv, t_stack *total);
+void	process_args(char **argv, t_stack *total);
 int		check_args(char **nums);
 
 // Process small a stack

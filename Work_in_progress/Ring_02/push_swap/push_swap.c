@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 23:53:05 by touteiro          #+#    #+#             */
-/*   Updated: 2022/12/23 19:09:15 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/20 12:09:14 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	if (!total)
 		return (0);
 	init_stacks(total);
-	process_args(argc, argv, total);
+	process_args(argv, total);
 	if (total->a_size == 2 && !is_sorted(total))
 		size_two_a(total);
 	else if (total->a_size == 3 && !is_sorted(total))
