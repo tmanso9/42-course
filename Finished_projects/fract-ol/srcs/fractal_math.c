@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 20:14:53 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/09 18:55:16 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/20 11:45:26 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/fractol.h"
+#include "fractol.h"
 
 /*
  * > It takes a value, a maximum out value, a minimum out value, and a maximum

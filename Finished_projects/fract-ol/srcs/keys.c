@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 17:43:11 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/09 19:34:52 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/20 11:45:52 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/fractol.h"
+#include "fractol.h"
 
 static void	key_utils(int keysym, t_vars *vars)
 {

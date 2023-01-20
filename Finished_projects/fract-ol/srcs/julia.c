@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:31:02 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/09 18:55:24 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/20 11:45:44 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/fractol.h"
+#include "fractol.h"
 
 static int	julia_loop(t_fract *julia, double iterations)
 {

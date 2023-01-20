@@ -6,13 +6,13 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/03 15:48:37 by touteiro          #+#    #+#              #
-#    Updated: 2023/01/10 15:09:19 by touteiro         ###   ########.fr        #
+#    Updated: 2023/01/20 11:56:47 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g -Iincs
 #CFLAGS += -fsanitize=address
 SRC = fractol.c \
 	check_args.c \
@@ -29,8 +29,8 @@ SRC = fractol.c \
 OBJ = $(addprefix srcs/, $(SRC:.c=.o))
 LIBFT = libft/libft.a
 
-%.o: %.c
-	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
+%.o: %.c incs/fractol.h
+	$(CC) -c $(CFLAGS) -I/usr/include -Imlx_linux -O3 -o $@ $<
 
 all: $(NAME)
 
@@ -58,6 +58,6 @@ fclean: clean libft_fclean
 
 re: fclean all
 
-.SILENT: $(OBJ)
+# .SILENT: $(OBJ)
 
 .PHONY: all libft clean fclean libft_clean libft_fclean

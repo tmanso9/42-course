@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:53:45 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/10 15:40:25 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/20 11:45:33 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/fractol.h"
+#include "fractol.h"
 
 int	main(int argc, char **argv)
 {

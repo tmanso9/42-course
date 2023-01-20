@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:03:09 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/09 19:37:32 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/20 11:45:22 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/fractol.h"
+#include "fractol.h"
 
 void	my_pixel_put(t_data *img, int x, int y, int color)
 {

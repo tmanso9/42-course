@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:54:23 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/09 18:55:33 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/20 11:45:57 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/fractol.h"
+#include "fractol.h"
 
 /*
 ------THE LOOP WORKS BECAUSE------

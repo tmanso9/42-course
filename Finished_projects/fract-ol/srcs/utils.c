@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:27:18 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/09 19:31:24 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/20 11:46:08 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/fractol.h"
+#include "fractol.h"
 
 void	list_fractal_commands(t_vars *vars)
 {

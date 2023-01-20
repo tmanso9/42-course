@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 18:00:45 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/09 18:47:03 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/20 11:45:38 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/fractol.h"
+#include "fractol.h"
 
 int	render(t_vars *vars)
 {
