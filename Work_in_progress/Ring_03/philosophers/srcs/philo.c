@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/20 20:40:06 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/21 02:00:31 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,32 @@ void	*example(void *mutex)
 
 int	main(int argc, char**argv)
 {
-	pthread_t	t1;
-	pthread_t	t2;
+	pthread_t		*th;
 	pthread_mutex_t	mutex;
-
+	int				i;
 
 	(void)argc;
 	(void)argv;
+	th = malloc(sizeof(pthread_t) * 4);
+	if (!th)
+		return (EXIT_FAILURE);
+	i = 0;
 	pthread_mutex_init(&mutex, NULL);
-	if (pthread_create(&t1, NULL, &example, &mutex))
-		return (EXIT_FAILURE);
-	if (pthread_create(&t2, NULL, &example, &mutex))
-		return (EXIT_FAILURE);
-	if (pthread_join(t1, NULL))
-		return (EXIT_FAILURE);
-	if (pthread_join(t2, NULL))
-		return (EXIT_FAILURE);
+	while (i < 4)
+	{
+		if (pthread_create(&th[i], NULL, &example, &mutex))
+			return (EXIT_FAILURE);
+		printf("Thread %d has started\n", i++);
+	}
+	i = 0;
+	while (i < 4)
+	{
+		if (pthread_join(th[i], NULL))
+			return (EXIT_FAILURE);
+		printf("Thread %d has finished execution\n", i++);
+	}
 	pthread_mutex_destroy(&mutex);
+	free(th);
 	printf("Number of mails: %d\n", mails);
 	return (EXIT_SUCCESS);
 }

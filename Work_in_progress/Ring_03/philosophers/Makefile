@@ -6,13 +6,13 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/01/20 20:16:25 by touteiro         ###   ########.fr        #
+#    Updated: 2023/01/21 01:56:38 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -pthread -fsanitize=thread
+CFLAGS = -g -pthread -fsanitize=thread -Wall -Wextra -Werror
 # CFLAGS += -fsanitize=address
 SRC = philo.c
 # B_SRC = 
