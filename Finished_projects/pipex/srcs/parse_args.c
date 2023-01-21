@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 15:28:41 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/17 17:15:45 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/21 00:42:39 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,11 @@ void	parse_args(int argc, char **argv, t_env *env, t_command **commands)
 {
 	parse_env(argc, argv, env);
 	env->cmds = parse_cmds(commands, argv, env);
+	if (!env->cmds)
+	{
+		close(env->files[0]);
+		close(env->files[1]);
+		final_free(*commands);
+		exit(EXIT_FAILURE);
+	}
 }
