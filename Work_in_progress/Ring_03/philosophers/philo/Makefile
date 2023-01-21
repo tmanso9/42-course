@@ -6,14 +6,14 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/01/21 01:56:38 by touteiro         ###   ########.fr        #
+#    Updated: 2023/01/21 16:40:11 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = cc
-CFLAGS = -g -pthread -fsanitize=thread -Wall -Wextra -Werror
-# CFLAGS += -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -pthread -I incs
+CFLAGS += -fsanitize=thread
 SRC = philo.c
 # B_SRC = 
 OBJ = $(addprefix srcs/, $(SRC:.c=.o))
@@ -42,12 +42,12 @@ clean:
 	@echo "\033[31mTemporary object files deleted\033[0m"
 
 fclean: clean
-	@rm -rf $(NAME)
+	@rm -f $(NAME) 2> /dev/null
 	@echo "\033[31mExecutable deleted\033[0m"
 	@echo ""
 
 re: fclean all
 
-# .SILENT: $(OBJ) $(B_OBJ)
+.SILENT: $(OBJ) $(B_OBJ) fclean
 
 .PHONY: all bonus re clean fclean

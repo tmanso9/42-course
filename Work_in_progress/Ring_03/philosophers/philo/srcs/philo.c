@@ -6,24 +6,30 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/21 02:00:31 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/21 16:50:20 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	mails = 0;
-
-void	*example(void *mutex)
+typedef struct s_arr
 {
-	int	i;
+	int				mails;
+	pthread_mutex_t	mutex;
+}	t_arr;
 
+void	*example(void *data)
+{
+	int		i;
+	t_arr	*thread;
+
+	thread = data;
 	i = 0;
 	while (i++ < 1000000)
 	{
-		pthread_mutex_lock(mutex);
-		mails++;
-		pthread_mutex_unlock(mutex);
+		pthread_mutex_lock(&(thread->mutex));
+		(thread->mails)++;
+		pthread_mutex_unlock(&(thread->mutex));
 	}
 	return (NULL);
 }
@@ -31,8 +37,11 @@ void	*example(void *mutex)
 int	main(int argc, char**argv)
 {
 	pthread_t		*th;
-	pthread_mutex_t	mutex;
+	t_arr			arr;
 	int				i;
+
+	arr.mails = 0;
+	i = 0;
 
 	(void)argc;
 	(void)argv;
@@ -40,10 +49,10 @@ int	main(int argc, char**argv)
 	if (!th)
 		return (EXIT_FAILURE);
 	i = 0;
-	pthread_mutex_init(&mutex, NULL);
+	pthread_mutex_init(&arr.mutex, NULL);
 	while (i < 4)
 	{
-		if (pthread_create(&th[i], NULL, &example, &mutex))
+		if (pthread_create(&th[i], NULL, &example, &arr))
 			return (EXIT_FAILURE);
 		printf("Thread %d has started\n", i++);
 	}
@@ -54,8 +63,8 @@ int	main(int argc, char**argv)
 			return (EXIT_FAILURE);
 		printf("Thread %d has finished execution\n", i++);
 	}
-	pthread_mutex_destroy(&mutex);
+	pthread_mutex_destroy(&arr.mutex);
 	free(th);
-	printf("Number of mails: %d\n", mails);
+	printf("Number of mails: %d\n", arr.mails);
 	return (EXIT_SUCCESS);
 }
