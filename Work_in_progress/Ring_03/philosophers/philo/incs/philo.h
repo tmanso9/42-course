@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:05:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/23 19:17:25 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/24 19:20:37 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_table
 	int				tte;
 	int				tts;
 	int				min_times;
-	struct timeval	start_time;
+	__uint64_t		start_time;
 }	t_table;
 
 typedef struct timeval	t_time;

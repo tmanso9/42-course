@@ -6,13 +6,13 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/01/24 00:29:21 by touteiro         ###   ########.fr        #
+#    Updated: 2023/01/24 19:05:33 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = cc
-CFLAGS = -g -pthread -Wall -Wextra -Werror
+CFLAGS = -g -pthread -Wall -Wextra -Werror -I incs
 CFLAGS += -fsanitize=thread
 SRC = philo.c ft_atoi.c utils.c parse_args.c ft_calloc.c
 # B_SRC = 

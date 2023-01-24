@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/24 00:32:01 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/24 19:41:09 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,54 +19,64 @@ t_table	*table(void)
 	return (&t);
 }
 
-void	*example(void *data)
 void	*run(void *data)
 {
-	int		i;
-	t_arr	*thread;
-	int		i;
-	t_philo	*philo;
-	t_time	curr;
+	int			i;
+	t_philo		*philo;
+	t_time		curr;
+	__uint64_t	ms;
 
-	thread = data;
 	philo = data;
 	i = 0;
-	if (philo->index % 2)
-		my_usleep(10);
-	while (i++ < 1)
+	while (i++ < 1000)
 	{
-		pthread_mutex_lock(&(thread->mutex));
-		(thread->mails)++;
-		pthread_mutex_unlock(&(thread->mutex));
-		if (philo->index % 2)
+		if (philo->index % 2 != 0)
 		{
 			pthread_mutex_lock(philo->left);
+			gettimeofday(&curr, NULL);
+			ms = (curr.tv_sec * (__uint64_t)1000) + (curr.tv_usec / (__uint64_t)1000);
+			printf("[%lu ms] %d has taken a fork.\n", ms - table()->start_time, philo->index + 1);
 			pthread_mutex_lock(philo->right);
 			gettimeofday(&curr, NULL);
-			printf("Philosopher %d did stuff at %ld\n", philo->index + 1, (curr.tv_usec - table()->start_time.tv_usec) / 1000);
+			ms = (curr.tv_sec * (__uint64_t)1000) + (curr.tv_usec / (__uint64_t)1000);
+			printf("[%lu ms] %d has taken a fork.\n", ms - table()->start_time, philo->index + 1);
+			gettimeofday(&curr, NULL);
+			ms = (curr.tv_sec * (__uint64_t)1000) + (curr.tv_usec / (__uint64_t)1000);
+			printf("[%lu ms] %d is eating.\n", ms - table()->start_time, philo->index + 1);
+			my_usleep(200);
+			gettimeofday(&curr, NULL);
+			ms = (curr.tv_sec * (__uint64_t)1000) + (curr.tv_usec / (__uint64_t)1000);
+			printf("[%lu ms] %d is sleeping.\n", ms - table()->start_time, philo->index + 1);
 			pthread_mutex_unlock(philo->left);
 			pthread_mutex_unlock(philo->right);
 		}
 		else
 		{
 			pthread_mutex_lock(philo->right);
+			gettimeofday(&curr, NULL);
+			ms = (curr.tv_sec * (__uint64_t)1000) + (curr.tv_usec / (__uint64_t)1000);
+			printf("[%lu ms] %d has taken a fork.\n", ms - table()->start_time, philo->index + 1);
 			pthread_mutex_lock(philo->left);
 			gettimeofday(&curr, NULL);
-			printf("Philosopher %d did stuff at %ld\n", philo->index + 1, (curr.tv_usec - table()->start_time.tv_usec) / 1000);
+			ms = (curr.tv_sec * (__uint64_t)1000) + (curr.tv_usec / (__uint64_t)1000);
+			printf("[%lu ms] %d has taken a fork.\n", ms - table()->start_time, philo->index + 1);
+			gettimeofday(&curr, NULL);
+			ms = (curr.tv_sec * (__uint64_t)1000) + (curr.tv_usec / (__uint64_t)1000);
+			printf("[%lu ms] %d is eating.\n", ms - table()->start_time, philo->index + 1);
+			my_usleep(table()->tte);
+			gettimeofday(&curr, NULL);
+			ms = (curr.tv_sec * (__uint64_t)1000) + (curr.tv_usec / (__uint64_t)1000);
+			printf("[%lu ms] %d is sleeping.\n", ms - table()->start_time, philo->index + 1);
 			pthread_mutex_unlock(philo->right);
 			pthread_mutex_unlock(philo->left);
 		}
 	}
-	free(thread->index);
 	return (NULL);
 }
 
 int	main(int argc, char**argv)
 {
-	pthread_t		*th;
-	t_arr			arr;
 	int				i;
-	int		i;
 
 	if (argc > 1 && argc < 7)
 	{
@@ -108,8 +118,5 @@ int	main(int argc, char**argv)
 		printf("Insufficient arguments\n");
 		return (EXIT_FAILURE);
 	}
-	pthread_mutex_destroy(&arr.mutex);
-	free(th);
-	printf("Number of mails: %d\n", arr.mails);
 	return (EXIT_SUCCESS);
 }
