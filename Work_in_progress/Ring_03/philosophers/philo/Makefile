@@ -6,15 +6,16 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/01/24 19:05:33 by touteiro         ###   ########.fr        #
+#    Updated: 2023/01/25 22:11:39 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = cc
 CFLAGS = -g -pthread -Wall -Wextra -Werror -I incs
+# CFLAGS += -fsanitize=address
 CFLAGS += -fsanitize=thread
-SRC = philo.c ft_atoi.c utils.c parse_args.c ft_calloc.c
+SRC = philo.c ft_atoi.c utils.c parse_args.c ft_calloc.c forks.c
 # B_SRC = 
 OBJ = $(addprefix srcs/, $(SRC:.c=.o))
 # B_OBJ = $(addprefix srcs/bonus/, $(B_SRC:.c=.o))

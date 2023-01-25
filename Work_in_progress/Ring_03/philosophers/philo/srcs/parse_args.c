@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:26:59 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/24 19:21:32 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/25 21:05:07 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	parse_args(char **argv, t_table *table)
 {
 	int		i;
-	t_time	start;
 
 	table->total = ft_atoi(argv[1]);
 	table->ttd = ft_atoi(argv[2]);
@@ -30,13 +29,10 @@ int	parse_args(char **argv, t_table *table)
 	if (!table->philo || !table->forks)
 		return (EXIT_FAILURE);
 	i = 0;
-	while (i++ < table->total)
+	while (i < table->total)
 	{
-		if (pthread_mutex_init(&table->forks[i], NULL) != 0)
+		if (pthread_mutex_init(&table->forks[i++], NULL) != 0)
 			return (EXIT_FAILURE);
 	}
-	gettimeofday(&start, NULL);
-	table->start_time = (start.tv_sec * (__uint64_t)1000) + \
-		(start.tv_usec / (__uint64_t)1000);
 	return (EXIT_SUCCESS);
 }
