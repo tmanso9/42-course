@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/26 11:37:11 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:52:38 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ void	*run(void *data)
 	t_philo		*philo;
 
 	philo = data;
-	while (philo->times_eaten < table()->min_times)
+	while (1)
 	{
-		if (dead())
+		if (dead() || all_eaten())
 			return (NULL);
 		if (philo->index % 2)
-			my_usleep(5);
+			my_usleep(2);
 		if (!dead())
 			print_message(philo, THINK);
 		if (philo->left)
@@ -85,7 +85,6 @@ int	main(int argc, char**argv)
 			give_forks(i);
 			table()->philo[i].index = i;
 			table()->philo[i].last_eaten = table()->start_time;
-			table()->philo[i].times_eaten = 0;
 			if (pthread_create(&(table()->philo[i].philo), NULL, run, \
 				&table()->philo[i]))
 				return (EXIT_FAILURE);

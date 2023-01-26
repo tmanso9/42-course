@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:17:11 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/26 11:38:16 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:51:40 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ int	print_message(t_philo *philo, int status)
 	{
 		gettimeofday(&curr, NULL);
 		philo->last_eaten = (curr.tv_sec * (__uint64_t)1000) + (curr.tv_usec / (__uint64_t)1000);
+		pthread_mutex_lock(table()->status);
 		philo->times_eaten++;
+		pthread_mutex_unlock(table()->status);
 		printf("%lu %d is eating\n", diff, philo->index + 1);
 	}
 	if (status == SLEEP)
@@ -107,19 +109,19 @@ int	dead(void)
 int	all_eaten(void)
 {
 	int	i;
-	int	eaten;
+	int	full;
 
 	i = 0;
-	eaten = 0;
+	full = 0;
 	pthread_mutex_lock(table()->status);
 	while (i < table()->total)
 	{
-		if (table()->philo->times_eaten == table()->min_times)
-			eaten++;
+		if (table()->philo[i].times_eaten >= table()->min_times)
+			full++;
 		i++;
 	}
 	pthread_mutex_unlock(table()->status);
-	if (eaten == table()->total)
+	if (full == table()->total)
 		return (1);
 	return (0);
 }
