@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/25 22:12:24 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/26 11:37:11 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,42 +21,44 @@ t_table	*table(void)
 
 void	*run(void *data)
 {
-	int			i;
 	t_philo		*philo;
 
 	philo = data;
-	i = 0;
-	while (i++ < 100)
+	while (philo->times_eaten < table()->min_times)
 	{
+		if (dead())
+			return (NULL);
 		if (philo->index % 2)
-			my_usleep(10);
-		if (!philo->dead && philo->left)
+			my_usleep(5);
+		if (!dead())
+			print_message(philo, THINK);
+		if (philo->left)
 			pthread_mutex_lock(philo->left);
-		if (!philo->dead)
+		if (philo->left)
 			print_message(philo, FORK);
-		if (!philo->dead && philo->right)
+		if (philo->right)
 			pthread_mutex_lock(philo->right);
 		else
 		{
 			my_usleep(table()->ttd);
 			print_message(philo, DIE);
 		}
-		if (!philo->dead)
+		if (!dead() && philo->right)
 			print_message(philo, FORK);
-		if (!philo->dead)
+		if (!dead())
 			print_message(philo, EAT);
-		if (!philo->dead)
+		if (!dead())
 			my_usleep(table()->tte);
-		if (!philo->dead)
+		if (philo->left)
 			pthread_mutex_unlock(philo->left);
-		if (!philo->dead)
+		if (philo->right)
 			pthread_mutex_unlock(philo->right);
-		if (!philo->dead)
+		if (!dead())
 			print_message(philo, SLEEP);
-		if (!philo->dead)
+		if (!dead())
 			my_usleep(table()->tts);
-		if (!philo->dead)
-			print_message(philo, THINK);
+		if (dead())
+			return (NULL);
 	}
 	return (NULL);
 }
@@ -73,17 +75,17 @@ int	main(int argc, char**argv)
 			free_all(table());
 			return (EXIT_FAILURE);
 		}
+		gettimeofday(&start, NULL);
+		table()->start_time = (start.tv_sec * (__uint64_t)1000) + \
+			(start.tv_usec / (__uint64_t)1000);
+		table()->dead = 0;
 		i = 0;
 		while (i < table()->total)
 		{
 			give_forks(i);
 			table()->philo[i].index = i;
-			gettimeofday(&start, NULL);
-			table()->philo[i].start_time = (start.tv_sec * (__uint64_t)1000) + \
-				(start.tv_usec / (__uint64_t)1000);
-			table()->philo[i].last_eaten = table()->philo[i].start_time;
+			table()->philo[i].last_eaten = table()->start_time;
 			table()->philo[i].times_eaten = 0;
-			table()->philo[i].dead = 0;
 			if (pthread_create(&(table()->philo[i].philo), NULL, run, \
 				&table()->philo[i]))
 				return (EXIT_FAILURE);
@@ -101,6 +103,7 @@ int	main(int argc, char**argv)
 		i = 0;
 		while (i++ < table()->total)
 			pthread_mutex_destroy(&table()->forks[i]);
+		pthread_mutex_destroy(table()->status);
 		free(table()->philo);
 		free(table()->forks);
 		return (EXIT_SUCCESS);

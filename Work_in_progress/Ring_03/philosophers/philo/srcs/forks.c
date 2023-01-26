@@ -27,3 +27,5 @@ void	give_forks(int i)
 			table()->philo[i].right = &table()->forks[i % table()->total];
 	}
 }
+
+

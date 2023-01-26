@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:26:59 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/25 21:05:07 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/26 11:19:53 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,15 @@ int	parse_args(char **argv, t_table *table)
 	if (argv[5])
 		table->min_times = ft_atoi(argv[5]);
 	else
-		table->min_times = 1;
+		table->min_times = 1000;
 	table->philo = ft_calloc(sizeof(t_philo) * table->total, 1);
 	table->forks = ft_calloc(sizeof(pthread_mutex_t) * table->total, 1);
-	if (!table->philo || !table->forks)
+	table->status = ft_calloc(sizeof(pthread_mutex_t), 1);
+	if (!table->philo || !table->forks || !table->status)
 		return (EXIT_FAILURE);
 	i = 0;
+	if (pthread_mutex_init(table->status, NULL))
+		return (EXIT_FAILURE);
 	while (i < table->total)
 	{
 		if (pthread_mutex_init(&table->forks[i++], NULL) != 0)
