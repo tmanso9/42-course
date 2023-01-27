@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:05:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/26 11:09:10 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/27 13:35:49 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 typedef struct s_philo
 {
 	pthread_t		philo;
-	pthread_mutex_t	*left;
-	pthread_mutex_t	*right;
+	pthread_mutex_t	*first_fork;
+	pthread_mutex_t	*second_fork;
 	int				index;
 	__uint64_t		last_eaten;
 	int				times_eaten;
@@ -53,16 +53,20 @@ typedef struct s_table
 
 typedef struct timeval	t_time;
 
-t_table	*table(void);
-int		ft_atoi(const char *str);
-int		ft_isdigit(int c);
-void	*ft_calloc(size_t count, size_t size);
-int		parse_args(char **argv, t_table *table);
-void	give_forks(int i);
-int		dead(void);
-int		all_eaten(void);
-int		print_message(t_philo *philo, int status);
-void	free_all(t_table *table);
-void	my_usleep(int milisec);
+t_table		*table(void);
+int			ft_atoi(const char *str);
+int			ft_isdigit(int c);
+void		*ft_calloc(size_t count, size_t size);
+int			parse_args(char **argv, t_table *table);
+void		give_forks(int i);
+__uint64_t	get_time(void);
+int			pickup_forks(t_philo *philo);
+void		eat(t_philo *philo);
+void		do_sleep(t_philo *philo);
+int			dead(void);
+int			all_eaten(void);
+int			print_message(t_philo *philo, int status, __uint64_t time);
+void		free_all(t_table *table);
+void		my_usleep(int milisec);
 
 #endif
