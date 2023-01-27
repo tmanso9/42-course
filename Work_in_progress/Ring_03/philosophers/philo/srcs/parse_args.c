@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:26:59 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/26 17:32:53 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/27 20:55:57 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	parse_args(char **argv, t_table *table)
 	while (i < table->total)
 	{
 		table->philo[i].times_eaten = 0;
+		table->philo[i].thinking = 0;
 		if (pthread_mutex_init(&table->forks[i++], NULL) != 0)
 			return (EXIT_FAILURE);
 	}

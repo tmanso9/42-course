@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:49:10 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/27 13:42:30 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/27 20:57:08 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	eat(t_philo *philo)
 	__uint64_t	ms;
 
 	ms = get_time();
+	philo->thinking = 0;
 	if (!dead())
 	{
 		pthread_mutex_lock(table()->status);

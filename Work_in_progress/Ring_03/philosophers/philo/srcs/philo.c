@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/27 14:38:34 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/27 20:57:30 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,20 @@ void	*run(void *data)
 	{
 		if (all_eaten())
 			return (NULL);
+		if (!dead() && !philo->thinking)
+		{
+			philo->thinking = 1;
+			print_message(philo, THINK, get_time());
+		}
 		if (!pickup_forks(philo))
 			return (NULL);
 		eat(philo);
 		do_sleep(philo);
 		if (!dead())
+		{
+			philo->thinking = 1;
 			print_message(philo, THINK, get_time());
+		}
 	}
 	return (NULL);
 }

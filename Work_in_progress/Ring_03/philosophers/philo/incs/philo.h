@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:05:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/27 13:35:49 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/27 20:55:27 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_philo
 	int				index;
 	__uint64_t		last_eaten;
 	int				times_eaten;
+	int				thinking;
 }	t_philo;
 
 typedef struct s_table
