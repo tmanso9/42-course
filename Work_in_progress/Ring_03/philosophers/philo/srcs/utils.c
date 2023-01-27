@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:17:11 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/27 13:55:25 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/27 14:31:52 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,18 @@ __uint64_t	get_time(void)
 int	print_message(t_philo *philo, int status, __uint64_t time)
 {
 	if (status == FORK)
-		printf("%lu %d has taken a fork\n", time, philo->index + 1);
+		printf("%llu %d has taken a fork\n", time, philo->index + 1);
 	if (status == EAT)
-		printf("%lu %d is eating\n", time, philo->index + 1);
+		printf("%llu %d is eating\n", time, philo->index + 1);
 	if (status == SLEEP)
-		printf("%lu %d is sleeping\n", time, philo->index + 1);
+		printf("%llu %d is sleeping\n", time, philo->index + 1);
 	if (status == THINK)
-		printf("%lu %d is thinking\n", time, philo->index + 1);
+		printf("%llu %d is thinking\n", time, philo->index + 1);
 	if (status == DIE)
 	{
 		table()->dead = 1;
 		pthread_mutex_unlock(table()->status);
-		printf("%lu %d has died\n", time, philo->index + 1);
+		printf("%llu %d has died\n", time, philo->index + 1);
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);

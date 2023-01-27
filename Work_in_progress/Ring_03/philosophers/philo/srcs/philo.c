@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/27 13:52:31 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/27 14:38:34 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ void	*run(void *data)
 	{
 		if (all_eaten())
 			return (NULL);
-		if (!dead())
-			print_message(philo, THINK, get_time());
 		if (!pickup_forks(philo))
 			return (NULL);
 		eat(philo);
 		do_sleep(philo);
+		if (!dead())
+			print_message(philo, THINK, get_time());
 	}
 	return (NULL);
 }
@@ -68,7 +68,7 @@ int	check_starvation(void)
 			continue ;
 		}
 		diff = moment - table()->philo[i].last_eaten;
-		if (diff > (table()->ttd + 10))
+		if (diff > (table()->ttd))
 		{
 			print_message(&table()->philo[i], DIE, moment);
 			return (1);
