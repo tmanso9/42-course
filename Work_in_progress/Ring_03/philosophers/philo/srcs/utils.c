@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:17:11 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/27 12:59:31 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/27 13:55:25 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void	my_usleep(int milisec)
 	__uint64_t		end;
 
 	gettimeofday(&tv, NULL);
-	start = (tv.tv_sec * (__uint64_t)1000) + (tv.tv_usec / (__uint64_t)1000);
+	start = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 	end = start + milisec;
 	while (start < end)
 	{
 		gettimeofday(&tv, NULL);
-		start = (tv.tv_sec * (__uint64_t)1000) + (tv.tv_usec / (__uint64_t)1000);
+		start = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 	}
 }
 
@@ -48,20 +48,6 @@ __uint64_t	get_time(void)
 
 int	print_message(t_philo *philo, int status, __uint64_t time)
 {
-	// t_time		curr;
-	// __uint64_t	ms;
-	// __uint64_t	diff;
-
-	// if (dead())
-	// 	return (EXIT_FAILURE);
-	// gettimeofday(&curr, NULL);
-	// ms = (curr.tv_sec * (__uint64_t)1000) + (curr.tv_usec / (__uint64_t)1000);
-	// diff = ms - table()->start_time;
-	// if (status != DIE && (ms - philo->last_eaten) > ((table()->ttd + 10)))
-	// {
-	// 	print_message(philo, DIE);
-	// 	return (EXIT_FAILURE);
-	// }
 	if (status == FORK)
 		printf("%lu %d has taken a fork\n", time, philo->index + 1);
 	if (status == EAT)
@@ -72,11 +58,6 @@ int	print_message(t_philo *philo, int status, __uint64_t time)
 		printf("%lu %d is thinking\n", time, philo->index + 1);
 	if (status == DIE)
 	{
-		// if (philo->left)
-		// 	pthread_mutex_unlock(philo->left);
-		// 	pthread_mutex_unlock(philo->second_fork);
-		// if (!philo->second_fork)
-		// 	pthread_mutex_lock(table()->status);
 		table()->dead = 1;
 		pthread_mutex_unlock(table()->status);
 		printf("%lu %d has died\n", time, philo->index + 1);

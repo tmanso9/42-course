@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/27 13:41:56 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/27 13:52:31 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	*run(void *data)
 	t_philo		*philo;
 
 	philo = data;
-	while (1)
+	while (!dead())
 	{
-		if (dead() || all_eaten())
+		if (all_eaten())
 			return (NULL);
 		if (!dead())
 			print_message(philo, THINK, get_time());
@@ -34,8 +34,6 @@ void	*run(void *data)
 			return (NULL);
 		eat(philo);
 		do_sleep(philo);
-		// if (dead())
-		// 	return (NULL);
 	}
 	return (NULL);
 }
