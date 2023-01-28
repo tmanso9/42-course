@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:05:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/27 21:14:19 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/28 02:07:53 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void		do_sleep(t_philo *philo);
 int			dead(void);
 int			all_eaten(void);
 int			print_message(t_philo *philo, int status, __uint64_t time);
+int			print_usage(void);
 void		free_all(t_table *table);
 void		my_usleep(int milisec);
 

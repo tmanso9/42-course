@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/27 21:14:50 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/28 02:06:03 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,37 +49,28 @@ int	check_starvation(void)
 	__uint64_t	moment;
 	__uint64_t	diff;
 
-	i = 0;
+	i = -1;
 	moment = get_time();
-	while (i < table()->total)
+	while (++i < table()->total)
 	{
 		pthread_mutex_lock(table()->status);
 		if (moment > table()->ttd && !table()->philo[i].times_eaten)
-		{
-			print_message(&table()->philo[i], DIE, moment);
-			return (1);
-		}
+			return (print_message(&table()->philo[i], DIE, moment));
 		pthread_mutex_unlock(table()->status);
-		i++;
 	}
-	i = 0;
-	while (i < table()->total)
+	i = -1;
+	while (++i < table()->total)
 	{
 		pthread_mutex_lock(table()->status);
 		if (moment <= table()->philo[i].last_eaten)
 		{
 			pthread_mutex_unlock(table()->status);
-			i++;
 			continue ;
 		}
 		diff = moment - table()->philo[i].last_eaten;
 		if (diff > (table()->ttd))
-		{
-			print_message(&table()->philo[i], DIE, moment);
-			return (1);
-		}
+			return (print_message(&table()->philo[i], DIE, moment));
 		pthread_mutex_unlock(table()->status);
-		i++;
 	}
 	return (0);
 }
@@ -106,12 +97,9 @@ int	main(int argc, char**argv)
 			give_forks(i);
 			table()->philo[i].index = i;
 			table()->philo[i].last_eaten = 0;
-			// if (i % 2)
-			// 	my_usleep(2);
 			if (pthread_create(&(table()->philo[i].philo), NULL, run, \
 				&table()->philo[i]))
 				return (EXIT_FAILURE);
-			// printf("Thread %d has started\n", i);
 			i++;
 		}
 		while (1)
@@ -123,7 +111,6 @@ int	main(int argc, char**argv)
 				{
 					if (pthread_join(table()->philo[i].philo, NULL))
 						return (EXIT_FAILURE);
-					// printf("Thread %d has finished execution\n", i);
 					i++;
 				}
 				break ;
@@ -133,13 +120,13 @@ int	main(int argc, char**argv)
 		while (i++ < table()->total)
 			pthread_mutex_destroy(&table()->forks[i]);
 		pthread_mutex_destroy(table()->status);
-		free(table()->philo);
-		free(table()->forks);
+		free_all(table());
 		return (EXIT_SUCCESS);
 	}
 	else
 	{
-		printf("Insufficient arguments\n");
+		printf("Invalid number of arguments\n");
+		print_usage();
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
