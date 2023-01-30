@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:49:10 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/27 21:14:14 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/30 09:49:25 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	do_sleep(t_philo *philo)
 	__uint64_t	ms;
 
 	ms = get_time();
-	if (!dead())
+	if (!dead() && !all_eaten())
 		print_message(philo, SLEEP, ms);
 	if (!dead() && !all_eaten())
 		my_usleep(table()->tts);
@@ -28,7 +28,7 @@ void	eat(t_philo *philo)
 	__uint64_t	ms;
 
 	ms = get_time();
-	if (!dead())
+	if (!dead() && !all_eaten())
 	{
 		pthread_mutex_lock(table()->status);
 		philo->last_eaten = ms;
@@ -36,7 +36,7 @@ void	eat(t_philo *philo)
 		pthread_mutex_unlock(table()->status);
 		print_message(philo, EAT, ms);
 	}
-	if (!dead())
+	if (!dead() && !all_eaten())
 		my_usleep(table()->tte);
 	pthread_mutex_unlock(philo->first_fork);
 	pthread_mutex_unlock(philo->second_fork);
@@ -45,7 +45,7 @@ void	eat(t_philo *philo)
 int	pickup_forks(t_philo *philo)
 {
 	pthread_mutex_lock(philo->first_fork);
-	if (!dead())
+	if (!dead() && !all_eaten())
 		print_message(philo, FORK, get_time());
 	if (philo->second_fork)
 		pthread_mutex_lock(philo->second_fork);
@@ -55,7 +55,7 @@ int	pickup_forks(t_philo *philo)
 		my_usleep(table()->ttd);
 		return (0);
 	}
-	if (!dead() && philo->second_fork)
+	if (!dead() && !all_eaten() && philo->second_fork)
 		print_message(philo, FORK, get_time());
 	return (1);
 }

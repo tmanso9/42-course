@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/28 02:06:03 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/30 09:49:38 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	*run(void *data)
 	{
 		if (all_eaten())
 			return (NULL);
-		if (!dead() && !philo->thinked)
+		if (!dead() && !all_eaten() && !philo->thinked)
 		{
 			philo->thinked = 1;
 			print_message(philo, THINK, get_time());
@@ -37,7 +37,7 @@ void	*run(void *data)
 			return (NULL);
 		eat(philo);
 		do_sleep(philo);
-		if (!dead())
+		if (!dead() && !all_eaten())
 			print_message(philo, THINK, get_time());
 	}
 	return (NULL);
