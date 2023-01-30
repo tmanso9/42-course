@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/30 09:49:38 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/30 21:17:00 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,20 @@ t_table	*table(void)
 void	*run(void *data)
 {
 	t_philo		*philo;
+	__uint64_t	ms;
 
 	philo = data;
-	while (!dead())
+	// if (philo->index % 2)
+	// 	my_usleep(10);
+	while (!dead() && !all_eaten())
 	{
-		if (all_eaten())
-			return (NULL);
-		if (!dead() && !all_eaten() && !philo->thinked)
-		{
-			philo->thinked = 1;
-			print_message(philo, THINK, get_time());
-		}
 		if (!pickup_forks(philo))
 			return (NULL);
 		eat(philo);
 		do_sleep(philo);
+		ms = get_time();
 		if (!dead() && !all_eaten())
-			print_message(philo, THINK, get_time());
+			print_message(philo, THINK, ms);
 	}
 	return (NULL);
 }
@@ -80,7 +77,7 @@ int	main(int argc, char**argv)
 	int			i;
 	t_time		start;
 
-	if (argc > 1 && argc < 7)
+	if (argc > 4 && argc < 7)
 	{
 		if (parse_args(argv, table()) == EXIT_FAILURE)
 		{
@@ -97,6 +94,7 @@ int	main(int argc, char**argv)
 			give_forks(i);
 			table()->philo[i].index = i;
 			table()->philo[i].last_eaten = 0;
+			table()->philo[i].forks_taken = 0;
 			if (pthread_create(&(table()->philo[i].philo), NULL, run, \
 				&table()->philo[i]))
 				return (EXIT_FAILURE);
@@ -117,15 +115,15 @@ int	main(int argc, char**argv)
 			}
 		}
 		i = 0;
-		while (i++ < table()->total)
-			pthread_mutex_destroy(&table()->forks[i]);
+		while (i < table()->total)
+			pthread_mutex_destroy(&table()->forks[i++]);
 		pthread_mutex_destroy(table()->status);
 		free_all(table());
 		return (EXIT_SUCCESS);
 	}
 	else
 	{
-		printf("Invalid number of arguments\n");
+		write(2, "\nInvalid number of arguments\n", 29);
 		print_usage();
 		return (EXIT_FAILURE);
 	}

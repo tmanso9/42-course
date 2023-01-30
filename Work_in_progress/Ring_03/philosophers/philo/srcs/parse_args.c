@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:26:59 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/28 02:03:13 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/30 20:42:16 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ static int	check_numeric(char **argv)
 			if (!numeric(argv[i][j++]))
 			{
 				if (i == 1)
-					printf("\nInvalid number of philosophers\n");
+					write(2, "\nInvalid number of philosophers\n", 32);
 				else if (i < 5)
-					printf("\nInvalid time argument\n");
+					write(2, "\nInvalid time argument\n", 23);
 				else
-					printf("\nInvalid number of times to eat\n");
+					write(2, "\nInvalid number of times to eat\n", 32);
 				print_usage();
 				return (0);
 			}
@@ -67,15 +67,22 @@ int	check_range(char **argv)
 	i = 1;
 	while (argv[i])
 	{
-		if ((i == 1 && ft_strlen(argv[i]) > 3 && \
-			printf("\nNumber of philosophers too high\n")) || \
-			(((argv[i][0] != '-' && ft_strlen(argv[i]) > 10) || \
-			(ft_strlen(argv[i]) > 9 && \
-			strncmp("2147483647", argv[i], 11) < 0)) && \
-			printf("\nNumber too high\n")) || \
-			((argv[i][0] == '-' && \
-			printf("\nNumbers can't be negative values\n"))))
+		if (i == 1 && ft_strlen(argv[i]) > 3)
+		{
+			write(2, "\nNumber of philosophers too high\n", 33);
 			return (print_usage());
+		}
+		if ((argv[i][0] != '-' && ft_strlen(argv[i]) > 10) || \
+			(ft_strlen(argv[i]) > 9 && strncmp("2147483647", argv[i], 11) < 0))
+		{
+			write(2, "\nNumber too high\n", 17);
+			return (print_usage());
+		}
+		if (argv[i][0] == '-')
+		{
+			write(2, "\nNumbers can't be negative values\n", 34);
+			return (print_usage());
+		}
 		i++;
 	}
 	return (1);
@@ -104,6 +111,7 @@ int	parse_args(char **argv, t_table *table)
 		table->min_times = 1000;
 	table->philo = ft_calloc(sizeof(t_philo) * table->total, 1);
 	table->forks = ft_calloc(sizeof(pthread_mutex_t) * table->total, 1);
+	table->forks_avail = ft_calloc(table->total + 1, 1);
 	table->status = ft_calloc(sizeof(pthread_mutex_t), 1);
 	if (!table->philo || !table->forks || !table->status)
 		return (EXIT_FAILURE);
@@ -113,7 +121,8 @@ int	parse_args(char **argv, t_table *table)
 	while (i < table->total)
 	{
 		table->philo[i].times_eaten = 0;
-		table->philo[i].thinked = 0;
+		table->philo[i].forks_taken = 0;
+		table->forks_avail[i] = 1;
 		if (pthread_mutex_init(&table->forks[i++], NULL) != 0)
 			return (EXIT_FAILURE);
 	}

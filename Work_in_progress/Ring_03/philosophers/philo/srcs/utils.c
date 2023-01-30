@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:17:11 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/28 01:45:02 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/30 20:13:44 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void	free_all(t_table *table)
 			free(table->forks);
 		if (table->status)
 			free(table->status);
+		if (table->forks_avail)
+			free(table->forks_avail);
 	}
 }
 
@@ -111,8 +113,8 @@ int	all_eaten(void)
 
 int	print_usage(void)
 {
-	printf("Usage: \n\t./philo <number_of_philosophers> <time_to_die> ");
-	printf("<time_to_eat> <time_to_sleep> [optional: ");
-	printf("number_of_times_each_philosopher_must_eat]\n\n");
+	write(2, "Usage: \n\t./philo <number_of_philosophers> <time_to_die> ", 58);
+	write(2, "<time_to_eat> <time_to_sleep> [optional: ", 41);
+	write(2, "number_of_times_each_philosopher_must_eat]\n\n", 46);
 	return (0);
 }
