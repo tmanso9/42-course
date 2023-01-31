@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:49:10 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/31 15:59:50 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/31 16:47:29 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,9 @@ int	do_sleep(t_philo *philo)
 {
 	__uint64_t	ms;
 
+	ms = get_time();
 	if (!dead() && !all_eaten())
 	{
-		pthread_mutex_lock(philo->first_fork);
-		table()->forks_avail[philo->first_index] = 1;
-		pthread_mutex_unlock(philo->first_fork);
-		pthread_mutex_lock(philo->second_fork);
-		table()->forks_avail[philo->second_index] = 1;
-		pthread_mutex_unlock(philo->second_fork);
-		ms = get_time();
 		if (!dead() && !all_eaten())
 			print_message(philo, SLEEP, ms);
 		if (!dead() && !all_eaten())
@@ -51,6 +45,32 @@ void	eat(t_philo *philo)
 	}
 	if (!dead() && !all_eaten())
 		my_usleep(table()->tte);
+}
+
+int	putdown_forks(t_philo *philo)
+{
+	pthread_mutex_lock(philo->first_fork);
+	if (!table()->forks_avail[philo->first_index] && !dead() && !all_eaten())
+	{
+		table()->forks_avail[philo->first_index] = 1;
+		pthread_mutex_unlock(philo->first_fork);
+	}
+	else
+	{
+		pthread_mutex_unlock(philo->first_fork);
+	}
+	pthread_mutex_lock(philo->second_fork);
+	if (!table()->forks_avail[philo->second_index] && !dead() && !all_eaten())
+	{
+		table()->forks_avail[philo->second_index] = 1;
+		pthread_mutex_unlock(philo->second_fork);
+	}
+	else
+	{
+		pthread_mutex_unlock(philo->second_fork);
+		return (0);
+	}
+	return (1);
 }
 
 int	pickup_forks(t_philo *philo)

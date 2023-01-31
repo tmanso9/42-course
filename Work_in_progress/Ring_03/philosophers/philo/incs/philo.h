@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:05:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/31 16:00:11 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/31 16:39:21 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void		give_forks(int i);
 __uint64_t	get_time(void);
 int			pickup_forks(t_philo *philo);
 void		eat(t_philo *philo);
+int			putdown_forks(t_philo *philo);
 int			do_sleep(t_philo *philo);
 int			dead(void);
 int			all_eaten(void);
