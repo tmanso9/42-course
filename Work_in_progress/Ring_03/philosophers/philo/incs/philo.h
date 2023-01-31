@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:05:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/30 20:34:19 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/31 16:00:11 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ typedef struct s_philo
 	int				index;
 	__uint64_t		last_eaten;
 	int				times_eaten;
-	int				forks_taken;
 }	t_philo;
 
 typedef struct s_table
 {
 	t_philo			*philo;
+	__uint64_t		start_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*status;
 	char			*forks_avail;
@@ -51,7 +51,6 @@ typedef struct s_table
 	__uint64_t		tte;
 	__uint64_t		tts;
 	int				min_times;
-	__uint64_t		start_time;
 	int				dead;
 }	t_table;
 
@@ -66,7 +65,7 @@ void		give_forks(int i);
 __uint64_t	get_time(void);
 int			pickup_forks(t_philo *philo);
 void		eat(t_philo *philo);
-void		do_sleep(t_philo *philo);
+int			do_sleep(t_philo *philo);
 int			dead(void);
 int			all_eaten(void);
 int			print_message(t_philo *philo, int status, __uint64_t time);

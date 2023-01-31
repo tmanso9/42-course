@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/30 21:17:00 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/01/31 16:00:37 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,27 @@ void	*run(void *data)
 
 	philo = data;
 	// if (philo->index % 2)
-	// 	my_usleep(10);
-	while (!dead() && !all_eaten())
+	// 	my_usleep(60);
+	while (!dead())
 	{
-		if (!pickup_forks(philo))
+		if (all_eaten())
 			return (NULL);
-		eat(philo);
-		do_sleep(philo);
-		ms = get_time();
-		if (!dead() && !all_eaten())
-			print_message(philo, THINK, ms);
+		if (table()->total == 1)
+		{
+			print_message(philo, FORK, get_time());
+			my_usleep(table()->ttd);
+			return (NULL);
+		}
+		if (pickup_forks(philo))
+		{
+			eat(philo);
+			if (do_sleep(philo))
+			{
+				ms = get_time();
+				if (!dead() && !all_eaten())
+					print_message(philo, THINK, ms);
+			}
+		}
 	}
 	return (NULL);
 }
@@ -46,16 +57,21 @@ int	check_starvation(void)
 	__uint64_t	moment;
 	__uint64_t	diff;
 
+	// i = -1;
+	// while (++i < table()->total)
+	// {
+	// 	moment = get_time();
+	// 	pthread_mutex_lock(table()->status);
+	// 	if (moment > table()->ttd && !table()->philo[i].times_eaten)
+	// 	{
+	// 		table()->dead = 1;
+	// 		pthread_mutex_unlock(table()->status);
+	// 		return (print_message(&table()->philo[i], DIE, moment));
+	// 	}
+	// 	pthread_mutex_unlock(table()->status);
+	// }
 	i = -1;
 	moment = get_time();
-	while (++i < table()->total)
-	{
-		pthread_mutex_lock(table()->status);
-		if (moment > table()->ttd && !table()->philo[i].times_eaten)
-			return (print_message(&table()->philo[i], DIE, moment));
-		pthread_mutex_unlock(table()->status);
-	}
-	i = -1;
 	while (++i < table()->total)
 	{
 		pthread_mutex_lock(table()->status);
@@ -66,7 +82,11 @@ int	check_starvation(void)
 		}
 		diff = moment - table()->philo[i].last_eaten;
 		if (diff > (table()->ttd))
+		{
+			table()->dead = 1;
+			pthread_mutex_unlock(table()->status);
 			return (print_message(&table()->philo[i], DIE, moment));
+		}
 		pthread_mutex_unlock(table()->status);
 	}
 	return (0);
@@ -91,10 +111,6 @@ int	main(int argc, char**argv)
 		i = 0;
 		while (i < table()->total)
 		{
-			give_forks(i);
-			table()->philo[i].index = i;
-			table()->philo[i].last_eaten = 0;
-			table()->philo[i].forks_taken = 0;
 			if (pthread_create(&(table()->philo[i].philo), NULL, run, \
 				&table()->philo[i]))
 				return (EXIT_FAILURE);
