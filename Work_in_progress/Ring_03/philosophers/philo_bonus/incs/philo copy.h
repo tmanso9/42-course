@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   philo copy.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:05:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/02 20:51:46 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/02 20:51:40 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,18 @@
 # define PHILO_H
 
 # include <string.h>
-# include <stdio.h>
-# include <stdlib.h>
 # include <unistd.h>
-# include <sys/types.h>
-# include <signal.h>
-# include <pthread.h>
+# include <stdlib.h>
+# include <stdio.h>
 # include <sys/time.h>
-# include <fcntl.h>
-# include <sys/stat.h>
-# include <semaphore.h>
-# include <sys/wait.h>
+# include <pthread.h>
 
 # define FORK	0
 # define EAT	1
 # define SLEEP	2
 # define THINK	3
 # define DIE	4
-# define NONE	5
+// # define NONE	5
 
 typedef struct s_philo
 {
@@ -40,23 +34,24 @@ typedef struct s_philo
 	int				first_index;
 	pthread_mutex_t	*second_fork;
 	int				second_index;
+	pthread_mutex_t	*eating;
 	int				index;
 	__uint64_t		last_eaten;
 	int				times_eaten;
-	int				thinked;
 }	t_philo;
 
 typedef struct s_table
 {
 	t_philo			*philo;
-	int				total;
+	__uint64_t		start_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*status;
+	int				*forks_avail;
+	int				total;
 	__uint64_t		ttd;
 	__uint64_t		tte;
 	__uint64_t		tts;
 	int				min_times;
-	__uint64_t		start_time;
 	int				dead;
 }	t_table;
 
@@ -71,7 +66,8 @@ void		give_forks(int i);
 __uint64_t	get_time(void);
 int			pickup_forks(t_philo *philo);
 void		eat(t_philo *philo);
-void		do_sleep(t_philo *philo);
+int			putdown_forks(t_philo *philo);
+int			do_sleep(t_philo *philo);
 int			dead(void);
 int			all_eaten(void);
 int			print_message(t_philo *philo, int status, __uint64_t time);

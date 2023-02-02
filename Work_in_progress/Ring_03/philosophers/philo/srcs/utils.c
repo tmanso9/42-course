@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:17:11 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/02 16:54:36 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/02 20:43:58 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	my_usleep(int milisec)
 	end = start + milisec;
 	while (start < end)
 	{
-		usleep(50);
 		gettimeofday(&tv, NULL);
 		start = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+		usleep(50);
 	}
 }
 
@@ -50,16 +50,16 @@ __uint64_t	get_time(void)
 int	print_message(t_philo *philo, int status, __uint64_t time)
 {
 	if (status == FORK)
-		printf("%lu %d has taken a fork\n", time, philo->index + 1);
+		printf("%llu %d has taken a fork\n", time, philo->index + 1);
 	if (status == EAT)
-		printf("%lu %d is eating\n", time, philo->index + 1);
+		printf("%llu %d is eating\n", time, philo->index + 1);
 	if (status == SLEEP)
-		printf("%lu %d is sleeping\n", time, philo->index + 1);
+		printf("%llu %d is sleeping\n", time, philo->index + 1);
 	if (status == THINK)
-		printf("%lu %d is thinking\n", time, philo->index + 1);
+		printf("%llu %d is thinking\n", time, philo->index + 1);
 	if (status == DIE)
 	{
-		printf("%lu %d died\n", time, philo->index + 1);
+		printf("%llu %d died\n", time, philo->index + 1);
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
@@ -107,6 +107,7 @@ int	all_eaten(void)
 	while (i < table()->total)
 	{
 		pthread_mutex_lock(table()->philo[i].eating);
+		printf("philo %d has eaten %d times\n", table()->philo[i].index + 1, table()->philo[i].times_eaten);
 		if (table()->philo[i].times_eaten >= table()->min_times)
 			full++;
 		pthread_mutex_unlock(table()->philo[i].eating);
