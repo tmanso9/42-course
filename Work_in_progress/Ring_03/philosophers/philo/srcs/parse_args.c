@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:26:59 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/31 13:47:44 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/02 16:49:35 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,9 @@ int	parse_args(char **argv, t_table *table)
 		table->forks_avail[i] = 1;
 		table->philo[i].index = i;
 		if (pthread_mutex_init(&table->forks[i], NULL) != 0)
+			return (EXIT_FAILURE);
+		table->philo[i].eating = ft_calloc(sizeof(pthread_mutex_t), 1);
+		if (pthread_mutex_init(table->philo[i].eating, NULL) != 0)
 			return (EXIT_FAILURE);
 		give_forks(i);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:05:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/31 16:39:21 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/02 16:46:30 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define SLEEP	2
 # define THINK	3
 # define DIE	4
-# define NONE	5
+// # define NONE	5
 
 typedef struct s_philo
 {
@@ -33,6 +33,7 @@ typedef struct s_philo
 	pthread_mutex_t	*first_fork;
 	int				first_index;
 	pthread_mutex_t	*second_fork;
+	pthread_mutex_t	*eating;
 	int				second_index;
 	int				index;
 	__uint64_t		last_eaten;
