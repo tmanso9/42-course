@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   philo_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/30 09:49:38 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/02 21:08:10 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,29 +48,28 @@ int	check_starvation(void)
 	int			i;
 	__uint64_t	moment;
 	__uint64_t	diff;
+	__uint64_t	last_ate;
 
 	i = -1;
 	moment = get_time();
+	// while (++i < table()->total)
+	// {
+	// 	pthread_mutex_lock(table()->status);
+	// 	if (moment > table()->ttd && !table()->philo[i].times_eaten)
+	// 		return (print_message(&table()->philo[i], DIE, moment));
+	// 	pthread_mutex_unlock(table()->status);
+	// }
+	// i = -1;
 	while (++i < table()->total)
 	{
 		pthread_mutex_lock(table()->status);
-		if (moment > table()->ttd && !table()->philo[i].times_eaten)
-			return (print_message(&table()->philo[i], DIE, moment));
+		last_ate = table()->philo[i].last_eaten;
 		pthread_mutex_unlock(table()->status);
-	}
-	i = -1;
-	while (++i < table()->total)
-	{
-		pthread_mutex_lock(table()->status);
-		if (moment <= table()->philo[i].last_eaten)
-		{
-			pthread_mutex_unlock(table()->status);
+		if (moment <= last_ate)
 			continue ;
-		}
-		diff = moment - table()->philo[i].last_eaten;
+		diff = moment - last_ate;
 		if (diff > (table()->ttd))
 			return (print_message(&table()->philo[i], DIE, moment));
-		pthread_mutex_unlock(table()->status);
 	}
 	return (0);
 }

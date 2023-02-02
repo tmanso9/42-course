@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:17:11 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/02 20:52:33 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/02 21:09:41 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,14 +97,14 @@ int	all_eaten(void)
 
 	i = 0;
 	full = 0;
-	pthread_mutex_lock(table()->status);
 	while (i < table()->total)
 	{
+		pthread_mutex_lock(table()->status);
 		if (table()->philo[i].times_eaten >= table()->min_times)
 			full++;
+		pthread_mutex_unlock(table()->status);
 		i++;
 	}
-	pthread_mutex_unlock(table()->status);
 	if (full == table()->total)
 		return (1);
 	return (0);
