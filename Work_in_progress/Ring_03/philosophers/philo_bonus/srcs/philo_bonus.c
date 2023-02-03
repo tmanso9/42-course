@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/03 11:30:49 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:05:32 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	*run(void *data)
 	t_philo		*philo;
 
 	philo = data;
-	if (philo->index % 2)
-		my_usleep(10);
+	if (philo->index % 2 == 0)
+		my_usleep(50);
 	while (!dead() && !full())
 	{
 		// if (!dead() && !full()() && !philo->thinked)
