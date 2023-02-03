@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:17:11 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/02 21:09:41 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/03 10:11:16 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 int	ft_isdigit(int c)
 {
@@ -59,6 +59,7 @@ int	print_message(t_philo *philo, int status, __uint64_t time)
 		printf("%llu %d is thinking\n", time, philo->index + 1);
 	if (status == DIE)
 	{
+		pthread_mutex_lock(table()->status);
 		table()->dead = 1;
 		pthread_mutex_unlock(table()->status);
 		printf("%llu %d has died\n", time, philo->index + 1);
@@ -77,6 +78,8 @@ void	free_all(t_table *table)
 			free(table->forks);
 		if (table->status)
 			free(table->status);
+		if (table->check_full)
+			free(table->check_full);
 	}
 }
 
@@ -97,17 +100,18 @@ int	all_eaten(void)
 
 	i = 0;
 	full = 0;
+	if (table()->unlimited)
+		return (0);
 	while (i < table()->total)
 	{
-		pthread_mutex_lock(table()->status);
-		if (table()->philo[i].times_eaten >= table()->min_times)
-			full++;
-		pthread_mutex_unlock(table()->status);
+		pthread_mutex_lock(table()->check_full);
+		full = table()->philo[i].full_belly;
+		pthread_mutex_unlock(table()->check_full);
+		if (!full)
+			return (0);
 		i++;
 	}
-	if (full == table()->total)
-		return (1);
-	return (0);
+	return (1);
 }
 
 int	print_usage(void)

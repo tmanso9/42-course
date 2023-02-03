@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/02 21:08:10 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/03 10:15:56 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 t_table	*table(void)
 {
@@ -32,6 +32,12 @@ void	*run(void *data)
 		{
 			philo->thinked = 1;
 			print_message(philo, THINK, get_time());
+		}
+		if (table()->total == 1)
+		{
+			print_message(philo, FORK, get_time());
+			my_usleep(table()->ttd);
+			return (NULL);
 		}
 		if (!pickup_forks(philo))
 			return (NULL);
@@ -62,9 +68,9 @@ int	check_starvation(void)
 	// i = -1;
 	while (++i < table()->total)
 	{
-		pthread_mutex_lock(table()->status);
+		pthread_mutex_lock(&table()->philo[i].eating);
 		last_ate = table()->philo[i].last_eaten;
-		pthread_mutex_unlock(table()->status);
+		pthread_mutex_unlock(&table()->philo[i].eating);
 		if (moment <= last_ate)
 			continue ;
 		diff = moment - last_ate;
@@ -115,10 +121,16 @@ int	main(int argc, char**argv)
 				break ;
 			}
 		}
-		i = 0;
-		while (i++ < table()->total)
-			pthread_mutex_destroy(&table()->forks[i]);
+		// pthread_mutex_unlock(table()->status);
 		pthread_mutex_destroy(table()->status);
+		printf("here\n");
+		pthread_mutex_destroy(table()->check_full);
+		i = -1;
+		while (++i < table()->total)
+		{
+			pthread_mutex_destroy(&table()->forks[i]);
+			pthread_mutex_destroy(&table()->philo[i].eating);
+		}
 		free_all(table());
 		return (EXIT_SUCCESS);
 	}

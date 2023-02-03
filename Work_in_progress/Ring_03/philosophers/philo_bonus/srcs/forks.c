@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:49:10 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/30 09:49:25 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/03 09:58:23 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 void	do_sleep(t_philo *philo)
 {
@@ -30,10 +30,17 @@ void	eat(t_philo *philo)
 	ms = get_time();
 	if (!dead() && !all_eaten())
 	{
-		pthread_mutex_lock(table()->status);
+		pthread_mutex_lock(&philo->eating);
 		philo->last_eaten = ms;
+		pthread_mutex_unlock(&philo->eating);
 		philo->times_eaten++;
-		pthread_mutex_unlock(table()->status);
+		if (!table()->unlimited && philo->times_eaten == table()->min_times && \
+			!philo->full_belly)
+		{
+			pthread_mutex_lock(table()->check_full);
+			philo->full_belly = 1;
+			pthread_mutex_unlock(table()->check_full);
+		}
 		print_message(philo, EAT, ms);
 	}
 	if (!dead() && !all_eaten())

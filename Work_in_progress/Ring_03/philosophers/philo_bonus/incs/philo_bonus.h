@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:05:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/02 20:51:46 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/03 09:54:42 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef PHILO_BONUS_H
+# define PHILO_BONUS_H
 
 # include <string.h>
 # include <stdio.h>
@@ -40,10 +40,12 @@ typedef struct s_philo
 	int				first_index;
 	pthread_mutex_t	*second_fork;
 	int				second_index;
+	pthread_mutex_t	eating;
 	int				index;
 	__uint64_t		last_eaten;
 	int				times_eaten;
 	int				thinked;
+	int				full_belly;
 }	t_philo;
 
 typedef struct s_table
@@ -52,10 +54,12 @@ typedef struct s_table
 	int				total;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*status;
+	pthread_mutex_t	*check_full;
 	__uint64_t		ttd;
 	__uint64_t		tte;
 	__uint64_t		tts;
 	int				min_times;
+	int				unlimited;
 	__uint64_t		start_time;
 	int				dead;
 }	t_table;
