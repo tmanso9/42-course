@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 20:17:56 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/03 16:10:39 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/03 09:39:38 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 void	ft_bzero(void *s, size_t n)
 {

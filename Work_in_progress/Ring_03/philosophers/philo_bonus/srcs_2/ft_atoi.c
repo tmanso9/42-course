@@ -6,11 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 19:28:38 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/03 17:13:38 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/03 09:39:35 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 static int	is_space(char c)
 {

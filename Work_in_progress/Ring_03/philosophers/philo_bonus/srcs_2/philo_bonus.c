@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/03 16:01:59 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/03 15:42:30 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,14 @@ int	check_starvation(void)
 
 	i = -1;
 	moment = get_time();
+	// while (++i < table()->total)
+	// {
+	// 	pthread_mutex_lock(table()->status);
+	// 	if (moment > table()->ttd && !table()->philo[i].times_eaten)
+	// 		return (print_message(&table()->philo[i], DIE, moment));
+	// 	pthread_mutex_unlock(table()->status);
+	// }
+	// i = -1;
 	while (++i < table()->total)
 	{
 		pthread_mutex_lock(&table()->philo[i].eating);
