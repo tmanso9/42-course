@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/03 17:16:19 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/03 19:13:57 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	end_check(void)
 
 int	main(int argc, char**argv)
 {
-	if (argc > 1 && argc < 7)
+	if (argc == 5 || argc == 6)
 	{
 		if (parse_args(argv, table()) == EXIT_FAILURE)
 		{
