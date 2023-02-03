@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/03 10:24:39 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/03 11:30:49 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,20 @@ void	*run(void *data)
 	t_philo		*philo;
 
 	philo = data;
-	while (!dead())
+	if (philo->index % 2)
+		my_usleep(10);
+	while (!dead() && !full())
 	{
-		if (all_eaten())
-			return (NULL);
-		if (!dead() && !all_eaten() && !philo->thinked)
-		{
-			philo->thinked = 1;
-			print_message(philo, THINK, get_time());
-		}
-		if (table()->total == 1)
-		{
-			print_message(philo, FORK, get_time());
-			my_usleep(table()->ttd);
-			return (NULL);
-		}
+		// if (!dead() && !full()() && !philo->thinked)
+		// {
+		// 	philo->thinked = 1;
+		// 	print_message(philo, THINK, get_time());
+		// }
 		if (!pickup_forks(philo))
 			return (NULL);
 		eat(philo);
 		do_sleep(philo);
-		if (!dead() && !all_eaten())
+		if (!dead() && !full())
 			print_message(philo, THINK, get_time());
 	}
 	return (NULL);
@@ -74,8 +68,13 @@ int	check_starvation(void)
 		if (moment <= last_ate)
 			continue ;
 		diff = moment - last_ate;
-		if (diff > (table()->ttd))
+		if (diff >= (table()->ttd))
+		{
+			pthread_mutex_lock(table()->status);
+			table()->dead = 1;
+			pthread_mutex_unlock(table()->status);
 			return (print_message(&table()->philo[i], DIE, moment));
+		}
 	}
 	return (0);
 }
@@ -99,9 +98,6 @@ int	main(int argc, char**argv)
 		i = 0;
 		while (i < table()->total)
 		{
-			give_forks(i);
-			table()->philo[i].index = i;
-			table()->philo[i].last_eaten = 0;
 			if (pthread_create(&(table()->philo[i].philo), NULL, run, \
 				&table()->philo[i]))
 				return (EXIT_FAILURE);
@@ -121,15 +117,15 @@ int	main(int argc, char**argv)
 				break ;
 			}
 		}
-		// pthread_mutex_unlock(table()->status);
-		pthread_mutex_destroy(table()->status);
-		pthread_mutex_destroy(table()->check_full);
+		// pthread_mutex_destroy(table()->check_full);
 		i = -1;
 		while (++i < table()->total)
 		{
 			pthread_mutex_destroy(&table()->forks[i]);
 			pthread_mutex_destroy(&table()->philo[i].eating);
+			pthread_mutex_destroy(&table()->philo[i].check_full);
 		}
+		pthread_mutex_destroy(table()->status);
 		free_all(table());
 		return (EXIT_SUCCESS);
 	}

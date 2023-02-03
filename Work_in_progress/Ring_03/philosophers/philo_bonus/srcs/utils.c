@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:17:11 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/03 10:24:00 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/03 11:31:34 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,16 @@ __uint64_t	get_time(void)
 int	print_message(t_philo *philo, int status, __uint64_t time)
 {
 	if (status == FORK)
-		printf("%lu %d has taken a fork\n", time, philo->index + 1);
+		printf("%llu %d has taken a fork\n", time, philo->index + 1);
 	if (status == EAT)
-		printf("%lu %d is eating\n", time, philo->index + 1);
+		printf("%llu %d is eating\n", time, philo->index + 1);
 	if (status == SLEEP)
-		printf("%lu %d is sleeping\n", time, philo->index + 1);
+		printf("%llu %d is sleeping\n", time, philo->index + 1);
 	if (status == THINK)
-		printf("%lu %d is thinking\n", time, philo->index + 1);
+		printf("%llu %d is thinking\n", time, philo->index + 1);
 	if (status == DIE)
 	{
-		pthread_mutex_lock(table()->status);
-		table()->dead = 1;
-		pthread_mutex_unlock(table()->status);
-		printf("%lu %d has died\n", time, philo->index + 1);
+		printf("%llu %d died\n", time, philo->index + 1);
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
@@ -78,8 +75,6 @@ void	free_all(t_table *table)
 			free(table->forks);
 		// if (table->status)
 		// 	free(table->status);
-		// if (table->check_full)
-		// 	free(table->check_full);
 	}
 }
 
@@ -87,8 +82,20 @@ int	dead(void)
 {
 	int	status;
 
+	status = 0;
 	pthread_mutex_lock(table()->status);
 	status = table()->dead;
+	pthread_mutex_unlock(table()->status);
+	return (status);
+}
+
+int	full(void)
+{
+	int	status;
+
+	status = 0;
+	pthread_mutex_lock(table()->status);
+	status = table()->all_full;
 	pthread_mutex_unlock(table()->status);
 	return (status);
 }
@@ -104,13 +111,16 @@ int	all_eaten(void)
 		return (0);
 	while (i < table()->total)
 	{
-		pthread_mutex_lock(table()->check_full);
+		pthread_mutex_lock(&table()->philo[i].check_full);
 		full = table()->philo[i].full_belly;
-		pthread_mutex_unlock(table()->check_full);
+		pthread_mutex_unlock(&table()->philo[i].check_full);
 		if (!full)
 			return (0);
 		i++;
 	}
+	pthread_mutex_lock(table()->status);
+	table()->all_full = 1;
+	pthread_mutex_unlock(table()->status);
 	return (1);
 }
 

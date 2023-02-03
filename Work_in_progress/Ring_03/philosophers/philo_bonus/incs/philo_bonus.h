@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:05:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/03 09:54:42 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/03 11:20:57 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_philo
 	pthread_mutex_t	*second_fork;
 	int				second_index;
 	pthread_mutex_t	eating;
+	pthread_mutex_t	check_full;
 	int				index;
 	__uint64_t		last_eaten;
 	int				times_eaten;
@@ -54,7 +55,6 @@ typedef struct s_table
 	int				total;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*status;
-	pthread_mutex_t	*check_full;
 	__uint64_t		ttd;
 	__uint64_t		tte;
 	__uint64_t		tts;
@@ -62,6 +62,7 @@ typedef struct s_table
 	int				unlimited;
 	__uint64_t		start_time;
 	int				dead;
+	int				all_full;
 }	t_table;
 
 typedef struct timeval	t_time;
@@ -78,6 +79,7 @@ void		eat(t_philo *philo);
 void		do_sleep(t_philo *philo);
 int			dead(void);
 int			all_eaten(void);
+int			full(void);
 int			print_message(t_philo *philo, int status, __uint64_t time);
 int			print_usage(void);
 void		free_all(t_table *table);
