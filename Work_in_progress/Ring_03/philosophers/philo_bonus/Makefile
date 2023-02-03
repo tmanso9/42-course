@@ -6,19 +6,19 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/02/03 10:16:02 by touteiro         ###   ########.fr        #
+#    Updated: 2023/02/03 10:37:46 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo_bonus
 CC = cc
-CFLAGS = -g -pthread -Wall -Wextra -Werror -I incs
+CFLAGS = -Wall -Wextra -Werror -g -pthread -I incs -O3
 # CFLAGS += -fsanitize=address
 # CFLAGS += -fsanitize=thread
 SRC = philo_bonus.c ft_atoi.c utils.c parse_args.c ft_calloc.c forks.c
 OBJ = $(addprefix srcs/, $(SRC:.c=.o))
 
-%.o: %.c incs/philo.h
+%.o: %.c incs/philo_bonus.h
 	$(CC) -c $(CFLAGS) -o $@ $< 
 	@echo "\033[33m[OK]	" $@ "\033[0m"
 
@@ -41,6 +41,6 @@ fclean: clean
 
 re: fclean all
 
-.SILENT: $(OBJ) $(B_OBJ) fclean
+.SILENT: 
 
 .PHONY: all re clean fclean

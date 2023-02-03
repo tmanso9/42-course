@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/03 10:15:56 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/03 10:24:39 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,6 @@ int	main(int argc, char**argv)
 		}
 		// pthread_mutex_unlock(table()->status);
 		pthread_mutex_destroy(table()->status);
-		printf("here\n");
 		pthread_mutex_destroy(table()->check_full);
 		i = -1;
 		while (++i < table()->total)
