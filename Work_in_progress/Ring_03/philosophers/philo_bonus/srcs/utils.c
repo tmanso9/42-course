@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:17:11 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/03 11:31:34 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/03 11:35:12 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,16 @@ __uint64_t	get_time(void)
 int	print_message(t_philo *philo, int status, __uint64_t time)
 {
 	if (status == FORK)
-		printf("%llu %d has taken a fork\n", time, philo->index + 1);
+		printf("%lu %d has taken a fork\n", time, philo->index + 1);
 	if (status == EAT)
-		printf("%llu %d is eating\n", time, philo->index + 1);
+		printf("%lu %d is eating\n", time, philo->index + 1);
 	if (status == SLEEP)
-		printf("%llu %d is sleeping\n", time, philo->index + 1);
+		printf("%lu %d is sleeping\n", time, philo->index + 1);
 	if (status == THINK)
-		printf("%llu %d is thinking\n", time, philo->index + 1);
+		printf("%lu %d is thinking\n", time, philo->index + 1);
 	if (status == DIE)
 	{
-		printf("%llu %d died\n", time, philo->index + 1);
+		printf("%lu %d died\n", time, philo->index + 1);
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
@@ -73,8 +73,8 @@ void	free_all(t_table *table)
 			free(table->philo);
 		if (table->forks)
 			free(table->forks);
-		// if (table->status)
-		// 	free(table->status);
+		if (table->status)
+			free(table->status);
 	}
 }
 

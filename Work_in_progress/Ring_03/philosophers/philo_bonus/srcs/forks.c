@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:49:10 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/03 11:21:36 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/03 11:36:42 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,18 @@ int	pickup_forks(t_philo *philo)
 
 void	give_forks(int i)
 {
-	// if (i % 2 == 0)
-	// {
+	if (i % 2 == 0)
+	{
 		table()->philo[i].first_fork = &table()->forks[i % table()->total];
 		if (table()->total > 1)
 			table()->philo[i].second_fork = \
 				&table()->forks[(i + 1) % table()->total];
-	// }
-	// else
-	// {
-	// 	table()->philo[i].first_fork = \
-	// 		&table()->forks[(i + 1) % table()->total];
-	// 	if (table()->total > 1)
-	// 		table()->philo[i].second_fork = &table()->forks[i % table()->total];
-	// }
+	}
+	else
+	{
+		table()->philo[i].first_fork = \
+			&table()->forks[(i + 1) % table()->total];
+		if (table()->total > 1)
+			table()->philo[i].second_fork = &table()->forks[i % table()->total];
+	}
 }
