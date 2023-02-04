@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:17:11 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/03 17:15:15 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/04 15:44:31 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_table	*table(void)
 	return (&t);
 }
 
-int	print_message(t_philo *philo, int status, __uint64_t time)
+void	msg_out(__uint64_t time, t_philo *philo, int status)
 {
 	if (status == FORK)
 		printf("%lu %d has taken a fork\n", time, philo->index + 1);
@@ -30,8 +30,22 @@ int	print_message(t_philo *philo, int status, __uint64_t time)
 	if (status == THINK)
 		printf("%lu %d is thinking\n", time, philo->index + 1);
 	if (status == DIE)
-	{
 		printf("%lu %d died\n", time, philo->index + 1);
+}
+
+int	print_message(t_philo *philo, int status, __uint64_t time)
+{
+	if (status != DIE)
+	{
+		pthread_mutex_lock(&table()->printing);
+		msg_out(time, philo, status);
+		pthread_mutex_unlock(&table()->printing);
+	}
+	else
+	{
+		pthread_mutex_lock(&table()->printing);
+		msg_out(time, philo, status);
+		pthread_mutex_unlock(&table()->printing);
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
@@ -70,4 +84,5 @@ void	mutexes_destroy(void)
 		pthread_mutex_destroy(&table()->philo[i].check_full);
 	}
 	pthread_mutex_destroy(table()->status);
+	pthread_mutex_destroy(&table()->printing);
 }

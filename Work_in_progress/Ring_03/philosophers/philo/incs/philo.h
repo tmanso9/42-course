@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:05:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/03 17:23:18 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/04 15:33:55 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_table
 	__uint64_t		start_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*status;
+	pthread_mutex_t	printing;
 	__uint64_t		ttd;
 	__uint64_t		tte;
 	__uint64_t		tts;

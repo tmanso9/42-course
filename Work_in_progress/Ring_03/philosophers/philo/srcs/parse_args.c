@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:26:59 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/03 19:15:37 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/04 15:34:44 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	start_table(t_table *table, char **argv)
 	table->ttd = ft_atoi(argv[2]);
 	table->tte = ft_atoi(argv[3]);
 	table->tts = ft_atoi(argv[4]);
-;	if (argv[5])
+	if (argv[5])
 	{
 		table->min_times = ft_atoi(argv[5]);
 		table->unlimited = 0;
@@ -31,6 +31,8 @@ int	start_table(t_table *table, char **argv)
 	if (!table->philo || !table->forks || !table->status)
 		return (EXIT_FAILURE);
 	if (pthread_mutex_init(table->status, NULL))
+		return (EXIT_FAILURE);
+	if (pthread_mutex_init(&table->printing, NULL))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
