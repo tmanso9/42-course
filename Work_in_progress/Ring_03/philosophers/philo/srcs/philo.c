@@ -6,11 +6,18 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/03 19:13:57 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/04 16:14:08 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+t_table	*table(void)
+{
+	static t_table	t;
+
+	return (&t);
+}
 
 static int	start_threads(void)
 {

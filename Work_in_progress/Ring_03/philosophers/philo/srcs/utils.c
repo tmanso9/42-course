@@ -6,20 +6,13 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:17:11 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/04 15:44:31 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/04 16:17:00 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_table	*table(void)
-{
-	static t_table	t;
-
-	return (&t);
-}
-
-void	msg_out(__uint64_t time, t_philo *philo, int status)
+static void	msg_out(__uint64_t time, t_philo *philo, int status)
 {
 	if (status == FORK)
 		printf("%lu %d has taken a fork\n", time, philo->index + 1);

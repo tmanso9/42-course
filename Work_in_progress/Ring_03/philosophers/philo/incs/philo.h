@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:05:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/04 15:33:55 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/04 16:16:33 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
 # define SLEEP	2
 # define THINK	3
 # define DIE	4
-# define NONE	5
 
 typedef struct s_philo
 {

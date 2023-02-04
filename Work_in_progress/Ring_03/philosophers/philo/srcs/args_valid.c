@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:57:04 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/03 19:24:51 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/04 16:16:03 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ static int	check_numeric(char **argv)
 					write(2, "\nInvalid time argument\n", 23);
 				else
 					write(2, "\nInvalid number of times to eat\n", 32);
-				print_usage();
-				return (0);
+				return (print_usage());
 			}
 		}
 	}
