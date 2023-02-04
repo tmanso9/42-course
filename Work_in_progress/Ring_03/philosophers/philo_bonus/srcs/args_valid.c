@@ -6,17 +6,30 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:57:04 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/03 16:00:15 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/04 16:28:24 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-static int	numeric(char c)
+int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+		return (2048);
+	else
+		return (0);
+}
+
+static int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+		i++;
+	return (i);
 }
 
 static int	check_numeric(char **argv)
@@ -32,7 +45,7 @@ static int	check_numeric(char **argv)
 			j++;
 		while (argv[i][j])
 		{
-			if (!numeric(argv[i][j++]))
+			if (!ft_isdigit(argv[i][j++]))
 			{
 				if (i == 1)
 					write(2, "\nInvalid number of philosophers\n", 32);
@@ -40,34 +53,21 @@ static int	check_numeric(char **argv)
 					write(2, "\nInvalid time argument\n", 23);
 				else
 					write(2, "\nInvalid number of times to eat\n", 32);
-				print_usage();
-				return (0);
+				return (print_usage());
 			}
 		}
 	}
 	return (1);
 }
 
-static int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-		i++;
-	return (i);
-}
-
-int	check_range(char **argv)
+static int	check_range(char **argv)
 {
 	int	i;
 
 	i = 1;
 	while (argv[i])
 	{
-		if (i == 1 && ft_strlen(argv[i]) > 3)
+		if (i == 1 && ft_strlen(argv[i] + (argv[i][0] == '-')) > 3)
 			if (write(2, "\nNumber of philosophers too high\n", 33))
 				return (print_usage());
 		if ((argv[i][0] != '-' && ft_strlen(argv[i]) > 10) || \
@@ -84,6 +84,18 @@ int	check_range(char **argv)
 
 int	args_valid(char **argv)
 {
+	int	i;
+
+	i = 0;
+	while (argv[++i])
+	{
+		if (!ft_strlen(argv[i]))
+		{
+			write(2, "\nEmpty argument\n", 16);
+			print_usage();
+			return (EXIT_FAILURE);
+		}
+	}
 	if (!check_numeric(argv) || !check_range(argv))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);

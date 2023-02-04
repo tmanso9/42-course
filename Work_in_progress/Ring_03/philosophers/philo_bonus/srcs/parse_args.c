@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:26:59 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/03 15:58:27 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/04 16:28:31 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	start_table(t_table *table, char **argv)
 	{
 		table->min_times = ft_atoi(argv[5]);
 		table->unlimited = 0;
+		if (!table->min_times)
+			return (EXIT_FAILURE);
 	}
 	else
 		table->unlimited = 1;
@@ -31,6 +33,8 @@ int	start_table(t_table *table, char **argv)
 	if (!table->philo || !table->forks || !table->status)
 		return (EXIT_FAILURE);
 	if (pthread_mutex_init(table->status, NULL))
+		return (EXIT_FAILURE);
+	if (pthread_mutex_init(&table->printing, NULL))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
@@ -43,7 +47,6 @@ int	start_philos(t_table *table)
 	while (i < table->total)
 	{
 		table->philo[i].times_eaten = 0;
-		table->philo[i].thinked = 0;
 		if (pthread_mutex_init(&table->forks[i], NULL) != 0)
 			return (EXIT_FAILURE);
 		if (pthread_mutex_init(&table->philo[i].eating, NULL) != 0)
