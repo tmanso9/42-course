@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/05 15:32:25 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/05 16:05:13 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@
 
 // 	return (&t);
 // }
+
+void	*check_life(void *data)
+{
+	t_philo	*philo;
+
+	philo = data;
+	return (NULL);
+}
 
 static int	start_processes(t_table table)
 {
@@ -40,7 +48,7 @@ static int	start_processes(t_table table)
 		{
 			while (1)
 			{
-				pthread_create();
+				pthread_create(table.philo[i].check_life, NULL, check_life, &table.philo[i]);
 				sem_wait(table.forks);
 				printf("%lu %d has taken a fork\n", get_time(table), i + 1);
 				sem_wait(table.forks);
