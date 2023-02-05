@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:26:59 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/05 12:18:44 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/05 13:23:20 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int	start_table(t_table *table, char **argv)
 	// table->forks = ft_calloc(sizeof(sem_t *), 1);
 	// if (!table->forks)
 		// return (EXIT_FAILURE);
-	table->forks = sem_open("/forks", O_CREAT, 0666, table->total / 2);
+	sem_unlink("/forks");
+	table->forks = sem_open("/forks", O_CREAT, 0666, table->total);
 	if (table->forks == SEM_FAILED)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);

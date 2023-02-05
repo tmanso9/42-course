@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:05:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/05 12:00:57 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/05 13:13:22 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int			dead(void);
 int			all_eaten(void);
 int			full(void);
 //Time utils
-__uint64_t	get_time(void);
+__uint64_t	get_time(t_table table);
 void		my_usleep(int milisec);
 //Utils
 int			ft_atoi(const char *str);
