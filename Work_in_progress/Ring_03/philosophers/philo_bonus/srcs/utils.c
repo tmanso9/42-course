@@ -6,13 +6,13 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:17:11 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/04 16:28:51 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/05 10:56:28 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-static void	msg_out(__uint64_t time, t_philo *philo, int status)
+/* static void	msg_out(__uint64_t time, t_philo *philo, int status)
 {
 	if (status == FORK)
 		printf("%llu %d has taken a fork\n", time, philo->index + 1);
@@ -42,7 +42,7 @@ int	print_message(t_philo *philo, int status, __uint64_t time)
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
-}
+} */
 
 int	print_usage(void)
 {
@@ -58,14 +58,12 @@ void	free_all(t_table *table)
 	{
 		if (table->philo)
 			free(table->philo);
-		if (table->forks)
-			free(table->forks);
-		if (table->status)
-			free(table->status);
+		// if (table->forks)
+			// free(table->forks);
 	}
 }
 
-void	mutexes_destroy(void)
+/* void	mutexes_destroy(void)
 {
 	int	i;
 
@@ -78,4 +76,4 @@ void	mutexes_destroy(void)
 	}
 	pthread_mutex_destroy(table()->status);
 	pthread_mutex_destroy(&table()->printing);
-}
+} */

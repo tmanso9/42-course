@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:26:59 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/04 16:28:31 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/05 12:18:44 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	start_table(t_table *table, char **argv)
 	table->ttd = ft_atoi(argv[2]);
 	table->tte = ft_atoi(argv[3]);
 	table->tts = ft_atoi(argv[4]);
+	table->i = 1;
 	if (argv[5])
 	{
 		table->min_times = ft_atoi(argv[5]);
@@ -28,13 +29,13 @@ int	start_table(t_table *table, char **argv)
 	else
 		table->unlimited = 1;
 	table->philo = ft_calloc(sizeof(t_philo), table->total);
-	table->forks = ft_calloc(sizeof(pthread_mutex_t), table->total);
-	table->status = ft_calloc(sizeof(pthread_mutex_t), 1);
-	if (!table->philo || !table->forks || !table->status)
+	if (!table->philo)
 		return (EXIT_FAILURE);
-	if (pthread_mutex_init(table->status, NULL))
-		return (EXIT_FAILURE);
-	if (pthread_mutex_init(&table->printing, NULL))
+	// table->forks = ft_calloc(sizeof(sem_t *), 1);
+	// if (!table->forks)
+		// return (EXIT_FAILURE);
+	table->forks = sem_open("/forks", O_CREAT, 0666, table->total / 2);
+	if (table->forks == SEM_FAILED)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
@@ -47,14 +48,6 @@ int	start_philos(t_table *table)
 	while (i < table->total)
 	{
 		table->philo[i].times_eaten = 0;
-		if (pthread_mutex_init(&table->forks[i], NULL) != 0)
-			return (EXIT_FAILURE);
-		if (pthread_mutex_init(&table->philo[i].eating, NULL) != 0)
-			return (EXIT_FAILURE);
-		if (pthread_mutex_init(&table->philo[i].check_full, NULL) != 0)
-			return (EXIT_FAILURE);
-		give_forks(i);
-		table->philo[i].index = i;
 		table->philo[i].last_eaten = 0;
 		i++;
 	}

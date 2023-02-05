@@ -6,15 +6,24 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:55:56 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/04 16:28:37 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/05 12:00:42 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-void	*run(void *data)
+int	run(int i)
 {
-	t_philo		*philo;
+	sem_wait(table()->forks);
+	printf("%d picked up a fork\n", i + 1);
+	sem_wait(table()->forks);
+	printf("%d picked up a fork\n", i + 1);
+	printf("%llu %d is eating\n", get_time(), i + 1);
+	my_usleep(table()->tte);
+	sem_post(table()->forks);
+	sem_post(table()->forks);
+	return (1);
+	/* t_philo		*philo;
 
 	philo = data;
 	while (!dead() && !full())
@@ -28,10 +37,10 @@ void	*run(void *data)
 		if (!dead() && !full())
 			print_message(philo, THINK, get_time());
 	}
-	return (NULL);
+	return (NULL); */
 }
 
-int	all_eaten(void)
+/* int	all_eaten(void)
 {
 	int	i;
 	int	full;
@@ -103,4 +112,4 @@ int	full(void)
 	status = table()->all_full;
 	pthread_mutex_unlock(table()->status);
 	return (status);
-}
+} */

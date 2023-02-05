@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:05:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/04 16:27:14 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/05 12:00:57 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <sys/stat.h>
 # include <semaphore.h>
 # include <sys/wait.h>
+# include <semaphore.h>
 
 # define FORK	0
 # define EAT	1
@@ -34,25 +35,18 @@
 
 typedef struct s_philo
 {
-	pthread_t		philo;
-	int				index;
-	pthread_mutex_t	*first_fork;
-	pthread_mutex_t	*second_fork;
+	int				pid;
 	__uint64_t		last_eaten;
 	int				times_eaten;
 	int				full_belly;
-	pthread_mutex_t	eating;
-	pthread_mutex_t	check_full;
 }	t_philo;
 
 typedef struct s_table
 {
 	t_philo			*philo;
+	sem_t			*forks;
 	int				total;
 	__uint64_t		start_time;
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	*status;
-	pthread_mutex_t	printing;
 	__uint64_t		ttd;
 	__uint64_t		tte;
 	__uint64_t		tts;
@@ -60,6 +54,7 @@ typedef struct s_table
 	int				unlimited;
 	int				dead;
 	int				all_full;
+	int				i;
 }	t_table;
 
 typedef struct timeval	t_time;
@@ -69,7 +64,7 @@ int			parse_args(char **argv, t_table *table);
 int			args_valid(char **argv);
 //Run threads
 void		give_forks(int i);
-void		*run(void *data);
+int			run(int i);
 int			pickup_forks(t_philo *philo);
 void		eat(t_philo *philo);
 void		do_sleep(t_philo *philo);
