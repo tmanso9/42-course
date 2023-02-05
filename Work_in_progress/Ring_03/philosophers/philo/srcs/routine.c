@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:55:56 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/04 16:12:31 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/05 10:34:14 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*run(void *data)
 	while (!dead() && !full())
 	{
 		if (philo->index % 2 == 0)
-			usleep(100);
+			usleep(200);
 		if (!pickup_forks(philo))
 			return (NULL);
 		eat(philo);
