@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/05 13:33:02 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/05 15:32:25 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static int	start_processes(t_table table)
 		{
 			while (1)
 			{
+				pthread_create();
 				sem_wait(table.forks);
 				printf("%lu %d has taken a fork\n", get_time(table), i + 1);
 				sem_wait(table.forks);
