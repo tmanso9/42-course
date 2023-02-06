@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:05:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/06 15:57:28 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/06 19:26:33 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@
 # include <sys/wait.h>
 # include <semaphore.h>
 
-# define FORK	0
-# define EAT	1
-# define SLEEP	2
-# define THINK	3
-# define DIE	4
+# define FORK	"has taken a fork"
+# define EAT	"is eating"
+# define SLEEP	"is sleeping"
+# define THINK	"is thinking"
+# define DIE	"died"
 
 typedef struct s_vars
 {
@@ -49,21 +49,26 @@ typedef struct s_philo
 	int				full_belly;
 	pthread_t		check_life;
 	__uint64_t		start_time;
+	sem_t			*died;
+	sem_t			*alive;
 	t_vars			vars;
 }	t_philo;
 
 typedef struct s_table
 {
 	t_philo			*philo;
+	pthread_t		all_full;
+	pthread_t		dead;
 	sem_t			*forks;
+	sem_t			*full;
+	sem_t			*died;
+	sem_t			*alive;
 	__uint64_t		ttd;
 	__uint64_t		tte;
 	__uint64_t		tts;
 	int				total;
 	int				min_times;
 	int				unlimited;
-	int				dead;
-	int				all_full;
 	int				i;
 	pid_t			*pid;
 }	t_table;

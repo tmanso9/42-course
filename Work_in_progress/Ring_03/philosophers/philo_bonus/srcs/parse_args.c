@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:26:59 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/06 15:50:18 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/06 19:26:01 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,15 @@ int	start_table(t_table *table, char **argv)
 	table->philo = ft_calloc(sizeof(t_philo), table->total);
 	if (!table->philo)
 		return (EXIT_FAILURE);
-	// table->forks = ft_calloc(sizeof(sem_t *), 1);
-	// if (!table->forks)
-		// return (EXIT_FAILURE);
 	sem_unlink("/forks");
 	table->forks = sem_open("/forks", O_CREAT, 0666, table->total);
-	if (table->forks == SEM_FAILED)
+	sem_unlink("/full");
+	table->full = sem_open("/full", O_CREAT, 0666, 0);
+	sem_unlink("/dead");
+	table->died = sem_open("/dead", O_CREAT, 0666, 0);
+	sem_unlink("/alive");
+	table->alive = sem_open("/alive", O_CREAT, 0666, 1);
+	if (table->forks == SEM_FAILED || table->full == SEM_FAILED)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
