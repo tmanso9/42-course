@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:26:59 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/05 13:23:20 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:50:18 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	start_philos(t_table *table)
 	while (i < table->total)
 	{
 		table->philo[i].times_eaten = 0;
-		table->philo[i].last_eaten = 0;
+		table->philo[i].last_ate = 0;
 		i++;
 	}
 	return (EXIT_SUCCESS);

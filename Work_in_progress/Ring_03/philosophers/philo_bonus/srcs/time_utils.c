@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:43 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/05 13:13:41 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:40:37 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ void	my_usleep(int milisec)
 	}
 }
 
-__uint64_t	get_time(t_table table)
+__uint64_t	get_time(void)
 {
 	struct timeval	curr;
 	__uint64_t		ms;
 
 	gettimeofday(&curr, NULL);
 	ms = (curr.tv_sec * (__uint64_t)1000) + (curr.tv_usec / (__uint64_t)1000);
-	return (ms - table.start_time);
+	return (ms);
 }
