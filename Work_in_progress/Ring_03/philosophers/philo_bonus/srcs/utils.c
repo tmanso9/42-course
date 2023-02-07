@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:17:11 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/05 10:56:28 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/07 16:09:23 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	free_all(t_table *table)
 {
 	if (table)
 	{
-		if (table->philo)
-			free(table->philo);
+		// if (table->philo)
+			// free(table->philo);
 		// if (table->forks)
 			// free(table->forks);
 	}

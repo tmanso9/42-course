@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:26:59 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/06 19:26:01 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/07 16:09:54 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@ int	start_table(t_table *table, char **argv)
 	}
 	else
 		table->unlimited = 1;
-	table->philo = ft_calloc(sizeof(t_philo), table->total);
-	if (!table->philo)
-		return (EXIT_FAILURE);
 	sem_unlink("/forks");
 	table->forks = sem_open("/forks", O_CREAT, 0666, table->total);
 	sem_unlink("/full");
@@ -46,15 +43,8 @@ int	start_table(t_table *table, char **argv)
 
 int	start_philos(t_table *table)
 {
-	int	i;
-
-	i = 0;
-	while (i < table->total)
-	{
-		table->philo[i].times_eaten = 0;
-		table->philo[i].last_ate = 0;
-		i++;
-	}
+	table->philo.times_eaten = 0;
+	table->philo.last_ate = 0;
 	return (EXIT_SUCCESS);
 }
 

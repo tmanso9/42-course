@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/06 19:27:10 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/07 16:53:52 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	*check_life(void *data)
 	philo = data;
 	while (!dead(philo))
 		;
+	// if (pthread_join(philo->check_life, NULL))
+	// 	return (NULL);
 	exit(philo->pid);
 	return (NULL);
 }
@@ -67,6 +69,7 @@ void	*check_belly(void *data)
 		kill(table->pid[i], SIGKILL);
 		i++;
 	}
+	printf("here\n");
 	return (NULL);
 }
 
@@ -100,47 +103,47 @@ static int	start_processes(t_table *table)
 	i = 0;
 	while(i < table->total)
 	{
-		table->philo[i].start_time = start;
-		table->philo[i].vars.tte = table->tte;
-		table->philo[i].vars.tts = table->tts;
-		table->philo[i].vars.ttd = table->ttd;
+		table->philo.start_time = start;
+		table->philo.vars.tte = table->tte;
+		table->philo.vars.tts = table->tts;
+		table->philo.vars.ttd = table->ttd;
 		i++;
 	}
 	i = 0;
 	while (i < table->total)
 	{
 		table->pid[i] = fork();
-		table->philo[i].pid = table->pid[i];
+		table->philo.pid = table->pid[i];
 		if (table->pid[i] < 0)
 			return (EXIT_FAILURE);
 		if (table->pid[i] == 0)
 		{
-			table->philo[i].i = i;
-			table->philo[i].died = table->died;
-			table->philo[i].alive = table->alive;
-			if (pthread_create(&table->philo[i].check_life, NULL, check_life, &table->philo[i]))
+			table->philo.i = i;
+			table->philo.died = table->died;
+			table->philo.alive = table->alive;
+			if (pthread_create(&table->philo.check_life, NULL, check_life, &table->philo))
 				return (EXIT_FAILURE);
 			while (1)
 			{
 				if (i % 2 == 0)
 					usleep(200);
 				sem_wait(table->forks);
-				printf("%lu %d %s\n", get_time() - table->philo[i].start_time, i + 1, FORK);
+				printf("%lu %d %s\n", get_time() - table->philo.start_time, i + 1, FORK);
 				sem_wait(table->forks);
-				printf("%lu %d has taken a fork\n", get_time() - table->philo[i].start_time, i + 1);
-				printf("%lu %d is eating\n", get_time() - table->philo[i].start_time, i + 1);
-				table->philo[i].last_ate = get_time() - table->philo[i].start_time;
-				table->philo[i].times_eaten++;
-				if (!table->unlimited && table->philo[i].times_eaten == table->min_times)
+				printf("%lu %d has taken a fork\n", get_time() - table->philo.start_time, i + 1);
+				printf("%lu %d is eating\n", get_time() - table->philo.start_time, i + 1);
+				table->philo.last_ate = get_time() - table->philo.start_time;
+				table->philo.times_eaten++;
+				if (!table->unlimited && table->philo.times_eaten == table->min_times)
 					sem_post(table->full);
 				my_usleep(table->tte);
 				sem_post(table->forks);
 				sem_post(table->forks);
-				printf("%lu %d is sleeping\n", get_time() - table->philo[i].start_time, i + 1);
+				printf("%lu %d is sleeping\n", get_time() - table->philo.start_time, i + 1);
 				my_usleep(table->tts);
-				printf("%lu %d is thinking\n", get_time() - table->philo[i].start_time, i + 1);
+				printf("%lu %d is thinking\n", get_time() - table->philo.start_time, i + 1);
 			}
-			if (pthread_join(table->philo[i].check_life, NULL))
+			if (pthread_join(table->philo.check_life, NULL))
 				return (EXIT_FAILURE);
 			break ;
 		}
@@ -195,10 +198,9 @@ int	main(int argc, char**argv)
 			return (EXIT_FAILURE);
 		}
 		// int status;
-		if (pthread_join(table.all_full, NULL))
-			return (EXIT_FAILURE);
-		if (pthread_join(table.dead, NULL))
-			return (EXIT_FAILURE);
+		pthread_join(table.all_full, NULL);
+		pthread_join(table.dead, NULL);
+			// return (EXIT_FAILURE);
 		// waitpid(-1, &status, 0);
 		// i = 0;
 		// while (i < table.total)
@@ -215,6 +217,7 @@ int	main(int argc, char**argv)
 		sem_unlink("/dead");
 		sem_close(table.alive);
 		sem_unlink("/alive");
+		free(table.pid);
 		free_all(&table);
 		return (EXIT_SUCCESS);
 	}

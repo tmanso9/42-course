@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:05:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/06 19:26:33 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/07 16:06:43 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_philo
 
 typedef struct s_table
 {
-	t_philo			*philo;
+	t_philo			philo;
 	pthread_t		all_full;
 	pthread_t		dead;
 	sem_t			*forks;
