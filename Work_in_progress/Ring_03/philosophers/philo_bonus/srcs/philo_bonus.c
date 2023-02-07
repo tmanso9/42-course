@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:19 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/07 16:53:52 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/07 17:07:37 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	*check_belly(void *data)
 		kill(table->pid[i], SIGKILL);
 		i++;
 	}
-	printf("here\n");
 	return (NULL);
 }
 
