@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   forks.c                                            :+:      :+:    :+:   */
+/*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:49:10 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/03 16:10:31 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/10 15:08:14 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	eat(t_philo *philo)
 	pthread_mutex_lock(&philo->eating);
 	philo->last_eaten = ms;
 	pthread_mutex_unlock(&philo->eating);
-	philo->times_eaten++;
 	if (!dead() && !full())
 		print_message(philo, EAT, ms);
+	philo->times_eaten++;
 	if (!table()->unlimited && philo->times_eaten == table()->min_times)
 	{
 		pthread_mutex_lock(&philo->check_full);

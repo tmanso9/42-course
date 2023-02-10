@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:26:59 by touteiro          #+#    #+#             */
-/*   Updated: 2023/02/04 16:13:00 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/10 14:58:51 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	start_table(t_table *table, char **argv)
 	if (argv[5])
 	{
 		table->min_times = ft_atoi(argv[5]);
-		table->unlimited = 0;
 		if (!table->min_times)
 			return (EXIT_FAILURE);
+		table->unlimited = 0;
 	}
 	else
 		table->unlimited = 1;
