@@ -6,15 +6,20 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/02/08 15:47:33 by touteiro         ###   ########.fr        #
+#    Updated: 2023/02/10 12:37:06 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -pthread -I incs -O3
-# CFLAGS += -fsanitize=address
-# CFLAGS += -fsanitize=thread
+CFLAGS = -I incs -Wall -Wextra -Werror -g -pthread #-O3
+
+ifeq ($(DEBUG), 1)
+	CFLAGS += -fsanitize=address
+else ifeq ($(THREAD), 1)
+	CFLAGS += -fsanitize=thread
+endif
+
 SRC = philo.c ft_atoi.c utils.c parse_args.c args_valid.c ft_calloc.c actions.c \
 	routine.c time_utils.c
 OBJ = $(addprefix srcs/, $(SRC:.c=.o))
