@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: amorais- <amorais-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 00:51:30 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/19 19:47:49 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:37:30 by amorais-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ char	**recursive_split(char *str, char **arr, int words, char c)
 	while (str && str[i] && str[i] != c)
 		i++;
 	if (i > 0)
-		new_str = (char *)malloc(i + 1);
-	if (new_str)
-		new_str[i] = 0;
+		new_str = ft_calloc(i + 1, 1);
 	i = 0;
 	while (new_str && str && *str && *str != c)
 		new_str[i++] = *str++;
@@ -41,6 +39,8 @@ char	**recursive_split(char *str, char **arr, int words, char c)
 
 char	**ft_split(const char *str, char c)
 {
+	if (!str)
+		return (NULL);
 	return (recursive_split((char *)str, NULL, 0, c));
 }
 

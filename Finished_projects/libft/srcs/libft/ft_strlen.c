@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:17:58 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/19 19:36:20 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/15 15:29:30 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ size_t	ft_strlen(const char *str)
 	int	size;
 
 	size = 0;
+	if (!str)
+		return (0);
 	while (str[size])
 		size++;
 	return (size);

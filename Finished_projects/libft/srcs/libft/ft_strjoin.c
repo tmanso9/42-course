@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 00:09:35 by touteiro          #+#    #+#             */
-/*   Updated: 2023/01/19 19:36:20 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:55:49 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*join;
 
-	join = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	join = ft_calloc((ft_strlen(s1) + ft_strlen(s2) + 1), 1);
 	if (!join)
 		return (NULL);
 	ft_strlcpy(join, (char *)s1, ft_strlen(s1) + 1);
