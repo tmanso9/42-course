@@ -2,18 +2,23 @@
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 
+# include <string>
+# define LOG(x) std::cout << x << std::endl
+
 class Contact
 {
 private:
-	int		index;
-	char	*first_name;
-	char	*last_name;
-	char	*nickname;
-	char	*number;
-	char	*secret;
+	std::string	first_name;
+	std::string	last_name;
+	std::string	nickname;
+	std::string	phone;
+	std::string	secret;
 public:
-	Contact(/* args */);
-	~Contact();
+	Contact(void);
+	~Contact(void);
+
+	void	addContact(std::string first_name, std::string last_name, std::string nickname, std::string phone, std::string secret);
+	void	printInfo(void);
 };
 
 
