@@ -6,13 +6,13 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/03/21 12:11:58 by touteiro         ###   ########.fr        #
+#    Updated: 2023/03/21 20:31:44 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = phonebook
 CC = c++
-CFLAGS = -I incs -Wall -Wextra -Werror -std=c++98
+CFLAGS = -I incs -Wall -Wextra -Werror -std=c++98 #-fsanitize=address -g
 SRC = main.cpp utils.cpp PhoneBook.cpp Contact.cpp
 OBJ = $(SRC:.cpp=.o)
 

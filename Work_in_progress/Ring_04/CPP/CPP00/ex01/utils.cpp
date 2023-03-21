@@ -16,13 +16,28 @@ std::string	getStringFromInput(std::string str, std::string prompt)
 	if (!std::getline(std::cin, str))
 		return str;
 	str = removeSpaces(str);
-	std::cout << "You entered: '" << str << "'" << std::endl;
 	while (str.empty())
 	{
 		LOG("Field can't be empty!");
 		std::cout << prompt;
 		std::getline(std::cin, str);
 		removeSpaces(str);
+		
 	}
 	return (str);
+}
+
+int	allDigits(std::string phone)
+{
+	if (!phone.size())
+		return (0);
+	for (int i = 0; i < (int)phone.size(); i++)
+	{
+		if (!std::isdigit(phone[i]))
+		{
+			std::cout << "Number must be only digits" << std::endl;
+			return (0);
+		}
+	}
+	return (1);
 }

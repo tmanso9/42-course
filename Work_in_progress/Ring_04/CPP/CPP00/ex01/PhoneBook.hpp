@@ -17,9 +17,8 @@ public:
 
 	int		ChangeIndex(int i);
 	void	AddContact(int i);
+	int		PrintList(void);
 	void	PrintContact(int i);
-
-	static int	index;
 };
 
 #endif

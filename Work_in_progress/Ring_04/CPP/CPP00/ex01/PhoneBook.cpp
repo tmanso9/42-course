@@ -5,10 +5,7 @@
 
 PhoneBook::PhoneBook(void)
 {
-	// std::cout << "PhoneBook constructor called" << std::endl;
-	LOG("PhoneBook constructor called");
-
-	
+	std::cout << "PhoneBook constructor called" << std::endl;
 }
 
 PhoneBook::~PhoneBook(void)
@@ -28,14 +25,40 @@ void	PhoneBook::AddContact(int i)
 	last_name = getStringFromInput(last_name, "Last name: ");
 	nickname = getStringFromInput(nickname, "Nickname: ");
 	phone = getStringFromInput(phone, "Phone number: ");
+	while (!allDigits(phone))
+		phone = getStringFromInput(phone, "Phone number: ");
 	secret = getStringFromInput(secret, "Deepest darkest secret: ");
 
-	this->contacts[i].addContact(first_name, last_name, nickname, phone, secret);
+	this->contacts[i].addContact(i, first_name, last_name, nickname, phone, secret);
+}
+
+int	PhoneBook::PrintList(void) {
+	int allEmpty = 1;
+	for (int i = 0; i < 8; i++)
+		if (!this->contacts[i].CheckIfEmpty())
+			allEmpty = 0;
+	if (!allEmpty)
+	{
+		std::cout << std::setw(10) << "Index" << " | ";
+		std::cout << std::setw(10) << "Name" << " | ";
+		std::cout << std::setw(10) << "Last name" << " | ";
+		std::cout << std::setw(10) << "Nickname" << std::endl;
+	}
+	else
+		return (0);
+	for (int i = 0; i < 8; i++)
+	{
+		if (!this->contacts[i].CheckIfEmpty())
+			this->contacts[i].PrintPublicInfo();
+	}
+	return (1);
 }
 
 void	PhoneBook::PrintContact(int i) {
-	std::cout << "Printing contact "  << i <<std::endl;
-	this->contacts[i].printInfo();
+	if (i < 0 || i > 7 || this->contacts[i].CheckIfEmpty())
+		LOG("Index out of range");
+	else
+		this->contacts[i].PrintPrivateInfo();
 }
 
 int		PhoneBook::ChangeIndex(int i)
@@ -43,7 +66,7 @@ int		PhoneBook::ChangeIndex(int i)
 	std::string	str;
 	if (i > 7)
 	{
-		LOG("You can have a maximum of 8 contacts!");
+		LOG("You can have a maximum of 8 contacts.");
 		LOG("Do you want to replace the oldest one? Y/N");
 		while (1)
 		{
@@ -57,9 +80,6 @@ int		PhoneBook::ChangeIndex(int i)
 			else
 				LOG("Invalid option. Enter only y/n");
 		}
-
 	}
 	return (0);
 }
-
-int PhoneBook::index = 0;
