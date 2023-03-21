@@ -3,8 +3,8 @@
 # define PHONEBOOK_HPP
 
 # include "Contact.hpp"
+# include "utils.hpp"
 
-# define LOG(x) std::cout << x << std::endl
 
 class PhoneBook
 {
@@ -15,7 +15,8 @@ public:
 	PhoneBook(void);
 	~PhoneBook(void);
 
-	void	AddContact(void);
+	int		ChangeIndex(int i);
+	void	AddContact(int i);
 	void	PrintContact(int i);
 
 	static int	index;
