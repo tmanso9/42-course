@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 19:22:40 by touteiro          #+#    #+#             */
-/*   Updated: 2023/03/22 19:22:41 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/03/22 19:34:32 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define UTILS_HPP
 
 # include <string>
-#include <iostream>
+# include <iostream>
 
 # define LOG(x) std::cout << x << std::endl
 
