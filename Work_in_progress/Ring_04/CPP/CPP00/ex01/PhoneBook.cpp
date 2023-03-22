@@ -54,11 +54,15 @@ int	PhoneBook::PrintList(void) {
 	return (1);
 }
 
-void	PhoneBook::PrintContact(int i) {
+int	PhoneBook::PrintContact(int i) {
 	if (i < 0 || i > 7 || this->contacts[i].CheckIfEmpty())
-		LOG("Index out of range");
+	{
+		LOG("Index out of range. Try again");
+		return (0);
+	}
 	else
 		this->contacts[i].PrintPrivateInfo();
+	return (1);
 }
 
 int		PhoneBook::ChangeIndex(int i)
@@ -82,4 +86,36 @@ int		PhoneBook::ChangeIndex(int i)
 		}
 	}
 	return (0);
+}
+
+int	PhoneBook::allDigits(std::string phone)
+{
+	if (!phone.size())
+		return (0);
+	for (int i = 0; i < (int)phone.size(); i++)
+	{
+		if (!std::isdigit(phone[i]))
+		{
+			std::cout << "Number must be only digits" << std::endl;
+			return (0);
+		}
+	}
+	return (1);
+}
+
+std::string	PhoneBook::getStringFromInput(std::string str, std::string prompt)
+{
+	std::cout << prompt;
+	if (!std::getline(std::cin, str))
+		return str;
+	str = removeSpaces(str);
+	while (str.empty())
+	{
+		LOG("Field can't be empty!");
+		std::cout << prompt;
+		std::getline(std::cin, str);
+		removeSpaces(str);
+		
+	}
+	return (str);
 }

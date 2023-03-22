@@ -38,17 +38,34 @@ int	main(void)
 				continue ;
 			}
 			std::string	str;
-			LOG("What index do you want to display? Input a number from 0 to 7");
-			if (!std::getline(std::cin, str))
-				break ;
-			str = removeSpaces(str);
-			if (!std::isdigit(str[0]))
+			LOG("What index do you want to display? Input one of the numbers listed");
+			int	index = -1;
+			int interrupt = 0;
+			while (str.empty() && !interrupt)
 			{
-				LOG("Must be a digit.");
-				continue ;
+				while (str.empty() || !std::isdigit(str[0]))
+				{
+					if (!std::getline(std::cin, str))
+					{
+						interrupt = 1;
+						break ;
+					}
+					if (!interrupt)
+					{
+						str = removeSpaces(str);
+						if (std::isdigit(str[0]))
+							break ;
+						LOG("Must be a digit.");
+					}
+				}
+				if (!interrupt)
+				{
+					//Need to review atoi usage
+					index = atoi(str.c_str());
+					if (!book.PrintContact(index))
+						str.clear();
+				}
 			}
-			int index = atoi(str.c_str());
-			book.PrintContact(index);
 		}
 		else if (str == "EXIT")
 			break ;

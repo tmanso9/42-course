@@ -10,6 +10,10 @@ class PhoneBook
 {
 private:
 	Contact	contacts[8];
+
+	std::string		getStringFromInput(std::string str, std::string prompt);
+	int				allDigits(std::string phone);
+
 public:
 
 	PhoneBook(void);
@@ -18,7 +22,7 @@ public:
 	int		ChangeIndex(int i);
 	void	AddContact(int i);
 	int		PrintList(void);
-	void	PrintContact(int i);
+	int		PrintContact(int i);
 };
 
 #endif
