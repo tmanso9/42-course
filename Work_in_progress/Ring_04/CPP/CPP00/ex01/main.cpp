@@ -6,16 +6,15 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 19:21:28 by touteiro          #+#    #+#             */
-/*   Updated: 2023/03/22 19:21:41 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/03/22 19:35:01 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 #include "utils.hpp"
 #include <iostream>
-#include <stdlib.h>
+#include <cstdlib>
 #include <string>
-#include <cstring>
 
 int	main(void)
 {
@@ -72,8 +71,7 @@ int	main(void)
 				}
 				if (!interrupt)
 				{
-					//Need to review atoi usage
-					index = atoi(str.c_str());
+					index = std::atoi(str.c_str());
 					if (!book.PrintContact(index))
 						str.clear();
 				}
