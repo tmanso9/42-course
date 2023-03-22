@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/22 19:21:50 by touteiro          #+#    #+#             */
+/*   Updated: 2023/03/22 19:21:50 by touteiro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <iostream>
 #include "PhoneBook.hpp"
@@ -29,7 +40,16 @@ void	PhoneBook::AddContact(int i)
 		phone = _getStringFromInput(phone, "Phone number: ");
 	secret = _getStringFromInput(secret, "Deepest darkest secret: ");
 
-	this->_contacts[i].addContact(i, first_name, last_name, nickname, phone, secret);
+	this->_contacts[i].CreateContact(i, first_name, last_name, nickname, phone, secret);
+}
+
+void	PhoneBook::MoveContacts(void)
+{
+	for (int i = 1; i < 8; i++)
+	{
+		this->_contacts[i - 1] = this->_contacts[i];
+		this->_contacts[i - 1].index = i - 1;
+	}
 }
 
 int	PhoneBook::PrintList(void) {
@@ -65,7 +85,7 @@ int	PhoneBook::PrintContact(int i) {
 	return (1);
 }
 
-int		PhoneBook::ChangeIndex(int i)
+int		PhoneBook::ReplaceContact(int i)
 {
 	std::string	str;
 	if (i > 7)
@@ -77,9 +97,9 @@ int		PhoneBook::ChangeIndex(int i)
 			if (!std::getline(std::cin, str))
 				return (-1);
 			str = removeSpaces(str);
-			if ((!str.find("y") || !str.find("Y")) && str.size() == 1)
+			if (!str.compare("y") || !str.compare("Y"))
 				return (1);
-			else if ((!str.find("n") || !str.find("N")) && str.size() == 1)
+			else if (!str.compare("n") || !str.compare("N"))
 				return (-1);
 			else
 				LOG("Invalid option. Enter only y/n");
@@ -90,11 +110,11 @@ int		PhoneBook::ChangeIndex(int i)
 
 int	PhoneBook::_allDigits(std::string phone)
 {
-	if (!phone.size())
+	if (phone.empty())
 		return (0);
 	for (int i = 0; i < (int)phone.size(); i++)
 	{
-		if (!std::isdigit(phone[i]))
+		if (!std::isdigit(*(phone.begin() + i)))
 		{
 			std::cout << "Number must be only digits" << std::endl;
 			return (0);
@@ -115,7 +135,6 @@ std::string	PhoneBook::_getStringFromInput(std::string str, std::string prompt)
 		std::cout << prompt;
 		std::getline(std::cin, str);
 		removeSpaces(str);
-		
 	}
 	return (str);
 }

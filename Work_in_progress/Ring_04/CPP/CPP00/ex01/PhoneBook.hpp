@@ -1,10 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/22 19:22:04 by touteiro          #+#    #+#             */
+/*   Updated: 2023/03/22 19:22:22 by touteiro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
 # include "Contact.hpp"
 # include "utils.hpp"
-
 
 class PhoneBook
 {
@@ -19,8 +29,9 @@ public:
 	PhoneBook(void);
 	~PhoneBook(void);
 
-	int		ChangeIndex(int i);
+	int		ReplaceContact(int i);
 	void	AddContact(int i);
+	void	MoveContacts(void);
 	int		PrintList(void);
 	int		PrintContact(int i);
 };

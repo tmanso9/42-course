@@ -1,10 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/22 19:20:40 by touteiro          #+#    #+#             */
+/*   Updated: 2023/03/22 19:21:14 by touteiro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "Contact.hpp"
 
 Contact::Contact(void)
 {
 	std::cout << "Contact constructor called" << std::endl;
-	
 }
 
 Contact::~Contact(void)
@@ -12,9 +22,9 @@ Contact::~Contact(void)
 	std::cout << "Contact destructor called" << std::endl;
 }
 
-void	Contact::addContact(int index, std::string first_name, std::string last_name, std::string nickname, std::string phone, std::string secret)
+void	Contact::CreateContact(int index, std::string first_name, std::string last_name, std::string nickname, std::string phone, std::string secret)
 {
-	this->_index = index;
+	this->index = index;
 	this->_first_name = first_name;
 	this->_last_name = last_name;
 	this->_nickname = nickname;
@@ -31,8 +41,7 @@ int	Contact::CheckIfEmpty(void)
 
 void	Contact::PrintPublicInfo(void)
 {
-	// std::cout << std::setw(10);
-	std::cout << std::setw(10) << this->_index << " | ";
+	std::cout << std::setw(10) << this->index << " | ";
 	
 	if (this->_first_name.size() > 9)
 		std::cout << this->_first_name.substr(0, 9) << "." << " | ";

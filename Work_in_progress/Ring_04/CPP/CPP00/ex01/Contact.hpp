@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/22 19:21:03 by touteiro          #+#    #+#             */
+/*   Updated: 2023/03/22 19:21:20 by touteiro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
@@ -5,12 +16,12 @@
 # include <string>
 # include <iomanip>
 # include <iostream>
+
 # define LOG(x) std::cout << x << std::endl
 
 class Contact
 {
 private:
-	int	_index;
 	std::string	_first_name;
 	std::string	_last_name;
 	std::string	_nickname;
@@ -20,13 +31,12 @@ public:
 	Contact(void);
 	~Contact(void);
 
-	void	addContact(int i, std::string first_name, std::string last_name, std::string nickname, std::string phone, std::string secret);
+	int	index;
+
+	void	CreateContact(int i, std::string first_name, std::string last_name, std::string nickname, std::string phone, std::string secret);
 	void	PrintPrivateInfo(void);
 	void	PrintPublicInfo(void);
 	int		CheckIfEmpty(void);
 };
-
-
-
 
 #endif
