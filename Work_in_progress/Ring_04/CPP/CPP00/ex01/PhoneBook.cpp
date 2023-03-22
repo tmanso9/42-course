@@ -21,21 +21,21 @@ void	PhoneBook::AddContact(int i)
 	std::string	phone;
 	std::string	secret;
 	
-	first_name = getStringFromInput(first_name, "First name: ");
-	last_name = getStringFromInput(last_name, "Last name: ");
-	nickname = getStringFromInput(nickname, "Nickname: ");
-	phone = getStringFromInput(phone, "Phone number: ");
-	while (!allDigits(phone))
-		phone = getStringFromInput(phone, "Phone number: ");
-	secret = getStringFromInput(secret, "Deepest darkest secret: ");
+	first_name = _getStringFromInput(first_name, "First name: ");
+	last_name = _getStringFromInput(last_name, "Last name: ");
+	nickname = _getStringFromInput(nickname, "Nickname: ");
+	phone = _getStringFromInput(phone, "Phone number: ");
+	while (!_allDigits(phone))
+		phone = _getStringFromInput(phone, "Phone number: ");
+	secret = _getStringFromInput(secret, "Deepest darkest secret: ");
 
-	this->contacts[i].addContact(i, first_name, last_name, nickname, phone, secret);
+	this->_contacts[i].addContact(i, first_name, last_name, nickname, phone, secret);
 }
 
 int	PhoneBook::PrintList(void) {
 	int allEmpty = 1;
 	for (int i = 0; i < 8; i++)
-		if (!this->contacts[i].CheckIfEmpty())
+		if (!this->_contacts[i].CheckIfEmpty())
 			allEmpty = 0;
 	if (!allEmpty)
 	{
@@ -48,20 +48,20 @@ int	PhoneBook::PrintList(void) {
 		return (0);
 	for (int i = 0; i < 8; i++)
 	{
-		if (!this->contacts[i].CheckIfEmpty())
-			this->contacts[i].PrintPublicInfo();
+		if (!this->_contacts[i].CheckIfEmpty())
+			this->_contacts[i].PrintPublicInfo();
 	}
 	return (1);
 }
 
 int	PhoneBook::PrintContact(int i) {
-	if (i < 0 || i > 7 || this->contacts[i].CheckIfEmpty())
+	if (i < 0 || i > 7 || this->_contacts[i].CheckIfEmpty())
 	{
 		LOG("Index out of range. Try again");
 		return (0);
 	}
 	else
-		this->contacts[i].PrintPrivateInfo();
+		this->_contacts[i].PrintPrivateInfo();
 	return (1);
 }
 
@@ -88,7 +88,7 @@ int		PhoneBook::ChangeIndex(int i)
 	return (0);
 }
 
-int	PhoneBook::allDigits(std::string phone)
+int	PhoneBook::_allDigits(std::string phone)
 {
 	if (!phone.size())
 		return (0);
@@ -103,7 +103,7 @@ int	PhoneBook::allDigits(std::string phone)
 	return (1);
 }
 
-std::string	PhoneBook::getStringFromInput(std::string str, std::string prompt)
+std::string	PhoneBook::_getStringFromInput(std::string str, std::string prompt)
 {
 	std::cout << prompt;
 	if (!std::getline(std::cin, str))

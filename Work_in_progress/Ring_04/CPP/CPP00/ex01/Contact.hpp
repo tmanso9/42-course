@@ -10,12 +10,12 @@
 class Contact
 {
 private:
-	int	index;
-	std::string	first_name;
-	std::string	last_name;
-	std::string	nickname;
-	std::string	phone;
-	std::string	secret;
+	int	_index;
+	std::string	_first_name;
+	std::string	_last_name;
+	std::string	_nickname;
+	std::string	_phone;
+	std::string	_secret;
 public:
 	Contact(void);
 	~Contact(void);

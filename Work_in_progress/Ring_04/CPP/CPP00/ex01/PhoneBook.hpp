@@ -9,10 +9,10 @@
 class PhoneBook
 {
 private:
-	Contact	contacts[8];
+	Contact	_contacts[8];
 
-	std::string		getStringFromInput(std::string str, std::string prompt);
-	int				allDigits(std::string phone);
+	std::string		_getStringFromInput(std::string str, std::string prompt);
+	int				_allDigits(std::string phone);
 
 public:
 
