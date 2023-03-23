@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:38:42 by touteiro          #+#    #+#             */
-/*   Updated: 2023/03/23 16:38:43 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/03/23 18:01:09 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@ class Zombie
 private:
 	std::string	_name;
 public:
-	Zombie(std::string name);
-	~Zombie();
+	Zombie( void );
+	~Zombie( void );
 
 	void	announce(void);
+	void	addName(std::string name);
 };
 
 #endif
