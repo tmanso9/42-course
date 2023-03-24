@@ -6,22 +6,23 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 12:47:52 by touteiro          #+#    #+#             */
-/*   Updated: 2023/03/24 19:56:48 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/03/24 22:49:20 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <fstream>
-
-int	outFileErr(std::string file);
-int	noInFile(std::string file);
-int	wrongArguments(void);
+#include "replace.hpp"
 
 int main (int argc, char**argv)
 {
 	if (argc == 4)
 	{
 		std::string	filename = argv[1];
+		std::string	toFind = argv[2];
+		std::string	toReplace = argv[3];
+		
+		if(filename.empty() || toFind.empty() || toReplace.empty())
+			return emptyArgs();
+		
 		std::ifstream infile(filename.c_str(), std::ifstream::in);
 		if (!infile)
 			return noInFile(filename);
@@ -32,19 +33,11 @@ int main (int argc, char**argv)
 			infile.close();
 			return outFileErr(filename.append(".replace"));
 		}
-				
-		std::string	str;
-		std::string	toFind = argv[2];
-		std::string	toReplace = argv[3];
-		while (std::getline(infile, str))
-		{
-			if (!str.find(toFind.c_str()))
-			{
-				std::cout << "Found one!" << std::endl;
-			}
-			else
-				outfile << str << std::endl;
-		}
+
+		replaceStrings(&infile, &outfile, toFind, toReplace);
+		infile.close();
+		outfile.close();
+		return 0;
 	}
 	else
 		return wrongArguments();
