@@ -6,14 +6,14 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/03/24 12:47:50 by touteiro         ###   ########.fr        #
+#    Updated: 2023/03/24 19:14:29 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = replace
 CC = c++
 PFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
-SRC = main.cpp
+SRC = main.cpp errorManagement.cpp
 OBJ = $(SRC:.cpp=.o)
 
 %.o: %.cpp 
