@@ -6,17 +6,20 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/03/24 23:11:47 by touteiro         ###   ########.fr        #
+#    Updated: 2023/03/25 12:53:27 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = replace
 CC = c++
-PFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
-SRC = main.cpp errorManagement.cpp replaceStrings.cpp
-OBJ = $(SRC:.cpp=.o)
+PFLAGS = -I incs -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
+SRC_FILE = main.cpp errorManagement.cpp replaceStrings.cpp
+SRC = $(addprefix src/, $(SRC_FILE))
+OBJ = $(addprefix obj/, $(SRC:.cpp=.o))
+INC = incs/replace.hpp
 
-%.o: %.cpp 
+obj/%.o: %.cpp $(INC)
+	mkdir -p $(@D)
 	$(CC) $(PFLAGS) -c $< -o $@ 
 	@echo "\033[33m[OK]	" $@ "\033[0m"
 
@@ -31,6 +34,7 @@ all: $(NAME)
 
 clean:
 	@rm -rf $(OBJ)
+	@rm -rf obj
 	@echo "\033[31mTemporary object files deleted\033[0m"
 
 fclean: clean
