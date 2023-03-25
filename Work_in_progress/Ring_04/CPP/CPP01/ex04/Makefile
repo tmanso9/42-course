@@ -6,7 +6,7 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/03/25 12:53:27 by touteiro         ###   ########.fr        #
+#    Updated: 2023/03/25 12:58:32 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJ = $(addprefix obj/, $(SRC:.cpp=.o))
 INC = incs/replace.hpp
 
 obj/%.o: %.cpp $(INC)
-	mkdir -p $(@D)
+	@mkdir -p $(@D)
 	$(CC) $(PFLAGS) -c $< -o $@ 
 	@echo "\033[33m[OK]	" $@ "\033[0m"
 

@@ -6,7 +6,7 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/03/23 17:30:02 by touteiro         ###   ########.fr        #
+#    Updated: 2023/03/25 13:01:42 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,10 @@ NAME = zombieHorde
 CC = c++
 PFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
 SRC = main.cpp Zombie.cpp zombieHorde.cpp
-OBJ = $(SRC:.cpp=.o)
+OBJ = $(addprefix obj/, $(SRC:.cpp=.o))
 
-%.o: %.cpp 
+obj/%.o: %.cpp
+	@mkdir -p $(@D)
 	$(CC) -c $(PFLAGS) -o $@ $< 
 	@echo "\033[33m[OK]	" $@ "\033[0m"
 
@@ -31,6 +32,7 @@ all: $(NAME)
 
 clean:
 	@rm -rf $(OBJ)
+	@rm -rf obj
 	@echo "\033[31mTemporary object files deleted\033[0m"
 
 fclean: clean

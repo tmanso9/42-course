@@ -6,7 +6,7 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/03/22 18:26:48 by touteiro         ###   ########.fr        #
+#    Updated: 2023/03/25 12:58:51 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,10 @@ NAME = phonebook
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp utils.cpp PhoneBook.cpp Contact.cpp
-OBJ = $(SRC:.cpp=.o)
+OBJ = $(addprefix obj/, $(SRC:.cpp=.o))
 
-%.o: %.cpp 
+obj/%.o: %.cpp
+	@mkdir -p $(@D)
 	$(CC) -c $(CFLAGS) -o $@ $< 
 	@echo "\033[33m[OK]	" $@ "\033[0m"
 
@@ -31,6 +32,7 @@ all: $(NAME)
 
 clean:
 	@rm -rf $(OBJ)
+	@rm -rf obj
 	@echo "\033[31mTemporary object files deleted\033[0m"
 
 fclean: clean
