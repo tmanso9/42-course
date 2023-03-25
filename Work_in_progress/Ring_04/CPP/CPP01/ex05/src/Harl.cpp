@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 13:07:03 by touteiro          #+#    #+#             */
-/*   Updated: 2023/03/25 14:00:53 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/03/25 16:33:46 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 Harl::Harl(void)
 {
 	std::cout << "Harl constructor called" << std::endl;
+	this->_levels[0] = "debug";
+	this->_levels[1] = "info";
+	this->_levels[2] = "warning";
+	this->_levels[3] = "error";
 }
 
 Harl::~Harl()
@@ -50,12 +54,14 @@ void	Harl::complain(std::string level)
 	functions[2] = &Harl::_warning;
 	functions[3] = &Harl::_error;
 	
-	int	i = std::atoi(level.c_str());
-	while (i > -1 && i < 4 && std::isdigit(*level.begin()))
+	for (int i = 0; i < 4; i++)
 	{
-		(this->*functions[i])();
-		return ;
-	}
+		if (this->_levels[i] == level)
+		{
+			(this->*functions[i])();
+			return ;
+		}
+	}	
 	std::cout << "Wrong option! Give me a better one." << std::endl;
 	
 }

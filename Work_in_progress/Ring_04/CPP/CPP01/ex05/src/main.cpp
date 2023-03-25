@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 13:07:16 by touteiro          #+#    #+#             */
-/*   Updated: 2023/03/25 14:00:02 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/03/25 16:34:55 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,19 @@
 
 int	main(void)
 {
-	std::cout << "Hello!" << std::endl;
-	Harl	h1;
+	Harl		h1;
+	std::string	msgs[6];
+	msgs[0] = "debug";
+	msgs[1] = "info";
+	msgs[2] = "warning";
+	msgs[3] = "error";
+	msgs[4] = "hello";
+	msgs[5] = "";
+
 	std::cout << std::endl;
-	h1.complain("0");
+	
+	for (int i = 0; i < 6; i++)
+		h1.complain(msgs[i]);
+
 	std::cout << std::endl;
-	h1.complain("1");
-	std::cout << std::endl;
-	h1.complain("2");
-	std::cout << std::endl;
-	h1.complain("3");
-	std::cout << std::endl;
-	h1.complain("9");
-	std::cout << std::endl;
-	h1.complain("ajdhvfjhvs");
 }
