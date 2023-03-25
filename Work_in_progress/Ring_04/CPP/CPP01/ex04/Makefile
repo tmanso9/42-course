@@ -6,7 +6,7 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/03/25 12:58:32 by touteiro         ###   ########.fr        #
+#    Updated: 2023/03/25 16:40:59 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,11 @@ NAME = replace
 CC = c++
 PFLAGS = -I incs -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
 SRC_FILE = main.cpp errorManagement.cpp replaceStrings.cpp
+INC_FILES = replace.hpp
+
 SRC = $(addprefix src/, $(SRC_FILE))
 OBJ = $(addprefix obj/, $(SRC:.cpp=.o))
-INC = incs/replace.hpp
+INC = $(addprefix incs/, $(INC_FILES))
 
 obj/%.o: %.cpp $(INC)
 	@mkdir -p $(@D)

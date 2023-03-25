@@ -6,7 +6,7 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/03/25 13:06:27 by touteiro         ###   ########.fr        #
+#    Updated: 2023/03/25 16:41:16 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,11 @@ NAME = Harl
 CC = c++
 PFLAGS = -I incs -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
 SRC_FILE = main.cpp Harl.cpp
+INC_FILES = Harl.hpp
+
 SRC = $(addprefix src/, $(SRC_FILE))
 OBJ = $(addprefix obj/, $(SRC:.cpp=.o))
-INC = incs/Harl.hpp
+INC = $(addprefix incs/, $(INC_FILES))
 
 obj/%.o: %.cpp $(INC)
 	@mkdir -p $(@D)

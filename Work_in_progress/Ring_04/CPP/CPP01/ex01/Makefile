@@ -6,17 +6,21 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/03/25 13:01:42 by touteiro         ###   ########.fr        #
+#    Updated: 2023/03/25 16:42:58 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = zombieHorde
 CC = c++
-PFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
-SRC = main.cpp Zombie.cpp zombieHorde.cpp
-OBJ = $(addprefix obj/, $(SRC:.cpp=.o))
+PFLAGS = -I incs -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
+SRC_FILE = main.cpp Zombie.cpp zombieHorde.cpp
+INC_FILES = Zombie.hpp
 
-obj/%.o: %.cpp
+SRC = $(addprefix src/, $(SRC_FILE))
+OBJ = $(addprefix obj/, $(SRC:.cpp=.o))
+INC = $(addprefix incs/, $(INC_FILES))
+
+obj/%.o: %.cpp $(INC)
 	@mkdir -p $(@D)
 	$(CC) -c $(PFLAGS) -o $@ $< 
 	@echo "\033[33m[OK]	" $@ "\033[0m"
