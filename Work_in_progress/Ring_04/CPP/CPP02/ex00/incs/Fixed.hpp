@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 14:02:49 by touteiro          #+#    #+#             */
-/*   Updated: 2023/03/30 15:03:18 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/03/30 16:13:13 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,13 @@ private:
 public:
 
 	Fixed( void );
-	Fixed( Fixed const & a );
+	Fixed( Fixed const & src );
 	~Fixed( void );
+
+	Fixed	& operator=( Fixed const & src );
 
 	int	getRawBits( void ) const;
 	void	setRawBits (int const raw);
-	Fixed	& operator=( Fixed const & rhs );
-	// Fixed	operator+(Fixed const & rhs) const;
 };
-
-
-
 
 #endif
