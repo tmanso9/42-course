@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 14:02:49 by touteiro          #+#    #+#             */
-/*   Updated: 2023/03/30 19:42:11 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/03/30 19:38:52 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ public:
 	Fixed	operator++( int none );
 	Fixed	operator--( int none );
 	
-
 	int		getRawBits ( void ) const;
 	void	setRawBits (int const raw);
 	float	toFloat ( void ) const;
 	int		toInt	( void ) const;
+	
 };
 
 std::ostream &	operator<<(std::ostream & o, Fixed const & num);

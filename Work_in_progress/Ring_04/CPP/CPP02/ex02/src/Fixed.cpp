@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 14:02:56 by touteiro          #+#    #+#             */
-/*   Updated: 2023/03/30 19:47:38 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/03/30 19:41:42 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,33 +124,44 @@ Fixed &	Fixed::operator++( void )
 	if (this->toFloat())
 		this->setRawBits(roundf(this->toFloat() * (1 << _bits)) + roundf(this->toFloat() * (1 << _bits)));
 	else
-		std::cout << (int)((1.0f / (1 << _bits))) << std::endl;
-
-	std::cout << "What is this? " << this->toFloat() << std::endl;
-	exit(0);
+		this->setRawBits(roundf(((1.0f / (1 << _bits)))*(1 << _bits)));
 	return (*this);
 }
 
 Fixed &	Fixed::operator--( void )
 {
 	std::cout << "Pre-decrement operator called" << std::endl;
-	this->setRawBits(this->getRawBits() - this->getRawBits());
+
+	if (this->toFloat())
+		this->setRawBits(roundf(this->toFloat() * (1 << _bits)) - roundf(this->toFloat() * (1 << _bits)));
+	else
+		this->setRawBits(roundf((-(1.0f / (1 << _bits)))*(1 << _bits)));
 	return (*this);
 }
 
 Fixed	Fixed::operator++( int none )
 {
+	std::cout << "Post-increment operator called" << std::endl;
+	
 	(void)none;
 	float	old = this->toFloat();
-	this->setRawBits(this->getRawBits() + this->getRawBits());
+	if (old)
+		this->setRawBits(this->getRawBits() + this->getRawBits());
+	else
+		this->setRawBits(roundf(((1.0f / (1 << _bits)))*(1 << _bits)));
 	return Fixed(old);
 }
 
 Fixed	Fixed::operator--( int none )
 {
+	std::cout << "Post-decrement operator called" << std::endl;
+	
 	(void)none;
 	float	old = this->toFloat();
-	this->setRawBits(this->getRawBits() - this->getRawBits());
+	if (old)
+		this->setRawBits(this->getRawBits() - this->getRawBits());
+	else
+		this->setRawBits(roundf((-(1.0f / (1 << _bits)))*(1 << _bits)));
 	return Fixed(old);
 }
 
