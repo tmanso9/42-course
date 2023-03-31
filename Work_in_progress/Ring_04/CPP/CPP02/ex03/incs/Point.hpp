@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 14:27:37 by touteiro          #+#    #+#             */
-/*   Updated: 2023/03/31 15:44:40 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/03/31 18:14:03 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ public:
 	float	getYValue() const;
 };
 
-// bool	bsp( Point const a, Point const b, Point const c, Point const Point);
+bool	bsp( Point const a, Point const b, Point const c, Point const Point);
 
 
 

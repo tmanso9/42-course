@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 14:32:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/03/31 15:42:11 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/03/31 18:26:54 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 int	main ( void )
 {
 	Point	a;
-	Point	b(-4.0f, 3.5f);
-	Point	c ( b );
+	Point	b(1.5f, 1.5f);
+	Point	c ( 3.0f, 0.0f );
+	Point	Point ( 1.0f, 0.1f );
 
-	std::cout << c.getXValue() << std::endl;
+	bsp(a, b, c, Point);
 }
