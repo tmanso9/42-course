@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 14:02:49 by touteiro          #+#    #+#             */
-/*   Updated: 2023/03/30 19:38:52 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/03/31 14:21:33 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@
 class Fixed
 {
 private:
-	int	_n;
-	float	_n_float;
-	static const int	_bits;
+	int					_rawValue;
+	static const int	_bits = 8;
 	
 public:
 
@@ -54,6 +53,10 @@ public:
 	float	toFloat ( void ) const;
 	int		toInt	( void ) const;
 	
+	static Fixed &	min( Fixed & a, Fixed & b);
+	static Fixed &	max( Fixed & a, Fixed & b);
+	static const Fixed &	min( const Fixed & a, const Fixed & b);
+	static const Fixed &	max( const Fixed & a, const Fixed & b);
 };
 
 std::ostream &	operator<<(std::ostream & o, Fixed const & num);

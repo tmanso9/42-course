@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 14:02:56 by touteiro          #+#    #+#             */
-/*   Updated: 2023/03/30 19:41:42 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/03/31 14:22:06 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 Fixed::Fixed( void )
 {
 	std::cout << "Default constructor called" << std::endl;
-	this->_n = 0;
+	this->_rawValue = 0;
 }
 
 Fixed::~Fixed( void )
@@ -40,74 +40,73 @@ Fixed::Fixed( const float a )
 {
 	std::cout << "Float constructor called" << std::endl;
 	this->setRawBits(roundf(a * (1 << _bits)));
-	this->_n_float = a;
 }
 
 /* Overloads */
 Fixed &	Fixed::operator=(Fixed const & src)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
-	this->_n = src.getRawBits();
+	this->_rawValue = src.getRawBits();
 	return (*this);
 }
 
 bool	Fixed::operator>( Fixed const & src ) const
 {
-	std::cout << "Bigger than operator called" << std::endl;
-	return (this->toFloat() > src.toFloat());
+	// std::cout << "Bigger than operator called" << std::endl;
+	return (this->getRawBits() > src.getRawBits());
 }
 
 bool	Fixed::operator<( Fixed const & src ) const
 {
-	std::cout << "Less than operator called" << std::endl;
-	return (this->toFloat() < src.toFloat());
+	// std::cout << "Less than operator called" << std::endl;
+	return (this->getRawBits() < src.getRawBits());
 }
 
 bool	Fixed::operator>=( Fixed const & src ) const
 {
-	std::cout << "Bigger than or equal operator called" << std::endl;
-	return (this->toFloat() >= src.toFloat());
+	// std::cout << "Bigger than or equal operator called" << std::endl;
+	return (this->getRawBits() >= src.getRawBits());
 }
 
 bool	Fixed::operator<=( Fixed const & src ) const
 {
-	std::cout << "Less than or equal operator called" << std::endl;
-	return (this->toFloat() <= src.toFloat());
+	// std::cout << "Less than or equal operator called" << std::endl;
+	return (this->getRawBits() <= src.getRawBits());
 }
 
 bool	Fixed::operator==( Fixed const & src ) const
 {
-	std::cout << "Equal operator called" << std::endl;
-	return (this->toFloat() == src.toFloat());
+	// std::cout << "Equal operator called" << std::endl;
+	return (this->getRawBits() == src.getRawBits());
 }
 
 bool	Fixed::operator!=( Fixed const & src ) const
 {
-	std::cout << "Different operator called" << std::endl;
-	return (this->toFloat() != src.toFloat());
+	// std::cout << "Different operator called" << std::endl;
+	return (this->getRawBits() != src.getRawBits());
 }
 
 Fixed	Fixed::operator+(Fixed const & src) const
 {
-	std::cout << "Plus operator called" << std::endl;
+	// std::cout << "Plus operator called" << std::endl;
 	return Fixed(this->toFloat() + src.toFloat());
 }
 
 Fixed	Fixed::operator-(Fixed const & src) const
 {
-	std::cout << "Minus operator called" << std::endl;
+	// std::cout << "Minus operator called" << std::endl;
 	return Fixed(this->toFloat() - src.toFloat());
 }
 
 Fixed	Fixed::operator*(Fixed const & src) const
 {
-	std::cout << "Multiplication operator called" << std::endl;
+	// std::cout << "Multiplication operator called" << std::endl;
 	return Fixed(this->toFloat() * src.toFloat());
 }
 
 Fixed	Fixed::operator/(Fixed const & src) const
 {
-	std::cout << "Division operator called" << std::endl;
+	// std::cout << "Division operator called" << std::endl;
 	return Fixed(this->toFloat() / src.toFloat());
 }
 
@@ -119,61 +118,48 @@ std::ostream &	operator<<(std::ostream & out, Fixed const & num)
 
 Fixed &	Fixed::operator++( void )
 {
-	std::cout << "Pre-increment operator called" << std::endl;
-
-	if (this->toFloat())
-		this->setRawBits(roundf(this->toFloat() * (1 << _bits)) + roundf(this->toFloat() * (1 << _bits)));
-	else
-		this->setRawBits(roundf(((1.0f / (1 << _bits)))*(1 << _bits)));
+	// std::cout << "Pre-increment operator called" << std::endl;
+	this->_rawValue++;
 	return (*this);
 }
 
 Fixed &	Fixed::operator--( void )
 {
-	std::cout << "Pre-decrement operator called" << std::endl;
+	// std::cout << "Pre-decrement operator called" << std::endl;
 
-	if (this->toFloat())
-		this->setRawBits(roundf(this->toFloat() * (1 << _bits)) - roundf(this->toFloat() * (1 << _bits)));
-	else
-		this->setRawBits(roundf((-(1.0f / (1 << _bits)))*(1 << _bits)));
+	this->_rawValue--;
 	return (*this);
 }
 
 Fixed	Fixed::operator++( int none )
 {
-	std::cout << "Post-increment operator called" << std::endl;
+	// std::cout << "Post-increment operator called" << std::endl;
 	
 	(void)none;
 	float	old = this->toFloat();
-	if (old)
-		this->setRawBits(this->getRawBits() + this->getRawBits());
-	else
-		this->setRawBits(roundf(((1.0f / (1 << _bits)))*(1 << _bits)));
+	this->_rawValue++;
 	return Fixed(old);
 }
 
 Fixed	Fixed::operator--( int none )
 {
-	std::cout << "Post-decrement operator called" << std::endl;
+	// std::cout << "Post-decrement operator called" << std::endl;
 	
 	(void)none;
 	float	old = this->toFloat();
-	if (old)
-		this->setRawBits(this->getRawBits() - this->getRawBits());
-	else
-		this->setRawBits(roundf((-(1.0f / (1 << _bits)))*(1 << _bits)));
+	this->_rawValue--;
 	return Fixed(old);
 }
 
 /* Member functions */
 int	Fixed::getRawBits( void ) const
 {
-	return (this->_n);
+	return (this->_rawValue);
 }
 
 void	Fixed::setRawBits (int const raw)
 {
-	this->_n = raw;
+	this->_rawValue = raw;
 }
 
 int		Fixed::toInt ( void ) const
@@ -186,5 +172,26 @@ float		Fixed::toFloat(void) const
 	return (float)this->getRawBits() / (1 << _bits) ;
 }
 
-/* Static definitions */
-const int Fixed::_bits = 8;
+Fixed & Fixed::min(Fixed & a, Fixed & b)
+{
+	// std::cout << "Min member function called" << std::endl;
+	return (a < b ? a : b);
+}
+
+Fixed & Fixed::max(Fixed & a, Fixed & b)
+{
+	// std::cout << "Max member function called" << std::endl;
+	return (a > b ? a : b);
+}
+
+const Fixed & Fixed::min( const Fixed & a, const Fixed & b)
+{
+	// std::cout << "Const min member function called" << std::endl;
+	return (a < b ? a : b);
+}
+
+const Fixed & Fixed::max( const Fixed & a, const Fixed & b)
+{
+	// std::cout << "Const max member function called" << std::endl;
+	return (a > b ? a : b);
+}
