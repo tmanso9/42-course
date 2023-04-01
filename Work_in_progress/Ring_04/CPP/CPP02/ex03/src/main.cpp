@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 14:32:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/03/31 18:26:54 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/01 01:28:06 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 int	main ( void )
 {
-	Point	a;
-	Point	b(1.5f, 1.5f);
-	Point	c ( 3.0f, 0.0f );
-	Point	Point ( 1.0f, 0.1f );
+	Point	a( -3.0f, -5.0f);
+	Point	b(7.0f, -3.0f);
+	Point	c ( 2.0f, 8.0f );
+	Point	Point ( 2.0f, -4.0f );
 
-	bsp(a, b, c, Point);
+	if (bsp(a, b, c, Point))
+		std::cout << "Point is inside triangle!" << std::endl;
+	else
+		std::cout << "No triangle for you!" << std::endl;
 }

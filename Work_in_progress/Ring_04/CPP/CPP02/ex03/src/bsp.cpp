@@ -6,28 +6,42 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 18:13:30 by touteiro          #+#    #+#             */
-/*   Updated: 2023/03/31 18:26:46 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/01 01:30:26 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
+#include <cmath>
+
+float	area(float Ax, float Ay, float Bx, float By, float Cx, float Cy)
+{
+	return std::fabs((Bx - Ax) * (Cy - Ay) - (Cx - Ax) * (By - Ay)) / 2.0;
+}
 
 bool	bsp( Point const a, Point const b, Point const c, Point const other)
 {
-	std::cout << a.getXValue() << "  " << a.getYValue() << std::endl;
-	std::cout << b.getXValue() << "  " << b.getYValue() << std::endl;
-	std::cout << c.getXValue() << "  " << c.getYValue() << std::endl;
-	std::cout << other.getXValue() << "  " << other.getYValue() << std::endl;
+	float	Ax = a.getXValue();
+	float	Ay = a.getYValue();
+	float	Bx = b.getXValue();
+	float	By = b.getYValue();
+	float	Cx = c.getXValue();
+	float	Cy = c.getYValue();
+	float	Px = other.getXValue();
+	float	Py = other.getYValue();
 
-	if (other.getXValue() == a.getXValue() && other.getYValue() == a.getYValue())
+	if ((Px == Ax && Py == Ay) || (Px == Bx && Py == By) || (Px == Cx && Py == Cy))
 		return false;
-	if (other.getXValue() == b.getXValue() && other.getYValue() == b.getYValue())
-		return false;
-	if (other.getXValue() == c.getXValue() && other.getYValue() == c.getYValue())
-		return false;
-	// check if triangle possible
-	// check if point in triangle
-	std::cout << "*** STILL HERE ***" << std::endl;
-	return true;
 
+	float	triangleArea = area(Ax, Ay, Bx, By, Cx, Cy);	
+	float	pab = area(Px, Py, Ax, Ay, Bx, By);
+	float	pbc = area(Px, Py, Bx, By, Cx, Cy);
+	float	pca = area(Px, Py, Cx, Cy, Ax, Ay);
+	
+	if (pab == 0 || pbc == 0 || pca == 0)
+        return false;
+	if (triangleArea == pab + pbc + pca)
+		return true;
+	else
+		return false;
+	
 }
