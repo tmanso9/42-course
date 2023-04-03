@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 14:32:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/01 01:44:30 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/03 14:58:34 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,36 +18,24 @@ int	main ( void )
 	Point	b(7.0f, -3.0f);
 	Point	c ( 2.0f, 8.0f );
 
-	float	vals[10][2];
-	vals[0][0] = 2.0f;
-	vals[0][1] = -4.0f;
-	vals[1][0] = 1.0f;
-	vals[1][1] = -4.0f;
-	vals[2][0] = -2.0f;
-	vals[2][1] = -4.0f;
-	vals[3][0] = 20.0f;
-	vals[3][1] = -4.0f;
+	std::cout << std::endl << "*** Drawing a triangle with vertices at (-3, -5), (2, 8), (7, -3) ***" << std::endl;
+	std::cout << "Check it out at https://www.easycalculation.com/analytical/draw-triangle.php" << std::endl << std::endl ;
 
-	
 	Point	Tests[10];
-	
-	Tests[0] = Point( vals[0][0], vals[0][1] );
-	Tests[1] = Point( vals[1][0], vals[1][1] );
-	Tests[2] = Point( vals[2][0], vals[2][1] );
-	Tests[3] = Point( vals[3][0], vals[3][1] );
-	Tests[4] = Point( 2.0f, -4.0f );
-	Tests[5] = Point( 2.0f, -4.0f );
-	Tests[6] = Point( 2.0f, -4.0f );
-	Tests[7] = Point( 2.0f, -4.0f );
-	Tests[8] = Point( 2.0f, -4.0f );
-	Tests[9] = Point( 2.0f, -4.0f );
+	Tests[0] = Point( 2.0f, -4.0f );
+	Tests[1] = Point( 2.0f, -3.8f );
+	Tests[2] = Point( -2.0f, 6.0f );
+	Tests[3] = Point( 5.0f, 0.004f );
+	Tests[4] = Point( 2.0f, 7.99f );
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 5; i++)
 	{
-		std::cout << "Point (" << vals[i][0] << "," << vals[i][1] << ") "; 
+		std::cout << "Point ( " << Tests[i].getXValue() << " , " << Tests[i].getYValue() << " ) "; 
 		if (bsp(a, b, c, Tests[i]))
-			std::cout << "is inside the triangle!" << std::endl;
+			std::cout << "\033[0;32mis inside the triangle.\033[0m" << std::endl;
 		else
-			std::cout << "is outside." << std::endl;
+			std::cout << "\033[0;31mis outside.\033[0m" << std::endl;
 	}
+
+	std::cout << std::endl;
 }
