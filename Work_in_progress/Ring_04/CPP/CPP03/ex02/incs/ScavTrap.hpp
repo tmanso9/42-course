@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:30:13 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/03 17:57:48 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/03 18:47:38 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ public:
 
 	ScavTrap & operator=( ScavTrap const & );
 	void	guardGate();
+	void	attack(const std::string& target);
 };
 
 #endif

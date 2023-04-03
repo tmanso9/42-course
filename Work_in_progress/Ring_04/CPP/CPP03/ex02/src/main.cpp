@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:07:11 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/03 18:37:15 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/03 18:50:51 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	main(void)
 	d.takeDamage(b.getDamage());
 	b.attack(d.getName());
 	d.takeDamage(b.getDamage());
+	d.attack(a.getName());
+	a.takeDamage(d.getDamage());
 	b.attack(d.getName());
 	d.takeDamage(b.getDamage());
 	b.attack(d.getName());
