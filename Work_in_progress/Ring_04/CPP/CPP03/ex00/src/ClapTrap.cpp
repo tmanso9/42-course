@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:03:27 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/03 17:26:59 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/03 18:01:39 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,13 @@
 
 ClapTrap::ClapTrap( void ) : _hitPoints(10), _energyPoints(10), _damage(0)
 {
-	// this->_hitPoints = 10;
-	// this->_energyPoints = 10;
-	// this->_damage = 0;
-	std::cout << "\033[0;32mConstructor called\033[0m" << std::endl;
+	std::cout << "\033[0;32mDefault ClapTrap constructor called\033[0m" << std::endl;
 }
 
 ClapTrap::ClapTrap( std::string name ) : _hitPoints(10), _energyPoints(10), _damage(0)
 {
 	this->setName(name);
-	std::cout << "\033[0;32mConstructor called for " << name << "\033[0m" << std::endl;
+	std::cout << "\033[0;32mClapTrap constructor called for " << name << "\033[0m" << std::endl;
 }
 
 ClapTrap::ClapTrap( ClapTrap const & src ) : _hitPoints(10), _energyPoints(10), _damage(0)
@@ -34,18 +31,18 @@ ClapTrap::ClapTrap( ClapTrap const & src ) : _hitPoints(10), _energyPoints(10), 
 
 ClapTrap &	ClapTrap::operator=(ClapTrap const & src)
 {
-	std::cout << "\033[0;32mCopy assignment operator called for " << src.getName() << "\033[0m" << std::endl;
+	std::cout << "\033[0;32mClapTrap copy assignment operator called for " << src.getName() << "\033[0m" << std::endl;
 	this->setName( src.getName() );
-	this->_hitPoints = src.getHitPoints();
-	this->_energyPoints = src.getEnergyPoints();
-	this->_damage = src.getDamage();
+	this->setHitPoints(src.getHitPoints());
+	this->setEnergyPoints(src.getEnergyPoints());
+	this->setDamage(src.getDamage());
 	return (*this);
 }
 
 ClapTrap::~ClapTrap()
 {
 	if (this->_name.size()) {
-		std::cout << "\033[0;31mDestructor called for " << this->_name << "\033[0m" << std::endl;
+		std::cout << "\033[0;31mClapTrap destructor called for " << this->_name << "\033[0m" << std::endl;
 	} else {
 		std::cout << "\033[0;31mDestructor called\033[0m" << std::endl;
 	}
@@ -54,6 +51,21 @@ ClapTrap::~ClapTrap()
 void	ClapTrap::setName( std::string name )
 {
 	this->_name = name;
+}
+
+void	ClapTrap::setHitPoints( int hitPoints )
+{
+	this->_hitPoints = hitPoints;
+}
+
+void	ClapTrap::setEnergyPoints( int energyPoints )
+{
+	this->_energyPoints = energyPoints;
+}
+
+void	ClapTrap::setDamage( int damage )
+{
+	this->_damage = damage;
 }
 
 std::string	ClapTrap::getName( void ) const

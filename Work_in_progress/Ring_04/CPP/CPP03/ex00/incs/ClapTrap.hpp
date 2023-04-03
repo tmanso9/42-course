@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:02:48 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/03 16:31:12 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/03 17:56:47 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,20 @@ private:
 	int	_hitPoints;
 	int	_energyPoints;
 	int	_damage;
+
+protected:
+	void	setName( std::string );
+	void	setHitPoints( int );
+	void	setEnergyPoints( int );
+	void	setDamage( int );
 	
 public:
 	ClapTrap( void );
-	ClapTrap( std::string name );
-	ClapTrap( ClapTrap const & src);
+	ClapTrap( std::string );
+	ClapTrap( ClapTrap const & );
 	~ClapTrap();
 
-	ClapTrap &	operator=( ClapTrap const & src );
-	void	setName( std::string name );
+	ClapTrap &	operator=( ClapTrap const & );
 	std::string	getName( void ) const;
 	int	getHitPoints( void ) const;
 	int	getEnergyPoints( void ) const;
