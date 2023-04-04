@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: touteiro <touteiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/04/03 18:42:02 by touteiro         ###   ########.fr        #
+#    Updated: 2023/04/04 18:25:02 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

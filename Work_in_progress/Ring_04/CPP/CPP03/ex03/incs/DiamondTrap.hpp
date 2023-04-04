@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: touteiro <touteiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 18:42:55 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/03 19:17:31 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/04 18:32:54 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
 #ifndef DIAMONDTRAP_HPP
 # define DIAMONDTRAP_HPP
 
@@ -20,13 +21,18 @@ class DiamondTrap: public FragTrap, public ScavTrap
 {
 private:
 	std::string	_name;
-	int			_hitPoints;
 public:
 	DiamondTrap( void );
 	DiamondTrap( std::string );
 	~DiamondTrap();
 
-	void	whoAmI( void );
+	void	    whoAmI( void );
+	std::string	getName( void );
+	int     	getDamage( void );
+	int			getHitPoints( void );
+	// std::string	getName( void );
+	// std::string	getName( void );
+    void        attack( const std::string & target);
 };
 
 

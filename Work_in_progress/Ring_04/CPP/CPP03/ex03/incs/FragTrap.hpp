@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: touteiro <touteiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 18:29:44 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/03 19:02:46 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/04 18:45:32 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "ClapTrap.hpp"
 
-class FragTrap : virtual public ClapTrap
+class FragTrap : public virtual ClapTrap
 {
 private:
 	/* data */
@@ -27,6 +27,8 @@ public:
 
 	FragTrap & operator=( FragTrap const & );
 	void	highFivesGuys();
+    int     getDamage() const;
+    int     getHitPoints() const;
 };
 
 
