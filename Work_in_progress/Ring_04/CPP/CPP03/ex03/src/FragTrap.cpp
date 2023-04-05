@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: touteiro <touteiro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 18:31:31 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/04 18:47:47 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/05 10:41:56 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ FragTrap::FragTrap( std::string name)
 	std::cout << "\033[0;32mFragTrap constructor called for " << name << "\033[0m" << std::endl;
 }
 
-FragTrap::FragTrap( FragTrap const & src)
+FragTrap::FragTrap( FragTrap const & src) : ClapTrap(src)
 {
 	*this = src;
 }

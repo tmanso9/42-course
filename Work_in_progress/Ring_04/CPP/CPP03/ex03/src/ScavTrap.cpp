@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: touteiro <touteiro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:29:43 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/04 18:54:10 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/05 10:40:50 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ ScavTrap::ScavTrap( std::string name )
 	std::cout << "\033[0;32mScavTrap constructor called for " << name << "\033[0m" << std::endl;
 }
 
-ScavTrap::ScavTrap( ScavTrap const & src)
+ScavTrap::ScavTrap( ScavTrap const & src) : ClapTrap(src)
 {
 	*this = src;
+	std::cout << "\033[0;32mScavTrap copy constructor called for " << this->_name << "\033[0m" << std::endl;
 }
 
 ScavTrap::~ScavTrap()
