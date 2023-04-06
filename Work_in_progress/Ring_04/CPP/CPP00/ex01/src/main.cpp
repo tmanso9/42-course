@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 19:21:28 by touteiro          #+#    #+#             */
-/*   Updated: 2023/03/22 19:35:01 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/06 15:36:13 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,38 +48,38 @@ int	main(void)
 				LOG("List is empty!");
 				continue ;
 			}
-			std::string	str;
+			std::string	toDisplay;
 			LOG("What index do you want to display? Input one of the numbers listed");
 			int	index = -1;
 			int interrupt = 0;
-			while (str.empty() && !interrupt)
+			while (toDisplay.empty() && !interrupt)
 			{
-				while (str.empty() || !std::isdigit(*str.begin()))
+				while (toDisplay.empty() || !std::isdigit(*toDisplay.begin()))
 				{
-					if (!std::getline(std::cin, str))
+					if (!std::getline(std::cin, toDisplay))
 					{
 						interrupt = 1;
 						break ;
 					}
 					if (!interrupt)
 					{
-						str = removeSpaces(str);
-						if (std::isdigit(*str.begin()))
+						toDisplay = removeSpaces(toDisplay);
+						if (std::isdigit(*toDisplay.begin()))
 							break ;
 						LOG("Must be a digit.");
 					}
 				}
 				if (!interrupt)
 				{
-					index = std::atoi(str.c_str());
+					index = std::atoi(toDisplay.c_str());
 					if (!book.PrintContact(index))
-						str.clear();
+						toDisplay.clear();
 				}
 			}
 		}
 		else if (!str.compare("EXIT"))
 			break ;
 		else
-			LOG("Invalid command!");
+			LOG("Invalid command. Enter ADD, SEARCH or EXIT");
 	}
 }

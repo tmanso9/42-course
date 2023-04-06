@@ -6,10 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 19:21:03 by touteiro          #+#    #+#             */
-/*   Updated: 2023/03/22 19:21:20 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/06 16:58:38 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 

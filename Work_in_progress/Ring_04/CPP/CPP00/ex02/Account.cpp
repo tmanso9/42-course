@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 16:40:47 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/06 16:40:50 by touteiro         ###   ########.fr       */
+/*   Created: 2023/04/06 16:46:30 by touteiro          #+#    #+#             */
+/*   Updated: 2023/04/06 16:54:41 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 #include <ctime>
 #include <iostream>
 #include <iomanip>
+
+Account::Account( void )
+{
+	return ;
+}
 
 Account::Account( int initial_deposit )
 {

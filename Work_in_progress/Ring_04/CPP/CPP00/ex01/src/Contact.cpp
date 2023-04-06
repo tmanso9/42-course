@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 19:20:40 by touteiro          #+#    #+#             */
-/*   Updated: 2023/03/22 19:21:14 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/06 15:26:04 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 Contact::Contact(void)
 {
-	std::cout << "Contact constructor called" << std::endl;
+	std::cout << "\033[0;32mContact constructor called\033[0m" << std::endl;
 }
 
 Contact::~Contact(void)
 {
-	std::cout << "Contact destructor called" << std::endl;
+	std::cout << "\033[0;31mContact destructor called\033[0m" << std::endl;
 }
 
 void	Contact::CreateContact(int index, std::string first_name, std::string last_name, std::string nickname, std::string phone, std::string secret)

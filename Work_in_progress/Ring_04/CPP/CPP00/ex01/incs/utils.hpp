@@ -6,10 +6,11 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 19:22:40 by touteiro          #+#    #+#             */
-/*   Updated: 2023/03/22 19:34:32 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/06 16:58:42 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
 #ifndef UTILS_HPP
 # define UTILS_HPP
 

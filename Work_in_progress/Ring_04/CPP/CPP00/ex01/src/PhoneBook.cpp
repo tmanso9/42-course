@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 19:21:50 by touteiro          #+#    #+#             */
-/*   Updated: 2023/03/22 19:21:50 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/06 15:28:59 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 
 PhoneBook::PhoneBook(void)
 {
-	std::cout << "PhoneBook constructor called" << std::endl;
+	std::cout << "\033[0;32mPhoneBook constructor called\033[0m" << std::endl;
 }
 
 PhoneBook::~PhoneBook(void)
 {
-	std::cout << "PhoneBook destructor called" << std::endl;
+	std::cout << "\033[0;31mPhoneBook destructor called\033[0m" << std::endl;
 }
 
 void	PhoneBook::AddContact(int i)
@@ -52,7 +52,8 @@ void	PhoneBook::MoveContacts(void)
 	}
 }
 
-int	PhoneBook::PrintList(void) {
+int	PhoneBook::PrintList(void)
+{
 	int allEmpty = 1;
 	for (int i = 0; i < 8; i++)
 		if (!this->_contacts[i].CheckIfEmpty())
@@ -74,7 +75,8 @@ int	PhoneBook::PrintList(void) {
 	return (1);
 }
 
-int	PhoneBook::PrintContact(int i) {
+int	PhoneBook::PrintContact(int i)
+{
 	if (i < 0 || i > 7 || this->_contacts[i].CheckIfEmpty())
 	{
 		LOG("Index out of range. Try again");
