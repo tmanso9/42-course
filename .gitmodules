@@ -1,0 +1,3 @@
+[submodule "Finished_projects/minishell"]
+	path = Finished_projects/minishell
+	url = https://github.com/tmanso9/minishell.git
