@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:05:20 by touteiro          #+#    #+#             */
-/*   Updated: 2023/03/24 11:38:44 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/10 19:57:48 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main(void)
 	// Reference is like an alias; 
 	// pointer that is constant (always points to the same address), 
 	// always dereferenced, 
-	// never null (always needs to be initialized as soon as it is declared)
+	// never null (always needs to be initialized as soon as it is declared).
 	std::string	&ref = str;
 
 	std::cout << "First, let's print the memory addresses:" << std::endl;
