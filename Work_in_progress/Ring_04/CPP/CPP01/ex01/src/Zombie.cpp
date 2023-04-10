@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:38:48 by touteiro          #+#    #+#             */
-/*   Updated: 2023/03/23 18:02:09 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/10 19:15:37 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 Zombie::Zombie(void)
 {
-	std::cout << "Zombie constructor called" << std::endl;
+	std::cout << "\033[0;32mZombie constructor called\033[0m" << std::endl;
 }
 
 Zombie::~Zombie(void)
 {
-	std::cout << "Zombie " << this->_name << " destructor called" << std::endl;
+	std::cout << "\033[0;31mZombie destructor called for " << this->_name << ".\033[0m" << std::endl;
 }
 
 void	Zombie::announce(void)
