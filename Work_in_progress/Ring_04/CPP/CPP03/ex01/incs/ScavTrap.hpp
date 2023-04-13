@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:30:13 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/03 18:47:38 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/13 18:18:29 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,12 @@
 
 class ScavTrap : public ClapTrap
 {
-private:
-	/* data */
+	
 public:
-	ScavTrap();
+	ScavTrap( void );
 	ScavTrap( std::string );
 	ScavTrap( ScavTrap const &);
-	~ScavTrap();
+	~ScavTrap( void );
 
 	ScavTrap & operator=( ScavTrap const & );
 	void	guardGate();

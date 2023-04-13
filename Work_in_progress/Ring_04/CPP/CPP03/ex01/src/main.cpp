@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:07:11 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/03 18:01:17 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/13 18:22:29 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,23 @@
 
 int	main(void)
 {
-	ScavTrap	a("Blert");
-	ScavTrap	b("Fortytuos");
-	ScavTrap	c = a;
+	ScavTrap	blert("Blert");
+	ScavTrap	Forty("Fortytuos");
+	ScavTrap	c = blert;
 
-	a.attack(b.getName());
-	b.takeDamage(a.getDamage());
-	a.attack(b.getName());
-	b.takeDamage(a.getDamage());
-	b.guardGate();
-	b.beRepaired(15);
-	a.attack(b.getName());
-	b.takeDamage(a.getDamage());
+	blert.attack(Forty.getName());
+	Forty.takeDamage(blert.getDamage());
+	blert.attack(Forty.getName());
+	Forty.takeDamage(blert.getDamage());
+	Forty.guardGate();
+	Forty.beRepaired(15);
+	blert.attack(Forty.getName());
+	Forty.takeDamage(blert.getDamage());
+	blert.attack(Forty.getName());
+	Forty.takeDamage(blert.getDamage());
+	blert.attack(Forty.getName());
+	Forty.takeDamage(blert.getDamage());
+	blert.attack(Forty.getName());
+	Forty.takeDamage(blert.getDamage());
+	
 }
