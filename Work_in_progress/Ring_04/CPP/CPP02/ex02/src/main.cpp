@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 14:32:46 by touteiro          #+#    #+#             */
-/*   Updated: 2023/03/31 14:15:14 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/13 15:22:46 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,39 +28,39 @@ int	main ( void )
 		std::cout << "a == b: " << (a == b) << std::endl;
 		std::cout << "a != b: " << (a != b) << std::endl;
 		
-		a = Fixed(5.1005f);
 		std::cout << std::endl << "*** TESTING ARITHMETIC OPERATORS ***" << std::endl;
-		std::cout << "a is " << (a) << std::endl;
-		std::cout << "b is " << (b) << std::endl;
-		std::cout << "a + b: " << (a + b) << std::endl;
-		std::cout << "a - b: " << (a - b) << std::endl;
-		std::cout << "a * b: " << (a * b) << std::endl;
-		std::cout << "a / b: " << (a / b) << std::endl;
+		Fixed	c(5.5f);
+		std::cout << "c is " << c << std::endl;
+		std::cout << "b is " << b << std::endl;
+		std::cout << "c + b: " << (c + b) << std::endl;
+		std::cout << "c - b: " << (c - b) << std::endl;
+		std::cout << "c * b: " << (c * b) << std::endl;
+		std::cout << "c / b: " << (c / b) << std::endl;
 		
-		a = Fixed(0);
 		std::cout << std::endl << "*** TESTING INCREMENT OPERATORS ***" << std::endl;
-		std::cout << "a is " << (a) << std::endl;
-		std::cout << "b is " << (b) << std::endl;
-		std::cout << "++a: " << (++a) << std::endl;
-		std::cout << "a is " << a << std::endl;
-		std::cout << "++a: " << (++a) << std::endl;
-		std::cout << "a is " << a << std::endl;
-		std::cout << "a++: " << a++ << std::endl;
-		std::cout << "a is " << a << std::endl;
+		Fixed	d(0);
+		std::cout << "d is " << d << std::endl;
+		std::cout << "b is " << b << std::endl;
+		std::cout << "++d: " << (++d) << std::endl;
+		std::cout << "d is " << d << std::endl;
+		std::cout << "++d: " << (++d) << std::endl;
+		std::cout << "d is " << d << std::endl;
+		std::cout << "d++: " << d++ << std::endl;
+		std::cout << "d is " << d << std::endl;
 
 		std::cout << std::endl;
 		std::cout << "*** TESTING MIN/MAX MEMBER FUNCTIONS ***" << std::endl;
-		std::cout << "a is " << (a) << std::endl;
-		std::cout << "b is " << (b) << std::endl;
-		std::cout << "Fixed::min(a, b): " << Fixed::min(a, b) << std::endl;
-		std::cout << "Fixed::max(a, b): " << Fixed::max(a, b) << std::endl;
+		std::cout << "d is " << d << std::endl;
+		std::cout << "b is " << b << std::endl;
+		std::cout << "Fixed::min(d, b): " << Fixed::min(d, b) << std::endl;
+		std::cout << "Fixed::max(d, b): " << Fixed::max(d, b) << std::endl;
 		std::cout << std::endl;
-		const Fixed	c(3.2f);
-		const Fixed	d(6.765f);
-		std::cout << "c is " << (c) << std::endl;
-		std::cout << "d is " << (d) << std::endl;
-		std::cout << "Fixed::min(c, d): " << Fixed::min( c, d ) << std::endl;
-		std::cout << "Fixed::max(c, d): " << Fixed::max( c, d ) << std::endl;
+		const Fixed	e(3.2f);
+		const Fixed	f(6.765f);
+		std::cout << "e is " << e << std::endl;
+		std::cout << "f is " << f << std::endl;
+		std::cout << "Fixed::min(e, f): " << Fixed::min( e, f ) << std::endl;
+		std::cout << "Fixed::max(e, f): " << Fixed::max( e, f ) << std::endl;
 
 		std::cout << std::endl << "*** REACHED END OF TESTS ***" << std::endl;
 		
