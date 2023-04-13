@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:03:27 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/03 18:38:26 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/13 18:10:26 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void ClapTrap::attack(const std::string& target)
 	} else if (!this->_hitPoints) {
 		std::cout << "ClapTrap " << this->getName() << " is dead and can't attack " << target << "." << std::endl; 
 	} else {
-		std::cout << "ClapTrap " << this->getName() << " doesn't have enough energyPoints to attack." << std::endl; 
+		std::cout << "ClapTrap " << this->getName() << " doesn't have enough energy points to attack." << std::endl; 
 	}
 }
 
@@ -124,7 +124,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	} else if (!this->_hitPoints) {
 		std::cout << "ClapTrap " << this->getName() << " is dead and can't repair itself." << std::endl; 
 	}  else {	
-		std::cout << "ClapTrap " << this->getName() << " doesn't have enough energyPoints to repair itself." << std::endl; 
+		std::cout << "ClapTrap " << this->getName() << " doesn't have enough energy points to repair itself." << std::endl; 
 	}
 }
 

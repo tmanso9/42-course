@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:07:11 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/03 17:27:14 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/13 18:10:43 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int	main(void)
 {
 	ClapTrap	a;
-	ClapTrap	b("Luis");
-	ClapTrap	c("Afonso");
+	ClapTrap	b("Marvin");
+	ClapTrap	c("Phelps");
 	
 	a = c;
 	b.attack(a.getName());
