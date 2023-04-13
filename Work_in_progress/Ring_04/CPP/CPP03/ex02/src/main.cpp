@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:07:11 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/03 18:50:51 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/13 18:28:52 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,29 @@
 
 int	main(void)
 {
-	FragTrap	a("Blert");
-	FragTrap	b("Fortytuos");
-	FragTrap	c = a;
-	ScavTrap	d("Dynamo");
+	FragTrap	Blert("Blert");
+	FragTrap	Forty("Fortytuos");
+	FragTrap	c = Blert;
+	ScavTrap	Dynamo("Dynamo");
 
-	a.attack(b.getName());
-	b.takeDamage(a.getDamage());
-	a.attack(b.getName());
-	b.takeDamage(a.getDamage());
-	b.highFivesGuys();
-	b.beRepaired(15);
-	a.attack(b.getName());
-	b.takeDamage(a.getDamage());
-	b.attack(d.getName());
-	d.takeDamage(b.getDamage());
-	b.attack(d.getName());
-	d.takeDamage(b.getDamage());
-	b.attack(d.getName());
-	d.takeDamage(b.getDamage());
-	d.attack(a.getName());
-	a.takeDamage(d.getDamage());
-	b.attack(d.getName());
-	d.takeDamage(b.getDamage());
-	b.attack(d.getName());
-	d.takeDamage(b.getDamage());
+	Blert.attack(Forty.getName());
+	Forty.takeDamage(Blert.getDamage());
+	Blert.attack(Forty.getName());
+	Forty.takeDamage(Blert.getDamage());
+	Forty.highFivesGuys();
+	Forty.beRepaired(15);
+	Blert.attack(Forty.getName());
+	Forty.takeDamage(Blert.getDamage());
+	Forty.attack(Dynamo.getName());
+	Dynamo.takeDamage(Forty.getDamage());
+	Forty.attack(Dynamo.getName());
+	Dynamo.takeDamage(Forty.getDamage());
+	Forty.attack(Dynamo.getName());
+	Dynamo.takeDamage(Forty.getDamage());
+	Dynamo.attack(Blert.getName());
+	Blert.takeDamage(Dynamo.getDamage());
+	Forty.attack(Dynamo.getName());
+	Dynamo.takeDamage(Forty.getDamage());
+	Forty.attack(Dynamo.getName());
+	Dynamo.takeDamage(Forty.getDamage());
 }

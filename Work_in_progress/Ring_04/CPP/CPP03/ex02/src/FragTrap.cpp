@@ -6,14 +6,17 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 18:31:31 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/03 18:35:42 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/13 18:27:17 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap()
+FragTrap::FragTrap( void )
 {
+	this->setHitPoints(100);
+	this->setEnergyPoints(100);
+	this->setDamage(30);
 	std::cout << "\033[0;32mDefault FragTrap constructor called\033[0m" << std::endl;
 }
 
@@ -31,7 +34,7 @@ FragTrap::FragTrap( FragTrap const & src)
 	*this = src;
 }
 
-FragTrap::~FragTrap()
+FragTrap::~FragTrap( void )
 {
 	std::cout << "\033[0;31mFragTrap destructor called for " << this->getName() << "\033[0m" << std::endl;
 }

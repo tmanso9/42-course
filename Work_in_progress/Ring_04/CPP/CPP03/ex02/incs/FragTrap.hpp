@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 18:29:44 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/03 18:35:13 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/13 18:26:58 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,14 @@
 
 class FragTrap : public ClapTrap
 {
-private:
-	/* data */
 public:
-	FragTrap();
+	FragTrap( void );
 	FragTrap( std::string );
 	FragTrap( FragTrap const &);
-	~FragTrap();
+	~FragTrap( void );
 
 	FragTrap & operator=( FragTrap const & );
-	void	highFivesGuys();
+	void	highFivesGuys( void );
 };
 
 
