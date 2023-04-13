@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: touteiro <touteiro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:02:48 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/04 16:02:24 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/13 19:02:47 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ public:
 	~ClapTrap();
 
 	ClapTrap &	operator=( ClapTrap const & );
+		
+	void	setName( std::string );
+	void	setHitPoints( int );
+	void	setEnergyPoints( int );
+	void	setDamage( int );
+	
 	std::string	getName( void ) const;
 	int	getHitPoints( void ) const;
 	int	getEnergyPoints( void ) const;
