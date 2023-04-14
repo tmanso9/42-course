@@ -6,15 +6,15 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/04/05 11:44:54 by touteiro         ###   ########.fr        #
+#    Updated: 2023/04/14 19:18:35 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Animal
 CC = c++
 PFLAGS = -I incs -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
-SRC_FILE = main.cpp Animal.cpp Dog.cpp Cat.cpp
-INC_FILES = Animal.hpp Dog.hpp Cat.hpp
+SRC_FILE = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
+INC_FILES = Animal.hpp Dog.hpp Cat.hpp WrongAnimal.hpp WrongCat.hpp
 
 SRC = $(addprefix src/, $(SRC_FILE))
 OBJ = $(addprefix obj/, $(SRC:.cpp=.o))
