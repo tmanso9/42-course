@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:27:15 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/05 12:07:10 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/14 20:22:13 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ public:
 
 	Dog &			operator=(Dog const &);
 	virtual void	makeSound( void ) const;
-	Brain			*getBrain( void ) const;
+	Brain	&		getBrain( void ) const;
 };
 
 
