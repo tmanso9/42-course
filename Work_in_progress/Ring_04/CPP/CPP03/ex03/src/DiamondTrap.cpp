@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 19:00:39 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/13 19:08:07 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/14 13:57:11 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,12 @@ DiamondTrap::DiamondTrap( void ) : FragTrap(), ScavTrap()
 	std::cout << "\033[0;32mDefault DiamondTrap constructor called\033[0m" << std::endl;
 }
 
-DiamondTrap::DiamondTrap( std::string name ) : ClapTrap(name), FragTrap(name), ScavTrap(name)
+DiamondTrap::DiamondTrap( std::string name ) : ClapTrap(name + "_clap_name"), FragTrap(), ScavTrap(), _name(name)
 {
+	FragTrap::_hitPoints = 100;
+	ScavTrap::_energyPoints = 50;
+	FragTrap::_damage = 30;
     std::cout << "\033[0;32mDiamondTrap constructor called for " << name << "\033[0m" << std::endl;
-    this->_name = name;
-	this->ClapTrap::_name = name + "_clap_name";
-	this->_hitPoints = FragTrap::getHitPoints();
-	this->_energyPoints = ScavTrap::getEnergyPoints();
-	this->_damage = FragTrap::getDamage();
 }
 
 DiamondTrap::~DiamondTrap()
@@ -46,20 +44,10 @@ void    DiamondTrap::whoAmI( void )
 
 std::string DiamondTrap::getName( void )
 {
-    return this->_name;
+    return _name;
 }
-
-// int DiamondTrap::getDamage( void )
-// {
-//     return this->_damage;
-// }
-
-// int DiamondTrap::getHitPoints( void )
-// {
-//     return this->_hitPoints;
-// }
 
 void    DiamondTrap::attack( const std::string & target)
 {
-    this->ScavTrap::attack(target);
+    ScavTrap::attack(target);
 }

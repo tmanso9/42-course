@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 18:29:44 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/13 19:11:11 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/14 14:02:15 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ public:
 
 	FragTrap & operator=( FragTrap const & );
 	void	highFivesGuys();
-    int     getDamage() const;
-    int     getHitPoints() const;
 };
 
 #endif
