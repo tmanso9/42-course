@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:29:43 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/13 18:19:25 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/14 18:25:14 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ ScavTrap::ScavTrap( std::string name )
 	std::cout << "\033[0;32mScavTrap constructor called for " << name << "\033[0m" << std::endl;
 }
 
-ScavTrap::ScavTrap( ScavTrap const & src )
+ScavTrap::ScavTrap( ScavTrap const & src ) : ClapTrap(src)
 {
 	*this = src;
 }

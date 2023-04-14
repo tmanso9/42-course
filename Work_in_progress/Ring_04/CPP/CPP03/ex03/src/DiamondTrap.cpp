@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 19:00:39 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/14 13:57:11 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/14 18:09:26 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ DiamondTrap::DiamondTrap( std::string name ) : ClapTrap(name + "_clap_name"), Fr
     std::cout << "\033[0;32mDiamondTrap constructor called for " << name << "\033[0m" << std::endl;
 }
 
+DiamondTrap::DiamondTrap( DiamondTrap const & src) : ClapTrap(src)
+{
+	*this = src;
+}
+
 DiamondTrap::~DiamondTrap()
 {
 	if (this->_name.size()) {
@@ -32,6 +37,16 @@ DiamondTrap::~DiamondTrap()
 	} else {
 	std::cout << "\033[0;31mDiamondTrap destructor called\033[0m" << std::endl;
 	}
+}
+
+DiamondTrap & DiamondTrap::operator=( DiamondTrap const & src )
+{
+	std::cout << "\033[0;32mDiamondTrap copy assignment operator called for " << src.getName() << "\033[0m" << std::endl;
+	this->_name = src.getName();
+	this->_hitPoints = src.getHitPoints();
+	this->_energyPoints = src.getEnergyPoints();
+	this->_damage = src.getDamage();
+	return (*this);
 }
 
 void    DiamondTrap::whoAmI( void )
@@ -42,7 +57,7 @@ void    DiamondTrap::whoAmI( void )
     std::cout << "Is it clear now?" << std::endl << std::endl;
 }
 
-std::string DiamondTrap::getName( void )
+std::string DiamondTrap::getName( void ) const
 {
     return _name;
 }

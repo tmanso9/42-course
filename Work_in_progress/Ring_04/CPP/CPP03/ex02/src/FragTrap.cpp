@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 18:31:31 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/13 18:27:17 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/14 18:25:50 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ FragTrap::FragTrap( std::string name)
 	std::cout << "\033[0;32mFragTrap constructor called for " << name << "\033[0m" << std::endl;
 }
 
-FragTrap::FragTrap( FragTrap const & src)
+FragTrap::FragTrap( FragTrap const & src) : ClapTrap(src)
 {
 	*this = src;
 }
