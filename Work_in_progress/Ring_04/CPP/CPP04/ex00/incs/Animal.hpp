@@ -6,11 +6,10 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 10:56:33 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/05 11:34:58 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/14 18:32:30 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
 #ifndef ANIMAL_HPP
 # define ANIMAL_HPP
 
@@ -28,6 +27,7 @@ public:
 
 	Animal & 		operator=( Animal const & );
 	std::string		getType( void ) const;
+	void		setType( std::string );
 	virtual void	makeSound( void ) const;
 };
 

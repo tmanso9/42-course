@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:29:25 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/05 11:49:37 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/14 19:05:25 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 Dog::Dog( void )
 {
-	this->type = "Dog";
-	std::cout << "Default new dog jumps up and down with joy" << std::endl;
+	setType("Dog");
+	std::cout << "\033[0;32mDefault new dog jumps up and down with joy\033[0m" << std::endl;
 }
 
 Dog::Dog( Dog const & src ) : Animal(src)
 {
 	*this = src;
-	std::cout << "Copy dog jumps up and down with joy" << std::endl;
+	std::cout << "\033[0;32mCopy dog jumps up and down with joy\033[0m" << std::endl;
 }
 
 Dog::~Dog()
 {
-	std::cout << "Dog gone to search for treats" << std::endl;
+	std::cout << "\033[0;31mDog gone to search for treats\033[0m" << std::endl;
 }
 
 Dog &	Dog::operator=(Dog const & src)

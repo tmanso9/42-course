@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:13:05 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/05 11:26:51 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/14 19:05:11 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 Animal::Animal( void ) : type("random animal")
 {
-	std::cout << "Animal default constructor called" << std::endl;
+	std::cout << "\033[0;32mAnimal default constructor called\033[0m" << std::endl;
 }
 
 Animal::Animal( Animal const & src )
 {
 	*this = src;
-	std::cout << "Animal copy constructor called" << std::endl;
+	std::cout << "\033[0;32mAnimal copy constructor called\033[0m" << std::endl;
 }
 
 Animal::~Animal()
 {
-	std::cout << "Animal default destructor called" << std::endl;
+	std::cout << "\033[0;31mAnimal default destructor called\033[0m" << std::endl;
 }
 
 Animal & Animal::operator=( Animal const & src )
@@ -33,6 +33,12 @@ Animal & Animal::operator=( Animal const & src )
 	this->type = src.getType();
 	return *this;
 }
+
+void	Animal::setType( std::string word )
+{
+	type = word;
+}
+
 
 std::string	Animal::getType( void ) const
 {
