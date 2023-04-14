@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:02:48 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/13 18:01:49 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/14 14:00:10 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ public:
 	ClapTrap( void );
 	ClapTrap( std::string );
 	ClapTrap( ClapTrap const & );
-	~ClapTrap();
+	~ClapTrap( void );
 
 	ClapTrap &	operator=( ClapTrap const & );
 	
