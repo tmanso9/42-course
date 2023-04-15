@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:56:06 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/05 18:26:14 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/14 22:35:09 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,24 @@
 Ice::Ice( void )
 {
 	this->type = "ice";
-	std::cout << "Default ice constructor called" << std::endl;
+	std::cout << "\033[0;32mDefault ice constructor called\033[0m" << std::endl;
 }
 
 Ice::Ice( Ice const & src) : AMateria(src)
 {
 	*this = src;
-	std::cout << "Ice copy constructor called" << std::endl;
+	std::cout << "\033[0;32mIce copy constructor called\033[0m" << std::endl;
 }
 
 Ice::~Ice()
 {
-	std::cout << "Default ice destructor called" << std::endl;
+	std::cout << "\033[0;31mDefault ice destructor called\033[0m" << std::endl;
 }
 
 Ice &	Ice::operator=( Ice const & src)
 {
+	std::cout << "\033[0;32mIce assignment overload called\033[0m" << std::endl;
 	this->type = src.getType();
-	std::cout << "Ice assignment overload called" << std::endl;
 	return *this;
 }
 

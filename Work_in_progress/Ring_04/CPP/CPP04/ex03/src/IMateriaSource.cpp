@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:32:53 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/05 17:44:00 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/15 01:19:49 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 IMateriaSource::~IMateriaSource()
 {
-	std::cout << "IMateriaSource destructor called" << std::endl;
+	std::cout << "\033[0;31mIMateriaSource destructor called\033[0m" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:22:44 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/05 14:23:40 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/14 22:49:45 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 ICharacter::~ICharacter()
 {
-	std::cout << "ICharacter destructor called" << std::endl;
+	std::cout << "\033[0;31mICharacter destructor called\033[0m" << std::endl;
 }

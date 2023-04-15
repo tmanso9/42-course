@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:56:06 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/05 18:23:54 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/14 22:28:45 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,24 @@
 Cure::Cure( void )
 {
 	this->type = "cure";
-	std::cout << "Default cure constructor called" << std::endl;
+	std::cout << "\033[0;32mDefault cure constructor called\033[0m" << std::endl;
 }
 
 Cure::Cure( Cure const & src) : AMateria(src)
 {
 	*this = src;
-	std::cout << "Cure copy constructor called" << std::endl;
+	std::cout << "\033[0;32mCure copy constructor called\033[0m" << std::endl;
 }
 
 Cure::~Cure()
 {
-	std::cout << "Default cure destructor called" << std::endl;
+	std::cout << "\033[0;31mDefault cure destructor called\033[0m" << std::endl;
 }
 
 Cure &	Cure::operator=( Cure const & src)
 {
-	// this->type = src.getType();
-	(void)src;
-	std::cout << "Cure assignment overload called" << std::endl;
+	this->type = src.getType();
+	std::cout << "\033[0;32mCure assignment overload called\033[0m" << std::endl;
 	return *this;
 }
 

@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:48:28 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/05 18:09:37 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/14 22:29:51 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 
 AMateria::AMateria( void ) : type("abstract")
 {
-	std::cout << "Default abstract materia constructor called" << std::endl;
+	std::cout << "\033[0;32mDefault abstract materia constructor called\033[0m" << std::endl;
 }
 
 AMateria::AMateria( AMateria const & src ) : type("abstract")
 {
 	*this = src;
-	std::cout << "Abstract materia copy constructor called" << std::endl;
+	std::cout << "\033[0;32mAbstract materia copy constructor called\033[0m" << std::endl;
 }
 
 AMateria::~AMateria()
 {
-	std::cout << "Default abstract materia destructor called" << std::endl;
+	std::cout << "\033[0;31mDefault abstract materia destructor called\033[0m" << std::endl;
 }
 
 AMateria & AMateria::operator=( AMateria const & src)
 {
+	std::cout << "\033[0;32mAbstract assignment overload called\033[0m" << std::endl;
 	this->type = src.getType();
-	std::cout << "Abstract assignment overload called" << std::endl;
 	return *this;
 }
 
