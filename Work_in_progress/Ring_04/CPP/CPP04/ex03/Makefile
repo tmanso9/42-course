@@ -6,7 +6,7 @@
 #    By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:28:45 by touteiro          #+#    #+#              #
-#    Updated: 2023/04/05 18:52:32 by touteiro         ###   ########.fr        #
+#    Updated: 2023/04/14 23:58:23 by touteiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = Interface
 CC = c++
 PFLAGS = -I incs -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
 SRC_FILE =	main.cpp AMateria.cpp Ice.cpp Cure.cpp ICharacter.cpp Character.cpp \
-			IMateriaSource.cpp MateriaSource.cpp LinkedList.cpp
+			IMateriaSource.cpp MateriaSource.cpp LinkedList.cpp Node.cpp
 INC_FILES = AMateria.hpp Ice.hpp Cure.hpp ICharacter.hpp Character.hpp \
 			IMateriaSource.hpp MateriaSource.hpp LinkedList.hpp Node.hpp
 

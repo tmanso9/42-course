@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:42:51 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/05 18:50:58 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/14 23:34:30 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ class LinkedList
 private:
 	Node *head;
 public:
-	LinkedList(/* args */);
-	~LinkedList();
+	LinkedList( void );
+	LinkedList( LinkedList const & );
+	~LinkedList( void );
+	LinkedList & operator=( LinkedList const & );
 	
 	void	add(AMateria*);
 };
