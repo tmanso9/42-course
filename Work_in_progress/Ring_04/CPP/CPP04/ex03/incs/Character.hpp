@@ -6,11 +6,10 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:24:22 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/05 18:51:28 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/14 22:46:35 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #pragma once
 #ifndef CHARACTER_HPP
 # define CHARACTER_HPP
 
