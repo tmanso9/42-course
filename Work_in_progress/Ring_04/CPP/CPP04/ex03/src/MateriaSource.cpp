@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:36:30 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/05 18:27:56 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/15 01:18:33 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,33 @@
 
 MateriaSource::MateriaSource( void )
 {
-	std::cout << "MaterialSource default constructor called" << std::endl;
+	std::cout << "\033[0;32mMateriaSource default constructor called\033[0m" << std::endl;
 	for (int i = 0; i < 4; i++)
-		this->addresses[i] = 0;
+		this->addresses[i] = NULL;
 }
 
 MateriaSource::MateriaSource( MateriaSource const & src )
 {
 	*this = src;
-	std::cout << "MaterialSource copy constructor called" << std::endl;
+	std::cout << "\033[0;32mMateriaSource copy constructor called\033[0m" << std::endl;
 }
 
 MateriaSource::~MateriaSource()
 {
+	std::cout << "\033[0;31mMateriaSource destructor called\033[0m" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->addresses[i])
 			delete this->addresses[i];
 	}
-	std::cout << "MaterialSource destructor called" << std::endl;
 }
 
 MateriaSource &	MateriaSource::operator=( MateriaSource const & src )
 {
-	*this = MateriaSource(src);
+	for (int i = 0; i < 4; i++) {
+		if (src.addresses[i])
+			addresses[i] = src.addresses[i]->clone();
+	}
 	return *this;
 }
 
@@ -54,7 +57,7 @@ void	MateriaSource::learnMateria( AMateria *src )
 	}
 	if (!learned)
 	{
-		std::cout << "Memory full" << std::endl;
+		std::cout << "Error learning materia: memory full" << std::endl;
 		delete src;
 	}
 }
@@ -66,6 +69,6 @@ AMateria*	MateriaSource::createMateria(std::string const & type)
 		if (this->addresses[i] && !type.compare(this->addresses[i]->getType()))
 			return this->addresses[i]->clone();
 	}
-	std::cout << "Unknown materia" << std::endl;
+	std::cout << "Error creating Materia '" << type << "': unknown materia" << std::endl;
 	return 0;
 }
