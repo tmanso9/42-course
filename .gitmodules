@@ -13,6 +13,7 @@
 [submodule "Finished_projects/gnl"]
 	path = Finished_projects/gnl
 	url = git@github.com:tmanso9/get_next_line.git
+	
 [submodule "Finished_projects/fract-ol"]
 	path = Finished_projects/fract-ol
 	url = git@github.com:tmanso9/fract-ol.git
