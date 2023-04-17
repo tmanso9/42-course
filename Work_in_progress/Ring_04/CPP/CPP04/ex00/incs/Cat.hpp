@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:38:24 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/05 11:40:15 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/17 14:17:32 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ class Cat : public Animal
 public:
 	Cat( void );
 	Cat( Cat const &);
-	virtual ~Cat();
-	
+	~Cat();
 	Cat &			operator=(Cat const &);
+	
 	virtual void	makeSound( void ) const;
 };
 
