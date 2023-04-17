@@ -6,13 +6,13 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 19:13:20 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/14 19:19:20 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/17 14:19:46 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "WrongCat.hpp"
 
-WrongCat::WrongCat(/* args */)
+WrongCat::WrongCat()
 {
 	std::cout << "\033[0;32mTHIS IS NOT A CAT\033[0m" << std::endl;
 }
@@ -31,4 +31,9 @@ WrongCat & WrongCat::operator=( WrongCat const & src )
 {
 	setType(src.getType());
 	return *this;
+}
+
+void	WrongCat::makeSound( void ) const
+{
+	std::cout << "Meow?" << std::endl;
 }

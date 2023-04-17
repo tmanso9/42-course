@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 19:06:17 by touteiro          #+#    #+#             */
-/*   Updated: 2023/04/14 19:18:10 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/04/17 14:10:39 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ public:
 	virtual ~WrongCat();
 	
 	WrongCat & operator=( WrongCat const & );
+	void		makeSound( void ) const;
 };
 
 
