@@ -1,3 +1,7 @@
 [submodule "Finished_projects/minishell"]
 	path = Finished_projects/minishell
 	url = https://github.com/tmanso9/minishell.git
+
+[submodule "Finished_projects/libft"]
+	path = Finished_projects/libft
+	url = "git@github.com:tmanso9/libft.git"
