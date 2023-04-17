@@ -9,3 +9,7 @@
 [submodule "Finished_projects/ft_printf"]
 	path = Finished_projects/ft_printf
 	url = git@github.com:tmanso9/ft_printf.git
+
+[submodule "Finished_projects/gnl"]
+	path = Finished_projects/gnl
+	url = git@github.com:tmanso9/get_next_line.git
