@@ -21,6 +21,7 @@
 [submodule "Finished_projects/miniRT"]
 	path = Finished_projects/miniRT
 	url = git@github.com:polltter/42_miniRT.git
+	
 [submodule "Finished_projects/philosophers"]
 	path = Finished_projects/philosophers
 	url = git@github.com:tmanso9/philosophers.git
