@@ -25,3 +25,6 @@
 [submodule "Finished_projects/philosophers"]
 	path = Finished_projects/philosophers
 	url = git@github.com:tmanso9/philosophers.git
+[submodule "Finished_projects/pipex"]
+	path = Finished_projects/pipex
+	url = git@github.com:tmanso9/pipex.git
