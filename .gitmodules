@@ -13,7 +13,7 @@
 [submodule "Finished_projects/gnl"]
 	path = Finished_projects/gnl
 	url = git@github.com:tmanso9/get_next_line.git
-	
+
 [submodule "Finished_projects/fract-ol"]
 	path = Finished_projects/fract-ol
 	url = git@github.com:tmanso9/fract-ol.git
@@ -21,10 +21,15 @@
 [submodule "Finished_projects/miniRT"]
 	path = Finished_projects/miniRT
 	url = git@github.com:polltter/42_miniRT.git
-	
+
 [submodule "Finished_projects/philosophers"]
 	path = Finished_projects/philosophers
 	url = git@github.com:tmanso9/philosophers.git
+
 [submodule "Finished_projects/pipex"]
 	path = Finished_projects/pipex
 	url = git@github.com:tmanso9/pipex.git
+
+[submodule "Finished_projects/push_swap"]
+	path = Finished_projects/push_swap
+	url = git@github.com:tmanso9/push_swap.git
