@@ -6,7 +6,7 @@
 /*   By: touteiro <touteiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:10:31 by touteiro          #+#    #+#             */
-/*   Updated: 2023/05/17 11:58:18 by touteiro         ###   ########.fr       */
+/*   Updated: 2023/05/17 14:44:53 by touteiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,16 @@ public:
 		public:
 			virtual const char* what() const throw()
 			{
-				return ("Grade is too high");
+				return ("grade is too high");
+			}
+	};
+	
+	class GradeTooLowException : public std::exception
+	{
+		public:
+			virtual const char* what() const throw()
+			{
+				return ("grade is too low");
 			}
 	};
 };
