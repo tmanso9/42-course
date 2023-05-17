@@ -17,3 +17,7 @@
 [submodule "Finished_projects/fract-ol"]
 	path = Finished_projects/fract-ol
 	url = git@github.com:tmanso9/fract-ol.git
+
+[submodule "Finished_projects/miniRT"]
+	path = Finished_projects/miniRT
+	url = git@github.com:polltter/42_miniRT.git
