@@ -34,6 +34,6 @@
 	path = Finished_projects/push_swap
 	url = git@github.com:tmanso9/push_swap.git
 
-[submodule "Work_in_progress/Ring_04_05/CPP-modules"]
-	path = Work_in_progress/Ring_04_05/CPP-modules
+[submodule "Finished_projects/CPP-modules"]
+	path = Finished_projects/CPP-modules
 	url = git@github.com:tmanso9/CPP-modules.git
