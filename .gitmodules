@@ -41,3 +41,6 @@
 [submodule "Finished_projects/webserv"]
 	path = Finished_projects/webserv
 	url = git@github.com:portugueseTorch/42_webserv.git
+[submodule "Finished_projects/inception"]
+	path = Finished_projects/inception
+	url = git@github.com:tmanso9/inception.git
