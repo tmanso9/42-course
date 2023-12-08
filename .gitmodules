@@ -1,46 +1,46 @@
 [submodule "Finished_projects/minishell"]
-	path = Finished_projects/minishell
-	url = https://github.com/tmanso9/minishell.git
+	path = Rank_3/minishell
+	url = git@github.com:tmanso9/minishell.git
 
 [submodule "Finished_projects/libft"]
-	path = Finished_projects/libft
-	url = https://github.com/tmanso9/libft.git
+	path = Rank_0/libft
+	url = git@github.com:tmanso9/libft.git
 
 [submodule "Finished_projects/ft_printf"]
-	path = Finished_projects/ft_printf
+	path = Rank_1/ft_printf
 	url = git@github.com:tmanso9/ft_printf.git
 
 [submodule "Finished_projects/gnl"]
-	path = Finished_projects/gnl
+	path = Rank_1/get_next_line
 	url = git@github.com:tmanso9/get_next_line.git
 
 [submodule "Finished_projects/fract-ol"]
-	path = Finished_projects/fract-ol
+	path = Rank_2/fract-ol
 	url = git@github.com:tmanso9/fract-ol.git
 
 [submodule "Finished_projects/miniRT"]
-	path = Finished_projects/miniRT
+	path = Rank_4/miniRT
 	url = git@github.com:polltter/42_miniRT.git
 
 [submodule "Finished_projects/philosophers"]
-	path = Finished_projects/philosophers
+	path = Rank_3/philosophers
 	url = git@github.com:tmanso9/philosophers.git
 
 [submodule "Finished_projects/pipex"]
-	path = Finished_projects/pipex
+	path = Rank_2/pipex
 	url = git@github.com:tmanso9/pipex.git
 
 [submodule "Finished_projects/push_swap"]
-	path = Finished_projects/push_swap
+	path = Rank_2/push_swap
 	url = git@github.com:tmanso9/push_swap.git
 
 
 [submodule "Finished_projects/CPP-modules"]
-	path = Finished_projects/CPP-modules
+	path = Rank_5/CPP-modules
 	url = git@github.com:tmanso9/CPP-modules.git
 [submodule "Finished_projects/webserv"]
-	path = Finished_projects/webserv
+	path = Rank_5/webserv
 	url = git@github.com:portugueseTorch/42_webserv.git
 [submodule "Finished_projects/inception"]
-	path = Finished_projects/inception
+	path = Rank_5/inception
 	url = git@github.com:tmanso9/inception.git
