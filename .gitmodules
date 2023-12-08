@@ -38,3 +38,6 @@
 [submodule "Finished_projects/CPP-modules"]
 	path = Finished_projects/CPP-modules
 	url = git@github.com:tmanso9/CPP-modules.git
+[submodule "Finished_projects/webserv"]
+	path = Finished_projects/webserv
+	url = git@github.com:portugueseTorch/42_webserv.git
