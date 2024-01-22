@@ -44,3 +44,6 @@
 [submodule "Finished_projects/inception"]
 	path = Rank_5/inception
 	url = git@github.com:tmanso9/inception.git
+[submodule "Rank_6/transcendence"]
+	path = Rank_6/transcendence
+	url = git@github.com:tmanso9/transcendence.git
