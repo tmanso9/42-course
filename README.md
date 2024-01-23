@@ -59,7 +59,7 @@ Below is a list of the projects included in this repository:
     - **Language**: C++
     - **Team**: Collaborated with [portugueseTorch](https://github.com/portugueseTorch)
 
-14. **ft_transcendence** [(Rank_6/transcendence)](git@github.com:tmanso9/transcendence.git)
+14. **ft_transcendence** [(Rank_6/transcendence)](https://github.com/tmanso9/transcendence.git)
     - **Description**: Full-stack project which implements a Pong real-time multiplayer game. Includes player interactions, authentication, game mechanics, and live chat.
     - **Language**: NestJS backend, Vue3 frontend, Typescript, Docker
     - **Team**: Collaborated with [portugueseTorch](https://github.com/portugueseTorch), [polltter](https://github.com/polltter), [afonsomlcarvalho](https://github.com/afonsomlcarvalho) and [20AAP02](https://github.com/20AAP02)
