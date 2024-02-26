@@ -1,6 +1,6 @@
 # 42 Course
 
-This repository contains various projects completed during a one-year span of my time at 42 Lisboa.  
+This repository contains the projects I completed at 42 Lisboa. I completed the Common Core in 14 months.  
 Each project is organized into separate directories, and each directory corresponds to a specific project.  
 Below is a list of the projects included in this repository:
 
